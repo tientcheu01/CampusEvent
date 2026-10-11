@@ -1,0 +1,101 @@
+.af {
+  padding: calc(var(--header-h) + var(--sp-12)) 0 var(--sp-24);
+}
+.af__grid {
+  display: grid;
+  gap: var(--sp-12);
+}
+.af__intro {
+  display: grid;
+  gap: var(--sp-6);
+  align-content: start;
+  justify-items: start;
+}
+.af__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4);
+}
+.af__msg {
+  margin: 0;
+  color: var(--blue-600);
+}
+.af__poster {
+  margin: 0;
+  border: var(--border);
+  max-width: 560px;
+  width: 100%;
+  background: #fff;
+}
+.poster {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.t-disp {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+.t-body {
+  font-family: var(--font-body);
+}
+.t-mono {
+  font-family: var(--font-mono);
+}
+
+// Entrée : chaque bloc monte et apparaît, décalé. Le trait d'« Innover » se dessine.
+.pa {
+  animation: rise 0.8s var(--ease-out) both;
+}
+@for $i from 0 through 7 {
+  .pa-#{$i} {
+    animation-delay: #{0.12 * $i}s;
+  }
+}
+.uline {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: draw 0.7s var(--ease-out) 0.9s forwards;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .af__grid {
+    grid-template-columns: 5fr 7fr;
+    align-items: start;
+  }
+  .af__poster {
+    justify-self: end;
+  }
+}
+
+@media print {
+  .af__intro {
+    display: none;
+  }
+  .af {
+    padding: 0;
+  }
+  .af__poster {
+    max-width: none;
+    border: 0;
+  }
+  .pa,
+  .uline {
+    animation: none;
+  }
+  .uline {
+    stroke-dashoffset: 0;
+  }
+}

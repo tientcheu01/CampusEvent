@@ -1,0 +1,82 @@
+.pf__hero {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: flex-end;
+  padding: calc(var(--header-h) + var(--sp-8)) 0 var(--sp-12);
+  background: var(--paper-2);
+  isolation: isolate;
+  overflow: hidden;
+}
+.pf__hero--img {
+  min-height: 70svh;
+  color: #fff;
+}
+.pf__hero--img .h1 {
+  color: #fff;
+}
+.pf__duo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, #0a1f4d, #f8a91b);
+  img {
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.06);
+    mix-blend-mode: multiply;
+  }
+}
+.pf__hero-in {
+  display: grid;
+  gap: var(--sp-4);
+  max-width: calc(var(--container) + var(--gutter) * 2);
+}
+.pf__prix {
+  color: var(--gold-700);
+}
+.pf__hero--img .pf__prix {
+  color: var(--gold-500);
+}
+.pf__blocks {
+  display: grid;
+  gap: var(--sp-16);
+  > div {
+    display: grid;
+    gap: var(--sp-6);
+    max-width: 40ch;
+    align-content: start;
+  }
+}
+.pf__img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-md);
+}
+.pf__team {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    padding: var(--sp-3) 0;
+    border-top: var(--border);
+  }
+}
+.pf__back,
+.pf__missing {
+  padding-bottom: var(--sp-24);
+}
+.pf__missing {
+  display: grid;
+  gap: var(--sp-8);
+  justify-items: start;
+  padding-top: calc(var(--header-h) + var(--sp-16));
+}
+@media (min-width: 1024px) {
+  .pf__blocks {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-24) var(--sp-16);
+    > div {
+      max-width: none;
+    }
+  }
+}

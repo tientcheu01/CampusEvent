@@ -1,0 +1,89 @@
+// Charte SJI INNOVA 2027 — tout vient du logo. Aucune sixième couleur.
+// À faire : relever les codes exacts à la pipette sur le logo vectoriel (le fichier source fait foi).
+:root {
+  // Palette
+  --paper: #ffffff;
+  --paper-2: #f4f7fc;
+  --paper-3: #e8effb;
+  --navy-900: #0a1f4d;
+  --blue-800: #0e2a6b;
+  --blue-600: #17439b;
+  --blue-500: #2e6be6;
+  --blue-200: #bbd0f7;
+  --gold-500: #f8a91b;
+  --gold-700: #b87708;
+  --text-dim: #4a5e8a;
+  --line: rgba(10, 31, 77, 0.12);
+  --cm-green: #13a04a;
+  --cm-red: #d4262c;
+
+  // Les trois seuls dégradés autorisés
+  --glow-gold: radial-gradient(45% 45% at 50% 50%, rgba(248, 169, 27, 0.2) 0%, rgba(248, 169, 27, 0) 70%);
+  --navy-block: linear-gradient(140deg, #0e2a6b 0%, #0a1f4d 58%, #17439b 100%);
+  --arrow: linear-gradient(100deg, #f8a91b 0%, #ffc24a 100%);
+
+  // Typographie
+  --font-display: 'Bricolage Grotesque', 'Bricolage Fallback', sans-serif;
+  --font-body: 'Satoshi', 'Satoshi Fallback', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --fs-display: clamp(3.25rem, 1.2rem + 9vw, 8.75rem);
+  --fs-h1: clamp(2.5rem, 1.2rem + 5.4vw, 5rem);
+  --fs-h2: clamp(1.875rem, 1.1rem + 3.2vw, 3.25rem);
+  --fs-h3: clamp(1.375rem, 1.05rem + 1.3vw, 1.875rem);
+  --fs-lead: clamp(1.0625rem, 0.98rem + 0.5vw, 1.375rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.75rem;
+
+  --lh-display: 0.92;
+  --lh-title: 1.06;
+  --lh-body: 1.65;
+  --ls-display: -0.035em;
+  --ls-label: 0.14em;
+
+  // Grille et espacements
+  --container: 1320px;
+  --gutter: clamp(1.25rem, 0.6rem + 2.6vw, 4rem);
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-24: 6rem;
+  --sp-32: 8rem;
+  --sp-40: 10rem;
+  --section-y: clamp(5rem, 3rem + 8vw, 10rem);
+  --header-h: 88px;
+
+  // Rayons, bordures, ombres (teintées en bleu nuit, jamais noires)
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 32px;
+  --r-full: 999px;
+  --border: 1px solid var(--line);
+  --border-strong: 1px solid var(--blue-200);
+  --shadow-xs: 0 1px 2px rgba(10, 31, 77, 0.06);
+  --shadow-sm: 0 2px 10px -3px rgba(10, 31, 77, 0.1);
+  --shadow-lg: 0 24px 48px -24px rgba(10, 31, 77, 0.22);
+  --ring-gold: 0 0 0 3px rgba(248, 169, 27, 0.3);
+  --ring-blue: 0 0 0 3px rgba(46, 107, 230, 0.22);
+
+  // Motion
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --d-fast: 180ms;
+  --d-base: 420ms;
+  --d-slow: 700ms;
+  --d-page: 900ms;
+
+  // Halo piloté par GlowService (sans unité : multipliés par 1vw / 1vh)
+  --glow-x: 50;
+  --glow-y: 30;
+  --glow-i: 0.18;
+}

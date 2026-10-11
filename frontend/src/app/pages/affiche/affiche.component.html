@@ -1,0 +1,75 @@
+<section class="af">
+  <div class="container af__grid">
+    <div class="af__intro">
+      <p class="label dim">Mode affiche</p>
+      <h1 class="h1">L'affiche officielle.</h1>
+      <p class="lead">À partager sur vos réseaux ou à imprimer. Un lien, au lieu d'une image compressée par WhatsApp.</p>
+      <div class="af__actions">
+        <button type="button" sjiButton [arrow]="true" (click)="downloadPng()" [disabled]="busy()">
+          {{ busy() ? 'Préparation…' : 'Télécharger en PNG' }}
+        </button>
+        <button type="button" sjiButton variant="ghost" (click)="share()">Partager</button>
+        <button type="button" sjiButton variant="link" (click)="print()">Imprimer</button>
+      </div>
+      @if (message()) {
+        <p class="af__msg label" role="status">{{ message() }}</p>
+      }
+    </div>
+
+    <figure class="af__poster">
+      <svg #poster class="poster" viewBox="0 0 1080 1530" role="img" aria-labelledby="poster-title poster-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="poster-title">Affiche SJI INNOVA 2027</title>
+        <desc id="poster-desc">Imaginez. Innover. Construire demain. 2ᵉ édition du concours d'innovation étudiante de Saint Jean Ingénieur. Dépôts du 16 novembre au 18 décembre 2026. Finale le 10 février 2027, Yaoundé.</desc>
+        <defs>
+          <pattern id="p-dots" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#0a1f4d" fill-opacity=".09" /></pattern>
+          <radialGradient id="p-glow"><stop offset="0" stop-color="#f8a91b" stop-opacity=".22" /><stop offset="1" stop-color="#f8a91b" stop-opacity="0" /></radialGradient>
+        </defs>
+        <rect width="1080" height="1530" fill="#fff" />
+        <rect width="1080" height="1350" fill="url(#p-dots)" />
+        <g class="pa pa-0" fill="#2e6be6" fill-opacity=".08">
+          <path d="M1080 1300C900 1000 720 640 420 360 520 700 760 1040 1080 1300Z" />
+          <path d="M1080 1300C960 1110 860 900 640 700 700 930 860 1130 1080 1300Z" />
+          <path d="M1080 1300C1010 1160 960 1010 820 880 840 1030 940 1170 1080 1300Z" />
+        </g>
+        <circle class="pa pa-0" cx="900" cy="330" r="300" fill="none" stroke="#bbd0f7" stroke-width="2" stroke-dasharray="1500 400" />
+        <circle class="pa pa-1" cx="880" cy="370" r="300" fill="url(#p-glow)" />
+
+        <g class="pa pa-1"><g transform="translate(772 170) scale(2.75)">
+          <path d="M42 4C20.5 4 4 20.5 4 41c0 13.5 7 22.5 15 30 4 3.8 6 7.5 6 12v6h34v-6c0-4.5 2-8.2 6-12 8-7.5 15-16.5 15-30C80 20.5 63.5 4 42 4Z" fill="#f8a91b" fill-opacity=".95" />
+          <path d="M42 4C20.5 4 4 20.5 4 41c0 13.5 7 22.5 15 30 4 3.8 6 7.5 6 12v6h34v-6c0-4.5 2-8.2 6-12 8-7.5 15-16.5 15-30C80 20.5 63.5 4 42 4ZM28 96h28M32 106h20M36 114h12M30 52l12 14 12-14M42 66v18" fill="none" stroke="#0a1f4d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+        </g></g>
+
+        <text class="pa pa-1 t-mono" x="80" y="130" font-size="22" fill="#17439b" letter-spacing="3">2ᵉ ÉDITION · SAINT JEAN INGÉNIEUR · YAOUNDÉ</text>
+        <g class="t-disp" font-size="150" fill="#0a1f4d" letter-spacing="-5">
+          <text class="pa pa-2" x="74" y="310">Imaginez.</text>
+          <text class="pa pa-3" x="74" y="450">Innover.</text>
+          <path class="pa pa-4 uline" d="M82 478C250 462 470 486 690 466" fill="none" stroke="#f8a91b" stroke-width="12" stroke-linecap="round" />
+          <text class="pa pa-4" x="74" y="610">Construire</text>
+          <text class="pa pa-5" x="74" y="750">demain.</text>
+        </g>
+
+        <g class="pa pa-5">
+          <text class="t-disp" x="74" y="1000" font-size="190" fill="#f8a91b" letter-spacing="-6">100&#160;000</text>
+          <text class="t-disp" x="74" y="1064" font-size="52" fill="#0a1f4d">FCFA pour le projet lauréat</text>
+          <text class="t-body" x="80" y="1120" font-size="30" fill="#4a5e8a">3 trophées · un accompagnement technique et académique</text>
+        </g>
+
+        <g class="pa pa-6">
+          <rect x="80" y="1160" width="920" height="2" fill="#0a1f4d" fill-opacity=".14" />
+          <text class="t-mono" x="80" y="1214" font-size="22" fill="#17439b" letter-spacing="3">DÉPÔTS</text>
+          <text class="t-disp" x="80" y="1262" font-size="44" fill="#0a1f4d">16 nov. → 18 déc. 2026</text>
+          <text class="t-mono" x="580" y="1214" font-size="22" fill="#17439b" letter-spacing="3">GRANDE FINALE</text>
+          <text class="t-disp" x="580" y="1262" font-size="44" fill="#0a1f4d">10 février 2027</text>
+          <text class="t-body" x="80" y="1312" font-size="26" fill="#4a5e8a">Grande salle Licence 1 francophone · campus d'Etok-Koss, Yaoundé · 13h–17h</text>
+        </g>
+
+        <rect y="1370" width="1080" height="148" fill="#0a1f4d" />
+        <g class="pa pa-7">
+          <text class="t-disp" x="80" y="1452" font-size="46" fill="#fff" letter-spacing="-1">Ensemble, donnons des ailes à l'innovation.</text>
+          <text class="t-mono" x="80" y="1494" font-size="22" fill="#f8a91b" letter-spacing="2">#SJIINNOVA2027 · 694 88 23 94 · 656 03 32 52 · 655 66 03 95</text>
+        </g>
+        <rect y="1518" width="360" height="12" fill="#13a04a" /><rect x="360" y="1518" width="360" height="12" fill="#d4262c" /><rect x="720" y="1518" width="360" height="12" fill="#f8a91b" />
+      </svg>
+    </figure>
+  </div>
+</section>

@@ -1,0 +1,74 @@
+.pl__filters {
+  display: grid;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+.pl__group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  > .label:first-child {
+    min-width: 6rem;
+  }
+}
+// Chips mono : angles droits, filet bleu pâle ; l'état actif prend l'or de surface (pas de texte doré).
+.chip {
+  padding: 0.5rem 0.875rem;
+  background: transparent;
+  border: var(--border-strong);
+  border-radius: var(--r-full);
+  color: var(--navy-900);
+  transition: background-color var(--d-fast), border-color var(--d-fast);
+  &:hover {
+    border-color: var(--blue-500);
+  }
+}
+.chip--on {
+  background: var(--gold-500);
+  border-color: var(--gold-500);
+}
+.pl__count {
+  margin: var(--sp-8) 0 var(--sp-4);
+}
+.pl__grid {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: 1fr;
+  > * {
+    min-height: 280px;
+  }
+}
+.pl__skel {
+  min-height: 280px;
+  border-radius: var(--r-md);
+  background: var(--paper-2);
+  border: var(--border);
+  animation: pulse 1.4s var(--ease-soft) infinite alternate;
+}
+@keyframes pulse {
+  to {
+    opacity: 0.5;
+  }
+}
+.pl__state {
+  display: grid;
+  gap: var(--sp-6);
+  justify-items: start;
+  padding-block: var(--sp-16);
+}
+@media (min-width: 640px) {
+  .pl__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .pl__grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(260px, auto);
+  }
+  .pl__first {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}

@@ -1,0 +1,109 @@
+.pp__head {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--sp-6);
+  align-content: start;
+  margin-bottom: var(--sp-12);
+}
+.pp__head h2 {
+  max-width: 16ch;
+}
+// Liste numérotée séparée par des filets, pas des cartes.
+.pp__reasons {
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: var(--sp-4);
+    padding: var(--sp-6) 0;
+    border-top: var(--border);
+    align-items: baseline;
+  }
+  li:last-child {
+    border-bottom: var(--border);
+  }
+  .num {
+    font-size: 1.5rem;
+    color: var(--blue-200);
+  }
+  .h3 {
+    font-weight: 500;
+    max-width: 36ch;
+  }
+}
+.pp__schema {
+  grid-column: 1 / -1;
+}
+.pp__contrib {
+  margin: 0;
+  display: grid;
+  > div {
+    padding: var(--sp-6) 0;
+    border-top: var(--border);
+  }
+  dd {
+    margin: var(--sp-2) 0 0;
+  }
+}
+.pp__dossier {
+  margin-top: var(--sp-8);
+}
+.pp__form {
+  grid-column: 1 / -1;
+}
+form {
+  display: grid;
+  gap: var(--sp-6);
+  max-width: 640px;
+  button {
+    justify-self: start;
+  }
+}
+.pp__err {
+  margin: 0;
+  color: var(--cm-red);
+}
+.pp__done {
+  display: grid;
+  gap: var(--sp-6);
+  justify-items: start;
+  max-width: 40ch;
+}
+@media (min-width: 640px) {
+  .pp__contrib {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--sp-8);
+  }
+}
+@media (min-width: 1024px) {
+  .pp__head {
+    grid-column: 1 / span 4;
+    margin-bottom: 0;
+  }
+  .pp__reasons,
+  .pp__schema {
+    grid-column: 6 / span 7;
+  }
+  .pp__contrib {
+    grid-template-columns: repeat(4, 1fr);
+    > div {
+      padding-right: var(--sp-6);
+    }
+    > div + div {
+      border-left: var(--border);
+      padding-left: var(--sp-6);
+    }
+  }
+  section:has(.pp__contrib) .pp__head,
+  section:has(.pp__dossier) .pp__head {
+    grid-column: auto;
+    margin-bottom: var(--sp-12);
+    max-width: 30ch;
+  }
+  .pp__form {
+    grid-column: 6 / span 7;
+  }
+}

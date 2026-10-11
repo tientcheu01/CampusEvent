@@ -25,7 +25,7 @@ module.exports = async function handler(req, res) {
       operations: ['put'],
       pathname,
       validUntil: Date.now() + 30 * 60 * 1000,
-      maximumSizeInBytes: 48 * 1024 * 1024,
+      maximumSizeInBytes: 200 * 1024 * 1024,
     });
 
     const { presignedUrl } = await presignUrl(signedToken, {

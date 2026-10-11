@@ -1,0 +1,6 @@
+{
+  "url": "https://test-nova-seven.vercel.app",
+  "name": "SJI INNOVA 2027",
+  "organisation": "Saint Jean Ingénieur",
+  "routes": ["/", "/le-concours", "/projets", "/partenaires", "/contact", "/affiche"]
+}

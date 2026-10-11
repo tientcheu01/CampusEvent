@@ -1,41 +1,34 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
-import { Observable, last, map, switchMap } from 'rxjs';
+import { HttpClient, HttpEventType, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { Observable, filter, map, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { UploadUrlResponse } from '../models/inscription.model';
+import { UploadProgress } from '../models/api.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+/** Téléversement direct vers Vercel Blob via une URL signée, avec progression réelle. */
+@Injectable({ providedIn: 'root' })
 export class UploadService {
-  private readonly uploadUrlEndpoint = environment.uploadUrl;
+  private readonly http = inject(HttpClient);
 
-  constructor(private readonly http: HttpClient) {}
-
-  uploadFile(file: File): Observable<string> {
-    const encodedName = encodeURIComponent(file.name);
-    return this.http
-      .post<UploadUrlResponse>(`${this.uploadUrlEndpoint}?filename=${encodedName}`, null)
-      .pipe(
-        switchMap((response) => this.putFile(response.url, file)),
-        map((event: HttpEvent<unknown>) => {
-          if (event.type === 4) {
-            const body = event.body as { url?: string } | null;
-            if (body?.url) {
-              return body.url;
-            }
-          }
-          throw new Error('Réponse d\'upload inattendue');
-        }),
-        last()
-      );
-  }
-
-  private putFile(url: string, file: File): Observable<HttpEvent<unknown>> {
-    const request = new HttpRequest('PUT', url, file, {
-      headers: new HttpHeaders({ 'Content-Type': file.type || 'application/octet-stream' }),
-      reportProgress: true,
-    });
-    return this.http.request(request);
+  upload(file: File): Observable<UploadProgress> {
+    const name = encodeURIComponent(file.name);
+    return this.http.post<{ url: string }>(`${environment.uploadUrl}?filename=${name}`, null).pipe(
+      switchMap(({ url }) =>
+        this.http.request(
+          new HttpRequest('PUT', url, file, {
+            headers: new HttpHeaders({ 'Content-Type': file.type || 'application/octet-stream' }),
+            reportProgress: true,
+          }),
+        ),
+      ),
+      filter((e) => e.type === HttpEventType.UploadProgress || e.type === HttpEventType.Response),
+      map((e): UploadProgress => {
+        if (e.type === HttpEventType.UploadProgress) {
+          return { progress: e.total ? Math.round((100 * e.loaded) / e.total) : 0 };
+        }
+        const body = (e as { body?: { url?: string } }).body;
+        if (!body?.url) throw new Error('Réponse de téléversement inattendue');
+        return { progress: 100, url: body.url };
+      }),
+    );
   }
 }

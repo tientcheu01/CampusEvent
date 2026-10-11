@@ -1,0 +1,233 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  // Pas de scroll-behavior: smooth natif : Lenis s'en charge (les deux se battent sinon).
+  scrollbar-gutter: stable;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--navy-900);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+  padding: 0;
+}
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--gold-500);
+  color: var(--navy-900);
+}
+
+// Focus visible : jamais d'outline: none sans remplacement.
+:focus-visible {
+  outline: 2px solid var(--gold-700);
+  outline-offset: 3px;
+}
+
+// Lien d'évitement
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2000;
+  padding: 0.75rem 1.25rem;
+  background: var(--navy-900);
+  color: #fff;
+  border-radius: var(--r-full);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--d-fast) var(--ease-soft);
+  &:focus {
+    transform: none;
+  }
+}
+
+// Calque grain : papier, presque invisible sur le blanc.
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none;
+  opacity: 0.022;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='128' height='128' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+// Écran d'allumage (injecté dans index.html, piloté par un script en ligne).
+// Sécurité sans JS : il disparaît tout seul après 1,4 s.
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  animation: intro-failsafe 0s linear 1.4s forwards;
+  pointer-events: none;
+}
+.intro::before,
+.intro::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  background: var(--paper);
+  transition: transform 420ms var(--ease-in-out);
+}
+.intro::before {
+  top: 0;
+}
+.intro::after {
+  bottom: 0;
+}
+.intro__core {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+  transition: opacity 180ms linear;
+}
+.intro__bulb {
+  width: 84px;
+  height: 120px;
+  overflow: visible;
+}
+.intro__bulb path {
+  stroke: var(--navy-900);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: intro-draw 700ms var(--ease-out) forwards;
+}
+.intro__fill {
+  transform-origin: 50% 100%;
+  transform: scaleY(0);
+  animation: intro-fill 700ms var(--ease-out) 200ms forwards;
+}
+.intro__count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-label);
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+.intro--out::before {
+  transform: translateY(-100%);
+}
+.intro--out::after {
+  transform: translateY(100%);
+}
+.intro--out .intro__core {
+  opacity: 0;
+}
+.no-intro .intro {
+  display: none;
+}
+@keyframes intro-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes intro-fill {
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes intro-failsafe {
+  to {
+    visibility: hidden;
+  }
+}
+
+@media print {
+  sji-header,
+  sji-footer,
+  sji-arrow,
+  sji-glow-layer,
+  sji-page-veil,
+  .skip-link,
+  .intro,
+  body::after {
+    display: none !important;
+  }
+}
+
+// Mouvement réduit : tout est ramené à un fondu quasi instantané.
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .intro {
+    display: none;
+  }
+}
