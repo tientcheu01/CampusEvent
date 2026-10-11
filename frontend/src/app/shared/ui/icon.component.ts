@@ -28,6 +28,10 @@ const PATHS = {
   chevron: 'M6 9l6 6 6-6',
   send: 'M4 12l16-8-6 16-3-7-7-1z',
   alert: 'M12 4l9 16H3zM12 10v4M12 17h.01',
+  // Réseaux : tracés simplifiés, même grille 24 et même épaisseur que le reste.
+  facebook: 'M14 8.5V7a1.5 1.5 0 0 1 1.5-1.5H17V3h-2a4 4 0 0 0-4 4v1.5H9V11h2v10h3V11h2.2l.3-2.5H14z',
+  instagram: 'M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM16.8 7.2h.01',
+  linkedin: 'M4.5 9.5h3V20h-3zM6 4.5a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2zM10.5 20V9.5h3v1.4a3.6 3.6 0 0 1 3.2-1.6c2.3 0 3.8 1.5 3.8 4.2V20h-3v-5.8c0-1.4-.6-2.2-1.8-2.2s-2.2.9-2.2 2.4V20z',
 } as const;
 
 export type IconName = keyof typeof PATHS;

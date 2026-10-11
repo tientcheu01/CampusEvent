@@ -50,7 +50,7 @@ import { MotionService } from '../../core/services/motion.service';
       white-space: nowrap;
       font-family: var(--font-display);
       font-weight: 600;
-      font-size: 1.75rem;
+      font-size: 1.125rem;
       letter-spacing: -0.01em;
       text-transform: uppercase;
       color: var(--navy-900);

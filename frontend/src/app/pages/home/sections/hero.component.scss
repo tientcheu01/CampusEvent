@@ -1,0 +1,196 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(var(--header-total) + var(--sp-12));
+  padding-bottom: var(--sp-16);
+}
+.hero__wings {
+  position: absolute;
+  right: -10%;
+  top: -6%;
+  width: min(72vw, 820px);
+  height: 110%;
+  transform: scaleX(-1);
+  z-index: -1;
+}
+.hero__grid {
+  display: grid;
+  gap: var(--sp-12);
+  align-items: center;
+}
+.hero__text {
+  display: grid;
+  gap: var(--sp-6);
+  align-content: start;
+}
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  color: var(--blue-600);
+}
+// Pastille bicolore de l'étiquette, reprise des sites de référence.
+.dot {
+  width: 26px;
+  height: 13px;
+  border-radius: var(--r-full);
+  background: linear-gradient(90deg, var(--navy-900) 0 50%, var(--gold-500) 50%);
+}
+.hero__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--navy-900);
+}
+.uline {
+  position: relative;
+  display: inline-block;
+}
+.uline svg {
+  position: absolute;
+  left: 0;
+  bottom: -0.02em;
+  width: 100%;
+  height: 0.12em;
+  overflow: visible;
+}
+.uline path {
+  fill: none;
+  stroke: var(--gold-500);
+  stroke-width: 5px;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 700ms var(--ease-out) 0.6s forwards;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.hero__lead {
+  margin: 0;
+  max-width: 44ch;
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-top: var(--sp-2);
+}
+
+// ─── Mosaïque de portraits ───────────────────────────────────────────────────
+.hero__media {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-3);
+  aspect-ratio: 1 / 0.96;
+}
+.hero__shot {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--paper-3);
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.hero__shot--a {
+  grid-row: span 2;
+  // L'encoche en bas à droite, où vient se loger la pastille.
+  border-bottom-right-radius: 64px;
+}
+.hero__shot--c {
+  border-top-right-radius: var(--r-xl);
+}
+.chip {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.625rem 1rem;
+  font-size: var(--fs-small);
+  line-height: 1.25;
+  background: var(--paper);
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-lg);
+  white-space: nowrap;
+  sji-icon {
+    color: var(--gold-700);
+  }
+  strong {
+    font-weight: 700;
+  }
+}
+.chip--prize {
+  left: -0.75rem;
+  top: 8%;
+}
+.chip--place {
+  right: -0.5rem;
+  bottom: 6%;
+  background: var(--navy-900);
+  color: #fff;
+  sji-icon {
+    color: var(--gold-500);
+  }
+}
+.hero__seal {
+  position: absolute;
+  z-index: 2;
+  left: calc(58% - 42px);
+  top: calc(50% - 42px);
+  width: 84px;
+  height: 84px;
+}
+.hero__bottom {
+  margin-top: var(--sp-12);
+}
+
+@media (max-width: 639px) {
+  .hero__media {
+    aspect-ratio: 1 / 0.8;
+  }
+  .chip--prize {
+    left: 0;
+    top: 4%;
+  }
+  .hero__seal {
+    width: 64px;
+    height: 64px;
+    left: calc(58% - 32px);
+    top: calc(50% - 32px);
+  }
+}
+@media (min-width: 1024px) {
+  .hero {
+    padding-bottom: var(--sp-24);
+  }
+  .hero__grid {
+    grid-template-columns: 1fr 1.05fr;
+    gap: var(--sp-16);
+  }
+  .hero__title {
+    max-width: 12ch;
+  }
+  .hero__bottom {
+    margin-top: calc(var(--sp-12) * -1);
+    position: relative;
+    z-index: 3;
+    max-width: calc(760px + var(--gutter) * 2);
+    margin-inline: 0;
+  }
+}
+

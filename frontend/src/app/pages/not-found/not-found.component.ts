@@ -26,7 +26,7 @@ import { WingsComponent } from '../../shared/ui/wings.component';
       min-height: 100svh;
       display: flex;
       align-items: center;
-      padding-top: var(--header-h);
+      padding-top: var(--header-total);
     }
     .nf__wings {
       position: absolute;
@@ -42,7 +42,7 @@ import { WingsComponent } from '../../shared/ui/wings.component';
       justify-items: start;
     }
     .nf__title {
-      font-size: clamp(2.5rem, 1rem + 6vw, 6rem);
+      font-size: var(--fs-display);
     }
   `,
 })

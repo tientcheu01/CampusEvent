@@ -1,0 +1,129 @@
+.gn {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.gn__wings {
+  position: absolute;
+  left: -8%;
+  top: -10%;
+  width: min(70vw, 760px);
+  height: 120%;
+  z-index: 0;
+}
+.gn__head {
+  display: grid;
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-12);
+}
+.gn__title {
+  margin: var(--sp-5, 1.25rem) 0 0;
+  color: #fff;
+}
+.gn__cta {
+  justify-self: start;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  &:hover {
+    border-color: var(--gold-500);
+    background: rgba(248, 169, 27, 0.12);
+  }
+}
+.gn__prix {
+  display: grid;
+  gap: var(--sp-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gn__card {
+  display: grid;
+  gap: var(--sp-4);
+  align-content: start;
+  padding: var(--sp-8);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.04);
+  transition:
+    transform var(--d-base) var(--ease-out),
+    border-color var(--d-fast);
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-500);
+  }
+}
+// La carte du premier prix prend l'or : un seul point d'attention dans la section.
+.gn__card--phare {
+  background: var(--gold-500);
+  border-color: var(--gold-500);
+  color: var(--navy-900);
+}
+.gn__rang {
+  margin: 0;
+  color: var(--gold-500);
+}
+.gn__card--phare .gn__rang {
+  color: var(--navy-900);
+}
+.gn__montant {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-stat);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  span {
+    font-size: 0.34em;
+    letter-spacing: 0.02em;
+  }
+}
+.gn__lots {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-small);
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  sji-icon {
+    color: var(--gold-500);
+  }
+}
+.gn__card--phare .gn__lots sji-icon {
+  color: var(--navy-900);
+}
+.gn__note {
+  margin: var(--sp-8) 0 0;
+  color: var(--blue-200);
+}
+
+@media (min-width: 640px) {
+  .gn__prix {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .gn__head {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+  .gn__cta {
+    justify-self: end;
+  }
+  // Le premier prix est plus haut que les deux autres : l'asymétrie fait la hiérarchie.
+  .gn__prix {
+    align-items: start;
+  }
+  .gn__card--phare {
+    padding-block: var(--sp-12);
+    margin-top: calc(var(--sp-6) * -1);
+  }
+}

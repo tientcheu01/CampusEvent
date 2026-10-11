@@ -44,7 +44,7 @@ import { FieldComponent } from '../../shared/ui/field.component';
   `,
   styles: `
     .dc {
-      padding: calc(var(--header-h) + var(--sp-16)) 0 var(--sp-24);
+      padding: calc(var(--header-total) + var(--sp-16)) 0 var(--sp-24);
     }
     .dc__in {
       display: grid;

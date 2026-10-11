@@ -27,19 +27,21 @@
   --font-body: 'Satoshi', 'Satoshi Fallback', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
-  --fs-display: clamp(3.25rem, 1.2rem + 9vw, 8.75rem);
-  --fs-h1: clamp(2.5rem, 1.2rem + 5.4vw, 5rem);
-  --fs-h2: clamp(1.875rem, 1.1rem + 3.2vw, 3.25rem);
-  --fs-h3: clamp(1.375rem, 1.05rem + 1.3vw, 1.875rem);
-  --fs-lead: clamp(1.0625rem, 0.98rem + 0.5vw, 1.375rem);
-  --fs-body: 1.0625rem;
+  // Échelle resserrée : des titres de 36 à 60 px, pas de typographie d'affiche.
+  --fs-display: clamp(2.25rem, 1.35rem + 3.6vw, 3.75rem); // 36 → 60
+  --fs-h1: clamp(2rem, 1.3rem + 2.8vw, 3rem); // 32 → 48
+  --fs-h2: clamp(1.625rem, 1.25rem + 1.5vw, 2.25rem); // 26 → 36
+  --fs-h3: clamp(1.125rem, 1.02rem + 0.42vw, 1.375rem); // 18 → 22
+  --fs-stat: clamp(2rem, 1.4rem + 2.4vw, 3rem); // chiffres clés
+  --fs-lead: clamp(1rem, 0.96rem + 0.2vw, 1.125rem); // 16 → 18
+  --fs-body: 1rem;
   --fs-small: 0.875rem;
   --fs-label: 0.75rem;
 
-  --lh-display: 0.92;
-  --lh-title: 1.06;
-  --lh-body: 1.65;
-  --ls-display: -0.035em;
+  --lh-display: 1.08;
+  --lh-title: 1.14;
+  --lh-body: 1.7;
+  --ls-display: -0.02em;
   --ls-label: 0.14em;
 
   // Grille et espacements
@@ -57,7 +59,10 @@
   --sp-32: 8rem;
   --sp-40: 10rem;
   --section-y: clamp(5rem, 3rem + 8vw, 10rem);
-  --header-h: 88px;
+  --header-h: 72px;
+  --topbar-h: 40px;
+  // Hauteur occupée en haut de page (bandeau + barre), pour le décalage des héros
+  --header-total: calc(var(--header-h) + var(--topbar-h));
 
   // Rayons, bordures, ombres (teintées en bleu nuit, jamais noires)
   --r-sm: 6px;

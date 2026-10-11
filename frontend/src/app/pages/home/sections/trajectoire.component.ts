@@ -28,7 +28,7 @@ const POINTS = [
       <div class="tj__pin" #pin>
         <div class="container tj__inner">
           <header class="tj__head">
-            <sji-section-label num="02" text="Le parcours" />
+            <sji-section-label num="03" text="Le parcours" />
             <h2 id="tj-title" class="h1">D'une idée<br />à un impact.</h2>
           </header>
           <div class="tj__stage">
@@ -91,7 +91,7 @@ const POINTS = [
     }
     .tj__num {
       color: var(--blue-200);
-      font-size: 2.5rem;
+      font-size: 1.5rem;
       line-height: 1;
     }
     .tj__mot {

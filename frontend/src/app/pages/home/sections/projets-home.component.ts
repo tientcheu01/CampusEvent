@@ -19,7 +19,7 @@ import { SectionLabelComponent } from '../../../shared/ui/section-label.componen
     <section class="section tint-3" aria-labelledby="pj-title">
       <div class="container">
         <header class="pj__head" sjiReveal>
-          <sji-section-label num="05" text="Les projets" />
+          <sji-section-label num="06" text="Les projets" />
           <h2 id="pj-title" class="h1">Ils l'ont déjà fait.</h2>
           <p class="lead">Les projets de la première édition, portés par des étudiants de Saint Jean Ingénieur.</p>
         </header>

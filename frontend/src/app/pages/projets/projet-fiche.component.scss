@@ -3,7 +3,7 @@
   min-height: 420px;
   display: flex;
   align-items: flex-end;
-  padding: calc(var(--header-h) + var(--sp-8)) 0 var(--sp-12);
+  padding: calc(var(--header-total) + var(--sp-8)) 0 var(--sp-12);
   background: var(--paper-2);
   isolation: isolate;
   overflow: hidden;
@@ -69,7 +69,7 @@
   display: grid;
   gap: var(--sp-8);
   justify-items: start;
-  padding-top: calc(var(--header-h) + var(--sp-16));
+  padding-top: calc(var(--header-total) + var(--sp-16));
 }
 @media (min-width: 1024px) {
   .pf__blocks {

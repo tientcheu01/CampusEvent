@@ -1,159 +1,123 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, afterNextRender, inject, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { VERBES } from '../../../core/data/site-data';
 import { GlowDirective } from '../../../core/directives/glow.directive';
 import { RevealDirective } from '../../../core/directives/reveal.directive';
-import { MotionService } from '../../../core/services/motion.service';
+import { IconComponent, IconName } from '../../../shared/ui/icon.component';
 import { SectionLabelComponent } from '../../../shared/ui/section-label.component';
 
-interface Word {
-  t: string;
-  key?: boolean;
-  flag?: boolean; // « camerounaise » : souligné du filet tricolore
-}
+const ICONES: IconName[] = ['grad', 'trophy', 'trend'];
 
-// Les mots-clés sont en --navy-900 plein ; le reste en --text-dim. L'encrage anime les mots-clés au scroll.
-// P : mots ordinaires (espace insécable avant : ; ! ?) — K : mots-clés.
-const P = (s: string): Word[] =>
-  s
-    .replace(/ ([:;!?])/g, ' $1')
-    .split(' ')
-    .map((t) => ({ t }));
-const K = (s: string): Word[] => s.split(' ').map((t) => ({ t, key: true }));
-
-const TEXT: Word[] = [
-  ...K('SJI INNOVA récompense'),
-  ...P('les projets d’étudiants qui répondent à un'),
-  ...K('besoin réel'),
-  ...P('de la société'),
-  { t: 'camerounaise.', key: true, flag: true },
-  ...P('Pas une idée sur papier : un'),
-  ...K('problème identifié,'),
-  ...P('une'),
-  ...K('solution construite,'),
-  ...P('un'),
-  ...K('prototype'),
-  ...P('qu’on peut montrer. La première édition a fait émerger plusieurs projets portés par des étudiants ; la deuxième en fait un'),
-  ...K('rendez-vous annuel.'),
-];
-
-/** 03 — Le manifeste. Un seul paragraphe, composé en gros, qui s'encre mot à mot. */
+/** 03 — Le manifeste : ce qu'est le concours, et les trois missions en colonnes séparées par un filet. */
 @Component({
   selector: 'sji-manifeste',
   standalone: true,
-  imports: [SectionLabelComponent, RevealDirective, GlowDirective],
+  imports: [SectionLabelComponent, IconComponent, RevealDirective, GlowDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section id="manifeste" class="section grid-wrap" sjiGlow="30 40 .16" aria-labelledby="manifeste-label">
-      <div class="container grid">
-        <div class="mf__main">
-          <sji-section-label id="manifeste-label" num="01" text="Le concours" />
-          <p #para class="mf__text" sjiReveal>
-            @for (w of words; track $index) {
-              <span class="w" [class.w--key]="w.key" [class.w--flag]="w.flag">{{ w.t }}</span>{{ ' ' }}
-            }
+    <section id="manifeste" class="section section--dense" sjiGlow="28 42 .14" aria-labelledby="mf-title">
+      <div class="container mf">
+        <header class="mf__head" sjiReveal>
+          <sji-section-label num="01" text="Le concours" />
+          <h2 id="mf-title" class="h2 mf__title">
+            <span data-line><em>Trois missions</em>,</span><span data-line>un seul concours</span>
+          </h2>
+          <p class="mf__lead">
+            SJI INNOVA récompense les projets d'étudiants qui répondent à un besoin réel de la société camerounaise. Pas une idée sur papier&nbsp;: un problème identifié,
+            une solution construite, un prototype qu'on peut montrer.
           </p>
-        </div>
-        <aside class="mf__aside" aria-label="Nos trois missions">
-          <dl sjiReveal="stagger">
-            @for (v of verbes; track v.verbe) {
-              <div class="mf__verb">
-                <dt class="h3">{{ v.verbe }}</dt>
-                <dd class="dim">{{ v.texte }}</dd>
-              </div>
-            }
-          </dl>
-        </aside>
+        </header>
+
+        <dl class="mf__cols" sjiReveal="stagger">
+          @for (v of verbes; track v.verbe; let i = $index) {
+            <div class="mf__col">
+              <span class="mf__icon"><sji-icon [name]="icones[i]" [size]="24" /></span>
+              <dt class="h3">{{ v.verbe }}</dt>
+              <dd>{{ v.texte }}</dd>
+            </div>
+          }
+        </dl>
       </div>
     </section>
   `,
   styles: `
-    .mf__main {
-      grid-column: 1 / -1;
+    .mf {
       display: grid;
-      gap: var(--sp-8);
+      gap: var(--sp-12);
+    }
+    .mf__head {
+      display: grid;
+      gap: var(--sp-5, 1.25rem);
       align-content: start;
     }
-    .mf__text {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: var(--fs-h3);
-      line-height: 1.28;
-      letter-spacing: -0.015em;
+    .mf__title {
+      margin: 0;
+      max-width: 12ch;
+    }
+    /* Le mot coloré du titre, repris des références. */
+    .mf__title em {
+      font-style: normal;
+      color: var(--blue-600);
+    }
+    .mf__lead {
+      margin: 0;
+      max-width: 46ch;
       color: var(--text-dim);
-      max-width: 38ch;
     }
-    .w--key {
-      color: var(--navy-900);
+    .mf__cols {
+      display: grid;
+      gap: var(--sp-8);
+      margin: 0;
     }
-    .w--flag {
-      position: relative;
+    .mf__col {
+      display: grid;
+      gap: 0.6rem;
+      align-content: start;
     }
-    .w--flag::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -0.1em;
-      height: 4px;
-      background: linear-gradient(90deg, var(--cm-green) 0 33.3%, var(--cm-red) 33.3% 66.6%, var(--gold-500) 66.6%);
+    .mf__icon {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      margin-bottom: var(--sp-2);
+      border: var(--border-strong);
+      border-radius: var(--r-md);
+      background: var(--paper-2);
     }
-    .mf__aside {
-      grid-column: 1 / -1;
-      margin-top: var(--sp-16);
+    .mf__col dt {
+      margin: 0;
     }
-    .mf__verb {
-      padding: var(--sp-6) 0;
-      border-top: var(--border);
+    .mf__col dd {
+      margin: 0;
+      color: var(--text-dim);
+      font-size: var(--fs-small);
+      line-height: 1.6;
+      max-width: 32ch;
     }
-    .mf__verb:last-child {
-      border-bottom: var(--border);
-    }
-    .mf__verb dd {
-      margin: var(--sp-2) 0 0;
+    @media (min-width: 640px) {
+      .mf__cols {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--sp-6);
+      }
+      /* Filets verticaux entre les colonnes, comme dans la référence. */
+      .mf__col + .mf__col {
+        padding-left: var(--sp-6);
+        border-left: var(--border);
+      }
     }
     @media (min-width: 1024px) {
-      .mf__main {
-        grid-column: 1 / span 8;
+      .mf {
+        grid-template-columns: 1fr 1.35fr;
+        gap: var(--sp-16);
+        align-items: start;
       }
-      .mf__text {
-        font-size: clamp(1.75rem, 1rem + 1.8vw, 2.5rem);
-      }
-      .mf__aside {
-        grid-column: 10 / span 3;
-        margin-top: var(--sp-16);
-        align-self: end;
+      .mf__head {
+        padding-right: var(--sp-8);
+        border-right: var(--border);
       }
     }
   `,
 })
 export class ManifesteComponent {
-  protected readonly words = TEXT;
   protected readonly verbes = VERBES;
-
-  private readonly para = viewChild.required<ElementRef<HTMLElement>>('para');
-  private readonly motion = inject(MotionService);
-  private readonly destroyRef = inject(DestroyRef);
-
-  constructor() {
-    afterNextRender(() => {
-      if (!this.motion.rich) return;
-      this.motion.load().then(({ gsap }) => {
-        const node = this.para().nativeElement;
-        const ctx = gsap.context(() => {
-          // Encrage : chaque mot-clé passe du gris bleuté au bleu nuit en entrant dans le viewport.
-          gsap.fromTo(
-            node.querySelectorAll('.w--key'),
-            { color: '#4a5e8a' },
-            {
-              color: '#0a1f4d',
-              stagger: 0.12,
-              ease: 'none',
-              scrollTrigger: { trigger: node, start: 'top 82%', end: 'bottom 48%', scrub: true },
-            },
-          );
-        }, node);
-        this.destroyRef.onDestroy(() => ctx.revert());
-      });
-    });
-  }
+  protected readonly icones = ICONES;
 }

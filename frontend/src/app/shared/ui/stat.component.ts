@@ -33,7 +33,7 @@ const fmt = new Intl.NumberFormat('fr-FR');
       gap: 0.25em 0.4em;
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(3rem, 1.5rem + 6vw, 5.5rem);
+      font-size: var(--fs-stat);
       line-height: 0.92;
       letter-spacing: var(--ls-display);
       color: var(--gold-500); /* l'or est une couleur de surface : seulement en très gros corps */

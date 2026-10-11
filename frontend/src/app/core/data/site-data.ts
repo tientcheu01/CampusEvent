@@ -87,12 +87,15 @@ export const CALENDRIER: TempsFort[] = [
   },
 ];
 
-export const CRITERES = [
-  'Originalité et innovation',
-  'Faisabilité technique',
-  'Impact potentiel',
-  'Qualité de la présentation',
+// Barème de l'article 8 du règlement en vigueur. À refaire valider pour l'édition 2027.
+export const CRITERES_PONDERES = [
+  { nom: 'Originalité et innovation', poids: 30 },
+  { nom: 'Faisabilité technique', poids: 25 },
+  { nom: 'Impact potentiel', poids: 25 },
+  { nom: 'Qualité de la présentation', poids: 20 },
 ];
+
+export const CRITERES = CRITERES_PONDERES.map((c) => c.nom);
 
 export interface FaqItem {
   titre: string;
@@ -155,6 +158,13 @@ export const RECOMPENSES = {
   montant: 100000,
   trophees: 3,
 };
+
+/** Article 10 du règlement. Les récompenses peuvent être complétées selon les partenaires. */
+export const PRIX = [
+  { rang: '1er prix', montant: '100 000', lots: ['Trophée', 'Accompagnement personnalisé'], phare: true },
+  { rang: '2e prix', montant: '50 000', lots: ['Trophée', 'Accompagnement personnalisé'], phare: false },
+  { rang: '3e prix', montant: '25 000', lots: ['Trophée'], phare: false },
+];
 
 // ─── Partenariat ──────────────────────────────────────────────────────────────
 

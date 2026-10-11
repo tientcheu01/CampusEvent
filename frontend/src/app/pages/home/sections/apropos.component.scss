@@ -1,0 +1,122 @@
+.ap {
+  display: grid;
+  gap: var(--sp-12);
+  align-items: center;
+}
+.ap__media {
+  position: relative;
+  display: grid;
+  gap: var(--sp-3);
+}
+.ap__shot {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--paper-3);
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+.ap__shot--wide {
+  aspect-ratio: 16 / 10;
+}
+.ap__shot--tall {
+  display: none;
+}
+.ap__seal {
+  position: absolute;
+  right: -14px;
+  bottom: -14px;
+  width: 86px;
+  height: 86px;
+  z-index: 2;
+}
+.ap__text {
+  display: grid;
+  gap: var(--sp-5, 1.25rem);
+  justify-items: start;
+  align-content: start;
+}
+.ap__text h2 {
+  margin: 0;
+  max-width: 14ch;
+}
+.ap__lead {
+  margin: 0;
+  max-width: 50ch;
+  color: var(--text-dim);
+}
+.ap__meters {
+  display: grid;
+  gap: var(--sp-5, 1.25rem);
+  width: 100%;
+  margin-block: var(--sp-2);
+}
+
+// Bande de chiffres séparés par des filets verticaux.
+.ap__chiffres {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-8) 0;
+  margin-top: var(--sp-16);
+  padding-top: var(--sp-10, 2.5rem);
+  border-top: var(--border);
+}
+.ap__chiffre {
+  padding-inline: var(--sp-6);
+}
+.ap__chiffre + .ap__chiffre {
+  border-left: var(--border);
+}
+.ap__val {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-stat);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--navy-900);
+}
+.ap__unit {
+  margin-left: 0.2em;
+  font-size: 0.42em;
+  color: var(--gold-700);
+}
+.ap__txt {
+  margin: 0.6rem 0 0;
+  color: var(--text-dim);
+}
+
+@media (min-width: 640px) {
+  .ap__chiffres {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .ap {
+    grid-template-columns: 1fr 1.05fr;
+    gap: var(--sp-16);
+  }
+  .ap__media {
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .ap__shot--wide {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+  }
+  .ap__shot--tall {
+    display: block;
+    aspect-ratio: 3 / 4;
+    border-bottom-left-radius: 56px;
+  }
+  // La deuxième case accueille la pastille et reste vide : du blanc tournant.
+  .ap__seal {
+    right: auto;
+    left: calc(68% + var(--sp-6));
+    bottom: 14%;
+  }
+}

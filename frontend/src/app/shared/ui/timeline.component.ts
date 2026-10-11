@@ -68,7 +68,7 @@ import { fr } from '../../core/data/site-data';
     }
     .tl__num {
       display: block;
-      font-size: 2.5rem;
+      font-size: 1.5rem;
       line-height: 1;
       color: var(--blue-200);
     }

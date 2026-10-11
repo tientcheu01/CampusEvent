@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BANDE_MOTS } from '../../core/data/site-data';
 import { MarqueeComponent } from '../../shared/ui/marquee.component';
+import { AproposComponent } from './sections/apropos.component';
 import { CalendrierComponent } from './sections/calendrier.component';
 import { CtaFinalComponent } from './sections/cta-final.component';
 import { FaqHomeComponent } from './sections/faq-home.component';
@@ -19,6 +20,7 @@ import { TrajectoireComponent } from './sections/trajectoire.component';
     HeroComponent,
     MarqueeComponent,
     ManifesteComponent,
+    AproposComponent,
     TrajectoireComponent,
     CalendrierComponent,
     GainsComponent,
@@ -32,6 +34,7 @@ import { TrajectoireComponent } from './sections/trajectoire.component';
     <sji-hero />
     <sji-marquee [items]="mots" />
     <sji-manifeste />
+    <sji-apropos />
     <sji-trajectoire />
     <sji-calendrier />
     <sji-gains />

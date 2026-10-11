@@ -6,9 +6,9 @@ import { AnalyticsService } from '../../core/services/analytics.service';
 import { ConcoursDatesService } from '../../core/services/concours-dates.service';
 import { LenisService } from '../../core/services/lenis.service';
 import { ButtonComponent } from '../ui/button.component';
-import { CountdownComponent } from '../ui/countdown.component';
 import { LogoComponent } from '../ui/logo.component';
 import { MobileNavComponent } from './mobile-nav.component';
+import { TopbarComponent } from './topbar.component';
 
 /**
  * Barre supérieure : transparente sur le héro, condensée au scroll (88 → 64 px, blanc à 85 % + flou + filet).
@@ -17,9 +17,12 @@ import { MobileNavComponent } from './mobile-nav.component';
 @Component({
   selector: 'sji-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, ButtonComponent, CountdownComponent, LogoComponent, MobileNavComponent],
+  imports: [RouterLink, RouterLinkActive, ButtonComponent, LogoComponent, MobileNavComponent, TopbarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+    @if (!scrolled()) {
+      <sji-topbar />
+    }
     <header class="hd" [class.hd--scrolled]="scrolled()" [class.hd--open]="menuOpen()">
       <div class="hd__bar container">
         <a class="hd__logo" routerLink="/" aria-label="SJI INNOVA 2027, accueil" (click)="closeMenu()">
@@ -31,17 +34,7 @@ import { MobileNavComponent } from './mobile-nav.component';
           }
         </nav>
         <div class="hd__right">
-          <sji-countdown class="hd__count" />
-          <a
-            sjiButton
-            class="hd__cta"
-            [class.hd__cta--hidden]="!ctaVisible()"
-            [routerLink]="dates.cta().link"
-            [fragment]="dates.cta().fragment"
-            [attr.tabindex]="ctaVisible() ? null : -1"
-            (click)="track()"
-            >{{ ctaLabel() }}</a
-          >
+          <a sjiButton class="hd__cta" [routerLink]="dates.cta().link" [fragment]="dates.cta().fragment" (click)="track()">{{ ctaLabel() }}</a>
           <button class="hd__menu mono" type="button" [attr.aria-expanded]="menuOpen()" aria-controls="menu-mobile" (click)="toggleMenu()">
             {{ menuOpen() ? 'FERMER' : 'MENU' }}
           </button>
@@ -127,19 +120,10 @@ import { MobileNavComponent } from './mobile-nav.component';
       gap: var(--sp-6);
       justify-self: end;
     }
-    .hd__count {
-      display: none;
-      max-width: 22ch;
-      text-align: right;
-    }
     .hd__cta {
       display: none;
       padding: 0.75rem 1.5rem;
       transition: opacity var(--d-base) var(--ease-soft), transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .hd__cta--hidden {
-      opacity: 0;
-      pointer-events: none;
     }
     .hd__menu {
       z-index: 2;
@@ -165,11 +149,6 @@ import { MobileNavComponent } from './mobile-nav.component';
         grid-template-columns: auto 1fr auto;
       }
     }
-    @media (min-width: 1280px) {
-      .hd__count {
-        display: block;
-      }
-    }
   `,
 })
 export class HeaderComponent {
@@ -182,26 +161,15 @@ export class HeaderComponent {
   private readonly destroyRef = inject(DestroyRef);
 
   protected readonly scrolled = signal(false);
-  protected readonly pastHero = signal(false);
   protected readonly menuOpen = signal(false);
-  private readonly isHome = signal(true);
 
   constructor() {
-    this.router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd)).subscribe((e) => {
-      this.isHome.set(e.urlAfterRedirects.split(/[?#]/)[0] === '/');
-      this.closeMenu();
-    });
+    this.router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd)).subscribe(() => this.closeMenu());
     afterNextRender(() => {
       const update = () => {
         const y = window.scrollY;
         const s = y > 24;
-        const p = y > window.innerHeight * 0.6;
-        if (s !== this.scrolled() || p !== this.pastHero()) {
-          this.zone.run(() => {
-            this.scrolled.set(s);
-            this.pastHero.set(p);
-          });
-        }
+        if (s !== this.scrolled()) this.zone.run(() => this.scrolled.set(s));
       };
       update();
       window.addEventListener('scroll', update, { passive: true });
@@ -209,7 +177,6 @@ export class HeaderComponent {
     });
   }
 
-  protected ctaVisible = () => !this.isHome() || this.pastHero();
   protected ctaLabel = () => (this.dates.phase() === 'depots' ? 'Déposer un projet' : this.dates.cta().label);
 
   protected toggleMenu(): void {

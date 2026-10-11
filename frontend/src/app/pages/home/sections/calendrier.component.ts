@@ -15,7 +15,7 @@ import { TimelineComponent } from '../../../shared/ui/timeline.component';
     <section id="calendrier" class="section section--dense tint-2" sjiGlow="30 50 .16" aria-labelledby="cal-title">
       <div class="container">
         <header class="cal__head" sjiReveal>
-          <sji-section-label num="03" text="Le calendrier" />
+          <sji-section-label num="04" text="Le calendrier" />
           <h2 id="cal-title" class="h2">Trois temps forts, un seul objectif&nbsp;: la finale.</h2>
         </header>
         <sji-timeline sjiReveal [delay]="0.1" [items]="items" />

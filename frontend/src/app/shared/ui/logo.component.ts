@@ -39,7 +39,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       position: relative;
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       letter-spacing: -0.02em;
       padding-bottom: 6px;
     }

@@ -28,7 +28,7 @@ import { SectionLabelComponent } from './section-label.component';
       min-height: 320px;
       display: flex;
       align-items: flex-end;
-      padding: calc(var(--header-h) + var(--sp-8)) 0 var(--sp-12);
+      padding: calc(var(--header-total) + var(--sp-8)) 0 var(--sp-10, 2.5rem);
       background-color: var(--paper-2);
     }
     .ph__arc {

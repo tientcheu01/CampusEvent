@@ -28,7 +28,7 @@ export const PARTENAIRES_CONFIRMES: string[] = [];
       <div class="section section--dense tint-2">
         <div class="container pt__call">
           <div sjiReveal>
-            <sji-section-label num="06" text="Partenariat" />
+            <sji-section-label num="07" text="Partenariat" />
             <h2 id="pt-title" class="h1 pt__title">Faites rayonner le génie étudiant.</h2>
           </div>
           <div class="pt__side" sjiReveal [delay]="0.1">

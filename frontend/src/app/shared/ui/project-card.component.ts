@@ -84,13 +84,13 @@ import { Projet } from '../../core/models/api.model';
       margin: 0;
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(1.5rem, 1rem + 1.4vw, 2.5rem);
+      font-size: var(--fs-h3);
       line-height: 1;
       letter-spacing: -0.03em;
       text-wrap: balance;
     }
     .pc--big .pc__title {
-      font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem);
+      font-size: var(--fs-h2);
     }
     .pc__more {
       display: block;

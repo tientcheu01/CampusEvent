@@ -112,7 +112,7 @@ const DEFAULT_MESSAGES: Record<string, string> = {
       width: 100%;
       height: 56px;
       padding: 0;
-      font-size: 1.0625rem;
+      font-size: var(--fs-body);
       background: transparent;
       border: 0;
       border-bottom: 1px solid var(--navy-900);

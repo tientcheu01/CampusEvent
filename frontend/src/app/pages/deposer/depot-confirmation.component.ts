@@ -32,7 +32,7 @@ import { WingsComponent } from '../../shared/ui/wings.component';
       min-height: 100svh;
       display: flex;
       align-items: center;
-      padding: calc(var(--header-h) + var(--sp-8)) 0 var(--sp-16);
+      padding: calc(var(--header-total) + var(--sp-8)) 0 var(--sp-16);
     }
     .ok__wings {
       position: absolute;
@@ -48,7 +48,7 @@ import { WingsComponent } from '../../shared/ui/wings.component';
       justify-items: start;
     }
     .ok__num {
-      font-size: clamp(2.5rem, 1rem + 8vw, 7rem);
+      font-size: var(--fs-display);
       margin-block: var(--sp-2) var(--sp-4);
       overflow-wrap: anywhere;
     }

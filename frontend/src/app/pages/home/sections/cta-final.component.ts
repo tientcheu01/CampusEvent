@@ -58,7 +58,7 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
     }
     .cta__title {
       color: #fff;
-      font-size: clamp(2.5rem, 0.8rem + 7vw, 7rem);
+      font-size: var(--fs-display);
       text-align: center;
     }
     .cta__lead {

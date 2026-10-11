@@ -79,7 +79,7 @@ import { ButtonComponent } from '../ui/button.component';
       color: var(--navy-900);
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 2rem;
+      font-size: 1.625rem;
       letter-spacing: -0.03em;
       border-bottom: var(--border);
     }
