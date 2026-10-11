@@ -1,0 +1,121 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 20px 60px;
+  position: relative;
+}
+
+.success-card {
+  background: white;
+  padding: 50px 40px;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(13, 59, 102, 0.15);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  z-index: 10;
+  animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.checkmark-wrapper {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 30px;
+  position: relative;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 3;
+  stroke-miterlimit: 10;
+  stroke: var(--color-gold);
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke: var(--color-orange);
+  stroke-width: 4;
+  fill: none;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+}
+
+h1 {
+  font-family: var(--font-title);
+  color: var(--color-blue);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.highlight-text {
+  color: var(--color-blue);
+  font-weight: 600;
+}
+
+.confirmation-text {
+  font-size: 0.95rem;
+}
+
+.divider {
+  height: 2px;
+  width: 50px;
+  background: #eee;
+  margin: 30px auto;
+}
+
+.btn-home {
+  display: inline-block;
+  background: var(--color-blue);
+  color: white;
+  padding: 15px 35px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  margin-top: 20px;
+  transition: var(--transition);
+}
+
+.btn-home:hover {
+  background: var(--color-gold);
+  color: var(--color-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(244, 211, 94, 0.4);
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 100px 20px 40px;
+  }
+
+  .success-card {
+    padding: 30px 20px;
+  }
+}

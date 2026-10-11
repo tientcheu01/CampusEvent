@@ -1,0 +1,33 @@
+<section id="iusjc">
+  <div class="container">
+    <div class="iusjc-intro" appReveal>
+      <div class="iusjc-image">
+        <img src="/assets/images/Logo-Institut-USJ-INGENIEUR-transparent-768x301%20(3).png" alt="Logo Institut Universitaire Saint Jean Christophe">
+      </div>
+      <div class="iusjc-text">
+        <span class="section-label">L'IUSJC</span>
+        <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">L’Institut Universitaire Saint Jean Christophe</h2>
+        <p>
+          L’IUSJC forme les talents de demain dans un cadre académique exigeant et innovant. Le Campus d’Etok-Koss accueille des étudiants de Licence Professionnelle et les accompagne vers l’excellence, l’entrepreneuriat et l’insertion professionnelle.
+        </p>
+        <p class="placeholder-text">
+          [À COMPLÉTER — Mission, vision, valeurs, formations, campus, chiffres clés, vie étudiante.]
+        </p>
+        <a href="https://iusjc.com" target="_blank" rel="noopener" class="btn btn-primary">Découvrir l'IUSJC</a>
+      </div>
+    </div>
+
+    <div class="values-section" appReveal>
+      <h3 class="values-title">Pourquoi l’IUSJC ?</h3>
+      <div class="values-grid">
+        @for (v of values; track v.title) {
+          <article class="value-card">
+            <div class="value-icon"><i class="fas {{ v.icon }}"></i></div>
+            <h4>{{ v.title }}</h4>
+            <p>{{ v.description }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+</section>

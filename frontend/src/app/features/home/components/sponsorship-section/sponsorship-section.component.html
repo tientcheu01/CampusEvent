@@ -1,0 +1,44 @@
+<section id="sponsor">
+  <div class="container">
+    <div class="section-head" appReveal>
+      <span class="section-label">Sponsoring</span>
+      <h2 class="section-title">Associez votre marque à l'innovation et aux talents de demain</h2>
+      <p class="section-intro">
+        En soutenant le Prix SJI INNOVA, votre entreprise s’engage aux côtés de l’IUSJC pour former, accompagner et révéler les innovateurs de demain.
+      </p>
+    </div>
+
+    <div class="benefits-grid" appReveal>
+      @for (b of benefits; track b.title) {
+        <article class="benefit-card">
+          <div class="benefit-icon"><i class="fas {{ b.icon }}"></i></div>
+          <h3>{{ b.title }}</h3>
+          <p>{{ b.description }}</p>
+        </article>
+      }
+    </div>
+
+    <div class="levels-grid" appReveal>
+      @for (level of levels; track level.name) {
+        <article class="level-card {{ level.className }}">
+          <h3>{{ level.name }}</h3>
+          <p class="level-desc">{{ level.description }}</p>
+          <ul class="level-features">
+            @for (feature of level.features; track feature) {
+              <li><i class="fas fa-check"></i> {{ feature }}</li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+
+    <div class="section-cta" appReveal>
+      <a href="mailto:hermann.ekotto&#64;saintjeaningenieur.org?subject=Demande de sponsoring - SJI INNOVA 2026" class="btn btn-primary">Devenir sponsor</a>
+      <a routerLink="/" fragment="contact" class="btn btn-secondary">Télécharger le dossier</a>
+    </div>
+
+    <p class="placeholder-note" appReveal>
+      <i class="fas fa-info-circle"></i> Les packs de sponsoring sont à compléter dans <code>sponsorship-section.component.ts</code>. Le bouton "Télécharger" est prêt à être relié au PDF officiel.
+    </p>
+  </div>
+</section>

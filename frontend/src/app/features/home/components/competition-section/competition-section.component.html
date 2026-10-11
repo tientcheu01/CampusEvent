@@ -1,0 +1,34 @@
+<section id="competition">
+  <div class="container">
+    <div class="section-head" appReveal>
+      <span class="section-label">La compétition</span>
+      <h2 class="section-title">Une compétition pensée pour révéler les talents</h2>
+      <p class="section-intro">
+        Le Prix SJI INNOVA est une initiative du responsable du Campus d’Etok-Koss de l’Université Saint Jean Ingénieur. Cette compétition met en lumière les projets innovants des étudiants et offre une plateforme unique pour transformer les idées en solutions concrètes.
+      </p>
+    </div>
+
+    <div class="info-grid" appReveal>
+      @for (card of infoCards; track card.title) {
+        <article class="info-card">
+          <div class="info-icon"><i class="fas {{ card.icon }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+        </article>
+      }
+    </div>
+
+    <div class="key-figures" appReveal>
+      @for (fig of keyFigures; track fig.label) {
+        <div class="figure-card">
+          <span class="figure-value">{{ fig.value }}</span>
+          <span class="figure-label">{{ fig.label }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="section-cta" appReveal>
+      <a routerLink="/" fragment="recompenses" class="btn btn-secondary">Découvrir la compétition</a>
+    </div>
+  </div>
+</section>

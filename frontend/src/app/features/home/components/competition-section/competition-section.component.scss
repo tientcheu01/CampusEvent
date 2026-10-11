@@ -1,0 +1,129 @@
+#competition {
+  background: white;
+  padding: 100px 0;
+}
+
+.section-head {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 60px;
+}
+
+.section-intro {
+  font-size: 1.05rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.info-card {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f7 100%);
+  border: 1px solid rgba(13, 59, 102, 0.06);
+  border-radius: 16px;
+  padding: 32px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-orange), var(--color-gold));
+}
+
+.info-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(13, 59, 102, 0.1);
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(238, 108, 77, 0.12), rgba(244, 211, 94, 0.12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--color-orange);
+  margin-bottom: 20px;
+}
+
+.info-card h3 {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  color: var(--color-blue);
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.info-card p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.key-figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+.figure-card {
+  text-align: center;
+  padding: 24px;
+  background: var(--color-blue);
+  color: white;
+  border-radius: 16px;
+  transition: var(--transition);
+}
+
+.figure-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(13, 59, 102, 0.25);
+}
+
+.figure-value {
+  display: block;
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-gold);
+  margin-bottom: 4px;
+}
+
+.figure-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.section-cta {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  #competition {
+    padding: 60px 0;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .key-figures {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

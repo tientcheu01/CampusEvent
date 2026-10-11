@@ -1,0 +1,28 @@
+<header [class.transparent]="transparent" [class.scrolled]="isScrolled || !transparent" [class.menu-open]="mobileMenuOpen">
+  <a class="logo-container" routerLink="/" aria-label="Retour à l'accueil">
+    <app-logo-svg></app-logo-svg>
+    <span class="logo-text">SJI INNOVA 2026</span>
+  </a>
+
+  <button class="menu-toggle" (click)="toggleMobileMenu()" [attr.aria-expanded]="mobileMenuOpen" aria-label="Menu">
+    <i class="fas" [class.fa-bars]="!mobileMenuOpen" [class.fa-times]="mobileMenuOpen"></i>
+  </button>
+
+  <nav>
+    <ul class="header-nav" [class.active]="mobileMenuOpen">
+      @for (link of links; track link.label) {
+        <li>
+          @if (link.external) {
+            <a [href]="link.external" [attr.download]="link.download" (click)="closeMobileMenu()" [class.btn-nav]="link.isButton">
+              {{ link.label }}
+            </a>
+          } @else {
+            <a [routerLink]="link.route" [fragment]="link.fragment" (click)="closeMobileMenu()" [class.btn-nav]="link.isButton">
+              {{ link.label }}
+            </a>
+          }
+        </li>
+      }
+    </ul>
+  </nav>
+</header>
