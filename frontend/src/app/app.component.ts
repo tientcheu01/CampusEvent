@@ -6,20 +6,16 @@ import { LenisService } from './core/services/lenis.service';
 import { MotionService } from './core/services/motion.service';
 import { PageTransitionService } from './core/services/page-transition.service';
 import { SeoService } from './core/services/seo.service';
-import { ArrowComponent } from './shared/layout/arrow.component';
 import { FooterComponent } from './shared/layout/footer.component';
-import { GlowLayerComponent } from './shared/layout/glow-layer.component';
 import { HeaderComponent } from './shared/layout/header.component';
 import { PageVeilComponent } from './shared/layout/page-veil.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, ArrowComponent, GlowLayerComponent, PageVeilComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, PageVeilComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <sji-glow-layer />
-    <sji-arrow />
     <sji-header />
     <main id="contenu" tabindex="-1"><router-outlet /></main>
     <sji-footer />

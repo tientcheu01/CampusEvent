@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../core/services/api.service';
+import { ConfettiService } from '../../core/services/confetti.service';
 import { ConcoursDatesService } from '../../core/services/concours-dates.service';
 import { ButtonComponent } from '../../shared/ui/button.component';
 import { CountdownComponent } from '../../shared/ui/countdown.component';
@@ -72,6 +73,7 @@ import { FieldComponent } from '../../shared/ui/field.component';
 })
 export class DepotClosedComponent {
   private readonly api = inject(ApiService);
+  private readonly confetti = inject(ConfettiService);
   private readonly dates = inject(ConcoursDatesService);
   protected readonly avant = computed(() => this.dates.phase() === 'avant');
   protected readonly sent = signal(false);
@@ -81,6 +83,12 @@ export class DepotClosedComponent {
   protected submit(): void {
     if (this.email.invalid) return this.email.markAllAsTouched();
     this.failed.set(false);
-    this.api.alerte({ email: this.email.value }).subscribe({ next: () => this.sent.set(true), error: () => this.failed.set(true) });
+    this.api.alerte({ email: this.email.value }).subscribe({
+      next: () => {
+        this.sent.set(true);
+        this.confetti.celebrate('Alerte activée !', 'Vous serez informé dès l’ouverture de la prochaine période de dépôt.');
+      },
+      error: () => this.failed.set(true),
+    });
   }
 }

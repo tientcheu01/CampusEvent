@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { AnalyticsService } from '../../core/services/analytics.service';
 import { ConcoursDatesService } from '../../core/services/concours-dates.service';
 import { ButtonComponent } from '../../shared/ui/button.component';
+import { IconComponent } from '../../shared/ui/icon.component';
 import { PageHeaderComponent } from '../../shared/ui/page-header.component';
 import { formatBytes } from '../../shared/ui/file-validators';
 import { DepotClosedComponent } from './depot-closed.component';
@@ -22,6 +23,7 @@ import { StepRelectureComponent } from './steps/step-relecture.component';
   standalone: true,
   imports: [
     ButtonComponent,
+    IconComponent,
     PageHeaderComponent,
     DepotClosedComponent,
     DepotConfirmationComponent,
@@ -38,13 +40,22 @@ import { StepRelectureComponent } from './steps/step-relecture.component';
     } @else if (f.numero()) {
       <sji-depot-confirmation [numero]="f.numero()!" [email]="f.equipe.controls.email.value" />
     } @else {
-      <sji-page-header num="02" label="Déposer un projet">Dossier et vidéo, en quatre étapes.</sji-page-header>
+      <sji-page-header label="Déposer un projet" lead="Votre brouillon est enregistré sur cet appareil à chaque champ rempli : vous pouvez fermer et revenir."
+        >Dossier et vidéo, en quatre étapes.</sji-page-header
+      >
 
       <div class="dp__progress" role="group" aria-label="Progression">
         <ol class="container dp__steps" role="list">
           @for (s of steps; track s; let i = $index) {
             <li class="dp__step" [class.is-done]="i < f.step()" [class.is-now]="i === f.step()" [attr.aria-current]="i === f.step() ? 'step' : null">
-              <span class="num">0{{ i + 1 }}</span><span class="dp__name">{{ s }}</span>
+              <span class="dp__pastille">
+                @if (i < f.step()) {
+                  <sji-icon name="check" [size]="20" />
+                } @else {
+                  <span class="num">{{ i + 1 }}</span>
+                }
+              </span>
+              <span class="dp__name">{{ s }}</span>
             </li>
           }
         </ol>

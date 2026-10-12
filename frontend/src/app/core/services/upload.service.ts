@@ -1,6 +1,6 @@
 import { HttpClient, HttpEventType, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, filter, map, switchMap } from 'rxjs';
+import { Observable, delay, filter, map, of, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { UploadProgress } from '../models/api.model';
 
@@ -11,6 +11,7 @@ export class UploadService {
 
   upload(file: File): Observable<UploadProgress> {
     const name = encodeURIComponent(file.name);
+    if (!environment.production) return of({ progress: 100, url: `https://demo.sji-innova.local/${name}` }).pipe(delay(500));
     return this.http.post<{ url: string }>(`${environment.uploadUrl}?filename=${name}`, null).pipe(
       switchMap(({ url }) =>
         this.http.request(

@@ -1,6 +1,7 @@
 // Conteneur et grille 12 colonnes (6 en tablette, 4 en mobile)
 .container {
   width: 100%;
+  min-width: 0;
   max-width: calc(var(--container) + var(--gutter) * 2);
   margin-inline: auto;
   padding-inline: var(--gutter);
@@ -9,6 +10,9 @@
 }
 .grid {
   display: grid;
+  > * {
+    min-width: 0;
+  }
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: var(--sp-6);
   @media (min-width: 640px) {

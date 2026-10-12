@@ -5,11 +5,13 @@ import { RevealDirective } from '../../core/directives/reveal.directive';
 import { PartenariatPayload } from '../../core/models/api.model';
 import { AnalyticsService } from '../../core/services/analytics.service';
 import { ApiService } from '../../core/services/api.service';
+import { ConfettiService } from '../../core/services/confetti.service';
 import { ButtonComponent } from '../../shared/ui/button.component';
 import { FieldComponent, FieldOption } from '../../shared/ui/field.component';
 import { PageHeaderComponent } from '../../shared/ui/page-header.component';
 import { SectionLabelComponent } from '../../shared/ui/section-label.component';
 import { TierTableComponent } from '../../shared/ui/tier-table.component';
+import { WingsComponent } from '../../shared/ui/wings.component';
 import { openBulletin } from './bulletin-print';
 import { PublicsSchemaComponent } from './publics-schema.component';
 
@@ -19,12 +21,15 @@ const opt = (list: readonly string[]): FieldOption[] => list.map((v) => ({ value
 @Component({
   selector: 'sji-partenaires',
   standalone: true,
-  imports: [ReactiveFormsModule, PageHeaderComponent, SectionLabelComponent, PublicsSchemaComponent, TierTableComponent, FieldComponent, ButtonComponent, RevealDirective],
+  imports: [ReactiveFormsModule, PageHeaderComponent, SectionLabelComponent, PublicsSchemaComponent, TierTableComponent, FieldComponent, ButtonComponent, WingsComponent, RevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <sji-page-header num="06" label="Partenariat">Faites rayonner le génie étudiant.</sji-page-header>
+    <sji-page-header num="07" label="Partenariat" lead="Quatre niveaux d'engagement, et un format sur mesure si aucun ne vous correspond. Le bulletin se remplit en deux minutes."
+      >Faites rayonner le génie étudiant.</sji-page-header
+    >
 
-    <section class="section section--dense" aria-labelledby="raisons">
+    <section class="pp__reasons-section section section--dense tint-navy dots-light on-navy" aria-labelledby="raisons">
+      <sji-wings class="pp__wings" [opacity]="0.1" />
       <div class="container grid">
         <header class="pp__head" sjiReveal>
           <sji-section-label num="01" text="Pourquoi" />
@@ -49,7 +54,7 @@ const opt = (list: readonly string[]): FieldOption[] => list.map((v) => ({ value
       </div>
     </section>
 
-    <section class="section section--dense" aria-labelledby="contrib">
+    <section class="section section--dense tint-3" aria-labelledby="contrib">
       <div class="container">
         <header class="pp__head" sjiReveal>
           <sji-section-label num="03" text="Les contributions" />
@@ -63,7 +68,8 @@ const opt = (list: readonly string[]): FieldOption[] => list.map((v) => ({ value
       </div>
     </section>
 
-    <section class="section section--dense tint-3" aria-labelledby="niveaux">
+    <section class="pp__levels section section--dense tint-navy dots-light on-navy" aria-labelledby="niveaux">
+      <sji-wings class="pp__wings pp__wings--right" [opacity]="0.1" />
       <div class="container">
         <header class="pp__head" sjiReveal>
           <sji-section-label num="04" text="Les niveaux" />
@@ -80,7 +86,7 @@ const opt = (list: readonly string[]): FieldOption[] => list.map((v) => ({ value
       </div>
     </section>
 
-    <section id="bulletin" class="section" aria-labelledby="bulletin-title">
+    <section id="bulletin" class="section tint-2" aria-labelledby="bulletin-title">
       <div class="container grid">
         <header class="pp__head" sjiReveal>
           <sji-section-label num="05" text="Bulletin d'engagement" />
@@ -127,6 +133,7 @@ export class PartenairesComponent {
 
   private readonly api = inject(ApiService);
   private readonly analytics = inject(AnalyticsService);
+  private readonly confetti = inject(ConfettiService);
 
   protected readonly form = new FormGroup({
     structure: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
@@ -145,6 +152,7 @@ export class PartenairesComponent {
       next: () => {
         this.analytics.track('Dossier partenariat', { section: 'bulletin' });
         this.status.set('sent');
+        this.confetti.celebrate('Bienvenue dans l’aventure !', 'Votre demande de partenariat est enregistrée. Nous vous contacterons pour construire la suite ensemble.');
       },
       error: () => this.status.set('error'),
     });

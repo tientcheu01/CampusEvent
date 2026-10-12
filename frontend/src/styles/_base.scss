@@ -32,6 +32,11 @@ body {
   text-rendering: optimizeLegibility;
   overflow-x: clip;
 }
+img,
+video,
+canvas {
+  max-width: 100%;
+}
 
 h1,
 h2,

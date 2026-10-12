@@ -1,93 +1,76 @@
-import { ChangeDetectionStrategy, Component, ElementRef, inject, signal, viewChild } from '@angular/core';
-import { SITE_URL } from '../../core/services/seo.service';
-import { ButtonComponent } from '../../shared/ui/button.component';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, inject, signal } from '@angular/core';
 
-const FONTS: { family: string; file: string; weight: string }[] = [
-  { family: 'Bricolage Grotesque', file: 'BricolageGrotesque-Variable.woff2', weight: '200 800' },
-  { family: 'Satoshi', file: 'Satoshi-400.woff2', weight: '400' },
-  { family: 'JetBrains Mono', file: 'JetBrainsMono-400.woff2', weight: '400' },
-];
+interface GalleryPhoto {
+  id: number;
+  src: string;
+  alt: string;
+  title: string;
+  description: string;
+  span: string;
+}
 
-const toBase64 = (buf: ArrayBuffer): string => {
-  let s = '';
-  new Uint8Array(buf).forEach((b) => (s += String.fromCharCode(b)));
-  return btoa(s);
-};
-
-/** /affiche : l'affiche officielle en SVG animé, partageable, téléchargeable en PNG et imprimable. */
+/** /galerie : une galerie bento interactive consacrée aux visages et aux moments de SJI INNOVA. */
 @Component({
   selector: 'sji-affiche',
   standalone: true,
-  imports: [ButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './affiche.component.html',
   styleUrl: './affiche.component.scss',
 })
-export class AfficheComponent {
-  private readonly poster = viewChild.required<ElementRef<SVGSVGElement>>('poster');
-  protected readonly busy = signal(false);
-  protected readonly message = signal('');
+export class AfficheComponent implements OnDestroy {
+  private readonly document = inject(DOCUMENT);
+  protected readonly selectedIndex = signal<number | null>(null);
+  protected readonly photos: GalleryPhoto[] = [
+    { id: 1, src: '/assets/images/equipe.webp', alt: 'Le collectif étudiant SJI INNOVA réuni sur le campus', title: 'Une génération qui ose', description: 'Les talents du campus réunis autour d’une même envie : imaginer des solutions qui comptent.', span: 'gallery__card--wide' },
+    { id: 2, src: '/assets/images/ChatGPT Image 21 déc. 2025, 03_31_38.png', alt: 'Des étudiants portant les couleurs de SJI INNOVA', title: 'L’esprit SJI INNOVA', description: 'Une communauté étudiante réunie autour de la créativité et de l’innovation.', span: 'gallery__card--wide' },
+    { id: 3, src: '/assets/images/etudiant-1.webp', alt: 'Portrait d’un étudiant participant à SJI INNOVA', title: 'Imaginer', description: 'Regarder un problème autrement et faire naître une première idée.', span: 'gallery__card--tall' },
+    { id: 4, src: '/assets/images/etudiant-2.webp', alt: 'Portrait d’une étudiante participant à SJI INNOVA', title: 'Créer', description: 'Donner une forme concrète à une intuition audacieuse.', span: 'gallery__card--standard' },
+    { id: 5, src: '/assets/images/etudiant-3.webp', alt: 'Portrait d’un étudiant participant à SJI INNOVA', title: 'Construire', description: 'Transformer les compétences acquises en une solution tangible.', span: 'gallery__card--standard' },
+    { id: 6, src: '/assets/images/etudiant-4.webp', alt: 'Portrait d’une étudiante participant à SJI INNOVA', title: 'Partager', description: 'Présenter son ambition et la faire grandir avec les autres.', span: 'gallery__card--tall' },
+    { id: 7, src: '/assets/images/Jeune homme en réalité virtuelle.png', alt: 'Jeune homme utilisant un casque de réalité virtuelle', title: 'Prototyper', description: 'Tester, améliorer et apprendre à chaque nouvelle version.', span: 'gallery__card--standard' },
+    { id: 8, src: '/assets/images/Projet Lauréat.jpg', alt: 'L’équipe du projet LearnMap avec ses diplômes', title: 'LearnMap', description: 'Le projet lauréat et son équipe distingués lors de l’édition précédente.', span: 'gallery__card--wide' },
+    { id: 9, src: '/assets/images/photo_2026-10-12_04-28-32.jpg', alt: 'Des lauréats présentant leurs diplômes d’excellence', title: 'L’excellence récompensée', description: 'Des étudiantes et étudiants reconnus pour la qualité de leurs projets.', span: 'gallery__card--standard' },
+    { id: 10, src: '/assets/images/photo_2026-10-12_04-28-39.jpg', alt: 'Les membres du jury évaluant les projets', title: 'Le regard du jury', description: 'Des projets évalués avec attention selon des critères partagés.', span: 'gallery__card--wide' },
+    { id: 11, src: '/assets/images/Troisième prix.jpg', alt: 'Les lauréats du troisième prix avec leurs diplômes', title: 'Troisième prix', description: 'Une équipe récompensée pour sa créativité et son potentiel d’impact.', span: 'gallery__card--standard' },
+    { id: 12, src: '/assets/images/photo_2026-10-12_04-34-57.jpg', alt: 'Une équipe étudiante présentant ses diplômes d’excellence', title: 'Une équipe engagée', description: 'Des talents réunis autour d’une solution pensée pour être utile.', span: 'gallery__card--tall' },
+    { id: 13, src: '/assets/images/photo_2026-10-12_06-33-39.jpg', alt: 'Une participante félicitant un étudiant lors de la remise des distinctions', title: 'La reconnaissance', description: 'Un moment de partage à l’issue de la présentation des projets.', span: 'gallery__card--wide' },
+  ];
 
-  async downloadPng(): Promise<void> {
-    this.busy.set(true);
-    try {
-      const svg = this.poster().nativeElement.cloneNode(true) as SVGSVGElement;
-      svg.setAttribute('width', '1080');
-      svg.setAttribute('height', '1530');
-      // Une image SVG ne charge pas les polices de la page : on les embarque en base64.
-      const css = (
-        await Promise.all(
-          FONTS.map(async (f) => {
-            const data = toBase64(await (await fetch(`/assets/fonts/${f.file}`)).arrayBuffer());
-            return `@font-face{font-family:'${f.family}';font-weight:${f.weight};src:url(data:font/woff2;base64,${data}) format('woff2')}`;
-          }),
-        )
-      ).join('');
-      const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
-      style.textContent = `${css}.t-disp{font-family:'Bricolage Grotesque';font-weight:800}.t-body{font-family:'Satoshi'}.t-mono{font-family:'JetBrains Mono'}`;
-      svg.prepend(style);
-
-      const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml;charset=utf-8' }));
-      const img = new Image();
-      await new Promise<void>((ok, ko) => {
-        img.onload = () => ok();
-        img.onerror = () => ko(new Error('image'));
-        img.src = url;
-      });
-      const canvas = document.createElement('canvas');
-      canvas.width = 1620; // 1,5× pour une impression correcte
-      canvas.height = 2295;
-      canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height);
-      URL.revokeObjectURL(url);
-      const blob = await new Promise<Blob | null>((ok) => canvas.toBlob(ok, 'image/png'));
-      if (!blob) throw new Error('png');
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'affiche-sji-innova-2027.png';
-      a.click();
-      URL.revokeObjectURL(a.href);
-      this.message.set('Affiche téléchargée.');
-    } catch {
-      this.message.set('Le téléchargement a échoué. Faites une capture d’écran ou imprimez la page.');
-    } finally {
-      this.busy.set(false);
-    }
+  protected selected(): GalleryPhoto | null {
+    const index = this.selectedIndex();
+    return index === null ? null : this.photos[index];
   }
 
-  async share(): Promise<void> {
-    const data = { title: 'SJI INNOVA 2027', text: "Imaginez. Innover. Construire demain. Le concours d'innovation étudiante de Saint Jean Ingénieur.", url: `${SITE_URL}/affiche` };
-    if (navigator.share) {
-      try {
-        await navigator.share(data);
-      } catch {
-        /* partage annulé */
-      }
-      return;
-    }
-    window.open(`https://wa.me/?text=${encodeURIComponent(`${data.text} ${data.url}`)}`, '_blank', 'noopener');
+  protected open(index: number): void {
+    this.selectedIndex.set(index);
+    this.document.body.style.overflow = 'hidden';
   }
 
-  print(): void {
-    window.print();
+  protected close(): void {
+    this.selectedIndex.set(null);
+    this.document.body.style.removeProperty('overflow');
+  }
+
+  protected previous(): void {
+    const index = this.selectedIndex();
+    if (index !== null) this.selectedIndex.set((index - 1 + this.photos.length) % this.photos.length);
+  }
+
+  protected next(): void {
+    const index = this.selectedIndex();
+    if (index !== null) this.selectedIndex.set((index + 1) % this.photos.length);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  protected onKeydown(event: KeyboardEvent): void {
+    if (this.selectedIndex() === null) return;
+    if (event.key === 'Escape') this.close();
+    if (event.key === 'ArrowLeft') this.previous();
+    if (event.key === 'ArrowRight') this.next();
+  }
+
+  ngOnDestroy(): void {
+    this.document.body.style.removeProperty('overflow');
   }
 }

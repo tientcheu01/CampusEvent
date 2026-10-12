@@ -1,83 +1,46 @@
-import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RevealDirective } from '../../core/directives/reveal.directive';
-import { ProjetsService } from '../../core/services/projets.service';
-import { ButtonComponent } from '../../shared/ui/button.component';
 import { PageHeaderComponent } from '../../shared/ui/page-header.component';
-import { ProjectCardComponent } from '../../shared/ui/project-card.component';
 
-type Filters = { edition: number | null; domaine: string | null; filiere: string | null };
+const PROJETS = [
+  { rang: '01', distinction: 'Premier prix', titre: 'Projet lauréat', texte: 'Le projet arrivé en tête de l’édition précédente. Son identité et sa présentation détaillée seront dévoilées ici.', image: '/assets/images/Projet Lauréat.jpg' },
+  { rang: '02', distinction: 'Deuxième prix', titre: 'Projet finaliste', texte: 'Une solution distinguée par le jury pour la force de son idée, sa faisabilité et son potentiel d’impact.', image: '/assets/images/photo_2026-10-12_04-28-32.jpg' },
+  { rang: '03', distinction: 'Troisième prix', titre: 'Projet finaliste', texte: 'Un projet étudiant remarqué pour sa créativité et sa capacité à répondre à un besoin concret.', image: '/assets/images/Troisième prix.jpg' },
+];
 
-/** /projets : la preuve. Filtres en chips mono (édition, domaine, filière), grille asymétrique, états de chargement. */
+/** /projets : le podium de l'édition précédente, présenté comme une preuve concrète de l'innovation étudiante. */
 @Component({
   selector: 'sji-projets',
   standalone: true,
-  imports: [PageHeaderComponent, ProjectCardComponent, ButtonComponent, RevealDirective],
+  imports: [PageHeaderComponent, RevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <sji-page-header num="05" label="Les projets">Ils l'ont déjà fait.</sji-page-header>
+    <sji-page-header num="02" label="Les projets" lead="Trois projets, trois trajectoires, une même ambition : transformer une idée étudiante en solution concrète."
+      >Le podium de<br />l'édition passée.</sji-page-header
+    >
 
-    <section class="section section--dense">
-      <div class="container">
-        @if (svc.state() === 'ready' && svc.projets().length) {
-          <div class="pl__filters" role="group" aria-label="Filtrer les projets">
-            @for (g of groups(); track g.key) {
-              <div class="pl__group">
-                <span class="label dim">{{ g.label }}</span>
-                <button type="button" class="chip label" [class.chip--on]="filters()[g.key] === null" (click)="set(g.key, null)">Tous</button>
-                @for (v of g.values; track v) {
-                  <button type="button" class="chip label" [class.chip--on]="filters()[g.key] === v" [attr.aria-pressed]="filters()[g.key] === v" (click)="set(g.key, v)">{{ v }}</button>
-                }
-              </div>
-            }
-          </div>
-          <p class="label dim pl__count" aria-live="polite">{{ list().length }} projet{{ list().length > 1 ? 's' : '' }}</p>
-          <div class="pl__grid">
-            @for (p of list(); track p.slug; let i = $index) {
-              <sji-project-card [projet]="p" [featured]="i === 0" [class.pl__first]="i === 0" />
-            }
-          </div>
-        } @else if (svc.state() === 'error') {
-          <div class="pl__state" role="alert">
-            <p class="h3">Les projets n'ont pas pu être chargés.</p>
-            <button type="button" sjiButton (click)="svc.load(true)">Réessayer</button>
-          </div>
-        } @else if (svc.state() === 'ready') {
-          <div class="pl__state">
-            <p class="h2">Les projets de l'édition 2027 seront publiés après la présélection, en janvier.</p>
-          </div>
-        } @else {
-          <p class="visually-hidden" aria-live="polite">Chargement des projets de la première édition…</p>
-          <div class="pl__grid" aria-busy="true">
-            @for (s of [0, 1, 2, 3]; track s) {
-              <div class="pl__skel" [class.pl__first]="s === 0"></div>
-            }
-          </div>
+    <section class="section projects" aria-label="Les trois premiers projets de l'édition passée">
+      <div class="container projects__list">
+        @for (projet of projets; track projet.rang; let i = $index) {
+          <article class="project" sjiReveal [delay]="i * 0.08">
+            <div class="project__number" aria-hidden="true">{{ projet.rang }}</div>
+            <figure class="project__visual">
+              <img [src]="projet.image" [alt]="'Équipe du ' + projet.titre.toLowerCase()" loading="lazy" />
+              <span class="project__rank label">{{ projet.distinction }}</span>
+            </figure>
+            <div class="project__content">
+              <p class="label dim">Édition précédente · {{ projet.distinction }}</p>
+              <h2 class="h2">{{ projet.titre }}</h2>
+              <p class="lead">{{ projet.texte }}</p>
+              <span class="project__status label">Présentation complète à venir</span>
+            </div>
+          </article>
         }
       </div>
     </section>
   `,
   styleUrl: './projets.component.scss',
 })
-export class ProjetsComponent implements OnInit {
-  protected readonly svc = inject(ProjetsService);
-  protected readonly filters = signal<Filters>({ edition: null, domaine: null, filiere: null });
-
-  protected readonly groups = computed(() => [
-    { key: 'edition' as const, label: 'Édition', values: this.svc.editions() },
-    { key: 'domaine' as const, label: 'Domaine', values: this.svc.domaines() },
-    { key: 'filiere' as const, label: 'Filière', values: this.svc.filieres() },
-  ]);
-
-  protected readonly list = computed(() => {
-    const f = this.filters();
-    return this.svc.projets().filter((p) => (f.edition === null || p.edition === f.edition) && (f.domaine === null || p.domaine === f.domaine) && (f.filiere === null || p.filiere === f.filiere));
-  });
-
-  ngOnInit(): void {
-    this.svc.load();
-  }
-
-  protected set(key: keyof Filters, value: string | number | null): void {
-    this.filters.update((f) => ({ ...f, [key]: value }));
-  }
+export class ProjetsComponent {
+  protected readonly projets = PROJETS;
 }

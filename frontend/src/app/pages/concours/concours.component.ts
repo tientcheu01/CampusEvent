@@ -10,6 +10,7 @@ import { IconComponent } from '../../shared/ui/icon.component';
 import { PageHeaderComponent } from '../../shared/ui/page-header.component';
 import { SectionLabelComponent } from '../../shared/ui/section-label.component';
 import { TimelineComponent } from '../../shared/ui/timeline.component';
+import { WingsComponent } from '../../shared/ui/wings.component';
 
 const OBJECTIFS = [
   'Encourager les étudiants à développer des solutions technologiques innovantes qui répondent à des besoins réels.',
@@ -23,17 +24,22 @@ const OBJECTIFS = [
 @Component({
   selector: 'sji-concours',
   standalone: true,
-  imports: [RouterLink, PageHeaderComponent, SectionLabelComponent, TimelineComponent, AccordionComponent, AccordionItemComponent, ButtonComponent, IconComponent, RevealDirective],
+  imports: [RouterLink, PageHeaderComponent, SectionLabelComponent, TimelineComponent, AccordionComponent, AccordionItemComponent, ButtonComponent, IconComponent, WingsComponent, RevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <sji-page-header num="01" label="Le concours">Le règlement, le jury, les dates.</sji-page-header>
+    <sji-page-header num="01" label="Le concours" lead="Qui peut participer, ce qu'il faut déposer, comment le jury décide et à quelles dates. Tout est ici."
+      >Le règlement, le jury, les dates.</sji-page-header
+    >
 
-    <section class="section section--dense">
+    <section class="cc__presentation section section--dense tint-3">
       <div class="container grid">
         <div class="cc__intro" sjiReveal>
           <sji-section-label num="01" text="Présentation" />
           <p class="h3 cc__lead">
-            SJI INNOVA récompense les projets d'étudiants qui répondent à un besoin réel de la société camerounaise. Pas une idée sur papier&nbsp;: un problème identifié, une solution construite, un prototype qu'on peut montrer.
+            Le Prix SJI INNOVA est une initiative du responsable du Campus d’Etok-Koss de l'Université Saint Jean Ingénieur.
+          </p>
+          <p class="cc__intro-text">
+            Ce concours est destiné à valoriser l'innovation, l'entrepreneuriat et l'esprit créatif des étudiants de cycle Licence Professionnelle. C'est une plateforme unique où vos idées peuvent se transformer en projets réels et impactants.
           </p>
           <ul class="cc__obj" role="list">
             @for (o of objectifs; track o) {
@@ -51,7 +57,8 @@ const OBJECTIFS = [
       </div>
     </section>
 
-    <section class="section section--dense tint-2" aria-labelledby="crit-title">
+    <section class="cc__evaluation section section--dense tint-navy dots-light on-navy" aria-labelledby="crit-title">
+      <sji-wings class="cc__wings" [opacity]="0.1" />
       <div class="container grid">
         <div class="cc__col" sjiReveal>
           <sji-section-label num="02" text="Évaluation" />
@@ -73,7 +80,7 @@ const OBJECTIFS = [
       </div>
     </section>
 
-    <section id="calendrier" class="section section--dense" aria-labelledby="cal-title">
+    <section id="calendrier" class="section section--dense tint-2" aria-labelledby="cal-title">
       <div class="container">
         <header class="cc__head" sjiReveal>
           <sji-section-label num="03" text="Le calendrier" />
@@ -83,7 +90,7 @@ const OBJECTIFS = [
       </div>
     </section>
 
-    <section class="section section--dense tint-2" aria-labelledby="faq-title">
+    <section class="cc__faq-section section section--dense tint-3" aria-labelledby="faq-title">
       <div class="container grid">
         <header class="cc__col" sjiReveal>
           <sji-section-label num="04" text="Questions" />

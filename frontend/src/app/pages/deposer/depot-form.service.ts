@@ -6,6 +6,7 @@ import { debounceTime } from 'rxjs';
 import { LIMITS } from '../../core/data/site-data';
 import { Avancement, DepotPayload } from '../../core/models/api.model';
 import { AnalyticsService } from '../../core/services/analytics.service';
+import { ConfettiService } from '../../core/services/confetti.service';
 import { ApiService } from '../../core/services/api.service';
 import { UploadService } from '../../core/services/upload.service';
 import { fileExtensions, maxFileSize } from '../../shared/ui/file-validators';
@@ -46,6 +47,7 @@ export class DepotFormService {
   private readonly api = inject(ApiService);
   private readonly uploader = inject(UploadService);
   private readonly analytics = inject(AnalyticsService);
+  private readonly confetti = inject(ConfettiService);
 
   readonly step = signal(0);
   readonly submitting = signal(false);
@@ -180,6 +182,7 @@ export class DepotFormService {
       this.numero.set(res.numero);
       this.clearDraft();
       this.analytics.track('Depot termine');
+      this.confetti.celebrate('Votre projet prend son envol !', `Félicitations, votre candidature ${res.numero} a bien été déposée. Conservez ce numéro pour le suivi.`);
     } catch {
       // Le brouillon reste sur l'appareil : « Votre dossier est enregistré sur cet appareil — réessayez. »
       this.error.set(true);

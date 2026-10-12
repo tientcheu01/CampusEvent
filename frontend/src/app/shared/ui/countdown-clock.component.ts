@@ -34,12 +34,14 @@ interface Unit {
     }
     .cc {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: center;
-      gap: var(--sp-6) var(--sp-8);
-      padding: var(--sp-6);
-      background: var(--paper);
-      border: var(--border);
+      justify-content: space-between;
+      gap: var(--sp-3) var(--sp-5, 1.25rem);
+      padding: var(--sp-4) var(--sp-5, 1.25rem);
+      color: #fff;
+      background: var(--blue-600);
+      border: 1px solid var(--blue-600);
       border-radius: var(--r-lg);
       box-shadow: var(--shadow-lg);
     }
@@ -47,22 +49,24 @@ interface Unit {
       display: grid;
       gap: 0.35rem;
       margin: 0;
-      padding-right: var(--sp-8);
-      border-right: var(--border);
+      padding-right: var(--sp-5, 1.25rem);
+      border-right: 1px solid rgba(255, 255, 255, 0.28);
     }
     .cc__intro .label {
-      color: var(--blue-600);
+      color: rgba(255, 255, 255, 0.72);
     }
     .cc__intro strong {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: var(--fs-h3);
+      font-size: 0.95rem;
       letter-spacing: -0.02em;
       white-space: nowrap;
     }
     .cc__units {
       display: flex;
-      gap: var(--sp-6);
+      flex: 1;
+      justify-content: space-between;
+      gap: var(--sp-3);
       margin: 0;
       padding: 0;
       list-style: none;
@@ -71,26 +75,31 @@ interface Unit {
       display: grid;
       gap: 0.25rem;
       justify-items: center;
-      min-width: 3.25rem;
+      min-width: 2.65rem;
     }
     .cc__val {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: var(--fs-stat);
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
       line-height: 1;
       letter-spacing: -0.03em;
-      color: var(--navy-900);
+      color: #fff;
     }
     .cc__lab {
-      color: var(--text-dim);
+      color: rgba(255, 255, 255, 0.72);
     }
     @media (max-width: 639px) {
+      .cc {
+        flex-wrap: wrap;
+      }
       .cc__intro {
+        width: 100%;
         border-right: 0;
         padding-right: 0;
       }
       .cc__units {
-        gap: var(--sp-4);
+        width: 100%;
+        gap: var(--sp-2);
       }
       .cc__units li {
         min-width: 2.75rem;

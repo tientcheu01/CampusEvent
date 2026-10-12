@@ -22,7 +22,7 @@ export interface CountdownText {
 }
 
 const DAY = 86_400_000;
-const daysUntil = (to: Date, from: Date) => Math.max(0, Math.ceil((to.getTime() - from.getTime()) / DAY));
+const daysUntil = (to: Date, from: Date) => Math.max(0, Math.floor((to.getTime() - from.getTime()) / DAY));
 const plural = (n: number) => (n > 1 ? 'jours' : 'jour');
 
 function phaseAt(now: Date): Phase {

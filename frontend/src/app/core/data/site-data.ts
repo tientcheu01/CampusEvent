@@ -17,7 +17,7 @@ export const NAV: NavItem[] = [
   { label: 'Projets', path: '/projets' },
   { label: 'Partenaires', path: '/partenaires' },
   { label: 'Contact', path: '/contact' },
-  { label: 'Affiche', path: '/affiche' },
+  { label: 'Galerie', path: '/galerie' },
 ];
 
 export const CONTACT = {

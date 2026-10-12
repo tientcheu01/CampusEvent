@@ -8,7 +8,7 @@ let uid = 0;
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+    <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false" [class.seal--inverted]="inverted()">
       <circle cx="60" cy="60" r="59" class="seal__disc" />
       <defs><path [attr.id]="id" fill="none" d="M60 16a44 44 0 1 1 0 88 44 44 0 1 1 0-88" /></defs>
       <text class="seal__text"><textPath [attr.href]="'#' + id" startOffset="0">{{ text() }}</textPath></text>
@@ -44,6 +44,15 @@ let uid = 0;
       transform-origin: 60px 60px;
       animation: spin 22s linear infinite reverse;
     }
+    .seal--inverted .seal__disc {
+      fill: var(--gold-500);
+    }
+    .seal--inverted .seal__text {
+      fill: var(--blue-800);
+    }
+    .seal--inverted .seal__arrow {
+      stroke: var(--blue-800);
+    }
     @keyframes spin {
       to {
         transform: rotate(360deg);
@@ -59,5 +68,6 @@ let uid = 0;
 })
 export class SealComponent {
   readonly text = input('SJI INNOVA · 2ᵉ ÉDITION · YAOUNDÉ · ');
+  readonly inverted = input(false);
   protected readonly id = `seal-${uid++}`;
 }

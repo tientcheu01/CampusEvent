@@ -35,13 +35,13 @@ import { TrajectoireComponent } from './sections/trajectoire.component';
     <sji-marquee [items]="mots" />
     <sji-manifeste />
     <sji-apropos />
-    <sji-trajectoire />
+    <sji-projets-home />
     <sji-calendrier />
     <sji-gains />
-    <sji-projets-home />
     <sji-faq-home />
     <sji-partenaires-home />
     <sji-cta-final />
+    <sji-trajectoire />
   `,
   styles: `
     :host {

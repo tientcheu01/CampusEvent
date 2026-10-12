@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 /**
  * Logo SJI INNOVA, version horizontale.
- * À REMPLACER par le fichier vectoriel officiel (la marque ci-dessous en est une reconstitution
- * simplifiée : ampoule + flèche dorée). Le wordmark est du texte HTML, pas une image.
+ * La marque utilise le visuel officiel de l'évènement ; le wordmark reste en texte HTML
+ * pour conserver une excellente lisibilité dans l'en-tête et le pied de page.
  */
 @Component({
   selector: 'sji-logo',
@@ -11,13 +11,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class.logo--light]': 'tone() === "light"' },
   template: `
-    <svg class="mark" viewBox="0 0 84 120" aria-hidden="true" focusable="false">
-      <path
-        d="M42 4C20.5 4 4 20.5 4 41c0 13.5 7 22.5 15 30 4 3.8 6 7.5 6 12v6h34v-6c0-4.5 2-8.2 6-12 8-7.5 15-16.5 15-30C80 20.5 63.5 4 42 4Z"
-        fill="#f8a91b"
-      />
-      <path d="M28 96h28M32 106h20M36 114h12M30 52l12 14 12-14M42 66v18" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
+    <span class="mark"><img src="/logosjiinnova-removebg-preview.png" alt="" width="532" height="434" /></span>
     <span class="word"><span>SJI</span>&nbsp;<span class="innova">INNOVA</span></span>
   `,
   styles: `
@@ -32,8 +26,19 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       color: #fff;
     }
     .mark {
-      width: 26px;
-      height: 37px;
+      display: grid;
+      width: 48px;
+      height: 40px;
+      place-items: center;
+    }
+    .mark img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    :host(.logo--light) .mark img {
+      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.9));
     }
     .word {
       position: relative;

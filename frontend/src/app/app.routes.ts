@@ -80,12 +80,17 @@ export const routes: Routes = [
         }),
       },
       {
-        path: 'affiche',
+        path: 'galerie',
         loadComponent: () => import('./pages/affiche/affiche.component').then((m) => m.AfficheComponent),
         data: seo({
-          title: `L'affiche officielle · ${SUFFIX}`,
-          description: "L'affiche officielle de SJI INNOVA 2027, à partager et à imprimer.",
+          title: `Galerie photo · ${SUFFIX}`,
+          description: "Découvrez en images les visages, l'énergie et les moments forts de la communauté SJI INNOVA.",
         }),
+      },
+      {
+        path: 'affiche',
+        redirectTo: 'galerie',
+        pathMatch: 'full',
       },
       {
         path: '**',

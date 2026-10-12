@@ -59,6 +59,21 @@ import { MotionService } from '../../core/services/motion.service';
       box-shadow: var(--shadow-sm);
       transition: left 1.1s var(--ease-out);
     }
+    :host-context(.on-navy) .mt__label {
+      color: #fff;
+    }
+    :host-context(.on-navy) .mt__pct {
+      color: var(--gold-500);
+    }
+    :host-context(.on-navy) .mt__rail {
+      background: rgba(255, 255, 255, 0.16);
+    }
+    :host-context(.on-navy) .mt__fill {
+      background: var(--blue-200);
+    }
+    :host-context(.on-navy) .mt__knob {
+      border-color: var(--navy-900);
+    }
   `,
 })
 export class MeterComponent {

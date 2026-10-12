@@ -10,7 +10,6 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
 
 /**
  * 10 — Appel final : le seul grand aplat bleu nuit de la page, et le seul titre centré.
- * La diagonale dorée arrive ici (repère data-arrow-end) et s'y plante.
  */
 @Component({
   selector: 'sji-cta-final',
@@ -18,8 +17,8 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
   imports: [RouterLink, ButtonComponent, CountdownComponent, WingsComponent, RevealDirective, GlowDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="cta tint-navy dots-light on-navy" data-arrow-end aria-labelledby="cta-title" sjiGlow="50 52 .2">
-      <sji-wings class="cta__wings" [opacity]="0.22" />
+    <section class="cta tint-navy dots-light on-navy" aria-labelledby="cta-title" sjiGlow="50 52 .2">
+      <sji-wings class="cta__wings" [opacity]="0.1" />
       <div class="container cta__inner">
         <h2 id="cta-title" class="display cta__title" sjiReveal="mask">
           <span data-line>Ensemble, donnons</span>
@@ -36,24 +35,25 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
     .cta {
       position: relative;
       overflow: hidden;
-      min-height: 100vh;
-      min-height: 100svh;
       display: grid;
       place-items: center;
-      padding-block: var(--sp-24);
+      padding-block: clamp(3rem, 6vw, 5rem);
       color: #fff;
     }
     .cta__wings {
       position: absolute;
-      left: 0;
-      bottom: 0;
-      width: min(80vw, 900px);
-      height: 100%;
+      z-index: 0;
+      top: -10%;
+      left: -8%;
+      width: min(70vw, 760px);
+      height: 120%;
+      pointer-events: none;
     }
     .cta__inner {
       display: grid;
       justify-items: center;
-      gap: var(--sp-8);
+      gap: clamp(1rem, 2.5vw, 2rem);
+      max-width: 58rem;
       text-align: center;
     }
     .cta__title {

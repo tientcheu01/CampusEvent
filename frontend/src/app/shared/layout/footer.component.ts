@@ -52,6 +52,7 @@ import { WingsComponent } from '../ui/wings.component';
       </div>
       <div class="ft__legal container">
         <span>© 2027 SJI INNOVA · Saint Jean Ingénieur, Yaoundé</span>
+        <span class="ft__credit">Website by Tientcheu Siani Joel Marvin</span>
       </div>
       <span class="tricolor" aria-hidden="true"></span>
     </footer>
@@ -99,6 +100,7 @@ import { WingsComponent } from '../ui/wings.component';
     }
     a {
       color: #fff;
+      overflow-wrap: anywhere;
       text-decoration: none;
       text-underline-offset: 4px;
     }
@@ -115,11 +117,18 @@ import { WingsComponent } from '../ui/wings.component';
       color: var(--gold-500);
     }
     .ft__legal {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--sp-3) var(--sp-6);
       margin-top: var(--sp-16);
       padding-block: var(--sp-6);
       border-top: 1px solid rgba(255, 255, 255, 0.16);
       font-size: var(--fs-small);
       color: var(--blue-200);
+    }
+    .ft__credit {
+      color: var(--gold-500);
     }
     .tricolor {
       display: block;

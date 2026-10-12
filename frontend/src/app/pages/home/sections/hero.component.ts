@@ -39,17 +39,18 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
             <a sjiButton sjiMagnetic [arrow]="true" [routerLink]="dates.cta().link" [fragment]="dates.cta().fragment" (click)="track()">{{ dates.cta().label }}</a>
             <a sjiButton variant="ghost" [href]="docs.reglement" target="_blank" rel="noopener" (click)="trackReglement()">Voir le règlement</a>
           </div>
+          <sji-countdown-clock class="hero__clock" sjiReveal [delay]="0.3" />
         </div>
 
         <div class="hero__media" sjiReveal [delay]="0.1">
           <figure class="hero__shot hero__shot--a">
-            <img ngSrc="/assets/images/etudiant-3.webp" alt="Un étudiant de Saint Jean Ingénieur portant le t-shirt SJI INNOVA" width="540" height="720" priority />
+            <img ngSrc="/assets/images/Jeune homme en réalité virtuelle.png" alt="Un jeune homme utilisant un casque de réalité virtuelle" width="540" height="720" priority />
           </figure>
           <figure class="hero__shot hero__shot--b">
-            <img ngSrc="/assets/images/etudiant-2.webp" alt="Une étudiante de Saint Jean Ingénieur sur le campus d'Etok-Koss" width="540" height="720" priority />
+            <img ngSrc="/assets/images/photo_2026-10-12_04-28-32.jpg" alt="Des lauréats de Saint Jean Ingénieur présentant leurs diplômes d’excellence" width="540" height="720" priority />
           </figure>
           <figure class="hero__shot hero__shot--c">
-            <img ngSrc="/assets/images/etudiant-4.webp" alt="Une étudiante de Saint Jean Ingénieur, dossier à la main" width="540" height="720" />
+            <img ngSrc="/assets/images/photo_2026-10-12_04-34-57.jpg" alt="Une équipe étudiante présentant ses diplômes d’excellence" width="540" height="720" />
           </figure>
 
           <p class="chip chip--prize"><sji-icon name="trophy" /><span><strong>100&#8239;000&nbsp;FCFA</strong> au lauréat</span></p>
@@ -58,9 +59,6 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
         </div>
       </div>
 
-      <div class="container hero__bottom">
-        <sji-countdown-clock sjiReveal [delay]="0.3" />
-      </div>
     </section>
   `,
   styleUrl: './hero.component.scss',

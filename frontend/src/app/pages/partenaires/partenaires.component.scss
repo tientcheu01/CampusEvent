@@ -8,6 +8,54 @@
 .pp__head h2 {
   max-width: 16ch;
 }
+.pp__reasons-section,
+.pp__levels {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+  h2,
+  .lead {
+    color: #fff;
+  }
+}
+.pp__wings {
+  position: absolute;
+  z-index: 0;
+  top: -14%;
+  left: -9%;
+  width: min(72vw, 760px);
+  height: 125%;
+  pointer-events: none;
+}
+.pp__wings--right {
+  right: -9%;
+  left: auto;
+  transform: scaleX(-1);
+}
+.pp__reasons-section .pp__reasons {
+  li,
+  li:last-child {
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+  .num {
+    color: var(--gold-500);
+  }
+  .h3 {
+    color: #fff;
+  }
+}
+.pp__levels .pp__dossier a {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  &:hover {
+    border-color: var(--gold-500);
+    background: rgba(248, 169, 27, 0.12);
+  }
+}
 // Liste numérotée séparée par des filets, pas des cartes.
 .pp__reasons {
   grid-column: 1 / -1;

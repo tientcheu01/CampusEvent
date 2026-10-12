@@ -98,7 +98,7 @@ const DEFAULT_MESSAGES: Record<string, string> = {
     }
     .f__label {
       display: block;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.45rem;
       color: var(--blue-600);
     }
     .f__opt {
@@ -111,29 +111,38 @@ const DEFAULT_MESSAGES: Record<string, string> = {
       display: block;
       width: 100%;
       height: 56px;
-      padding: 0;
+      padding: 0 1rem;
       font-size: var(--fs-body);
-      background: transparent;
-      border: 0;
-      border-bottom: 1px solid var(--navy-900);
-      border-radius: 0;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
       color: var(--navy-900);
-      transition: box-shadow var(--d-fast) var(--ease-soft), border-color var(--d-fast) var(--ease-soft);
+      transition:
+        box-shadow var(--d-fast) var(--ease-soft),
+        border-color var(--d-fast) var(--ease-soft),
+        background-color var(--d-fast);
       appearance: none;
+    }
+    .f__input::placeholder {
+      color: var(--text-dim);
+    }
+    .f__input:hover:not(:focus) {
+      border-color: var(--blue-200);
     }
     .f__input--area {
       height: auto;
-      padding: 0.75rem 0;
+      padding: 0.875rem 1rem;
       resize: vertical;
-      min-height: 140px;
-      line-height: 1.5;
+      min-height: 150px;
+      line-height: 1.6;
     }
     .f__input--select {
-      padding-right: 2rem;
+      padding-right: 2.75rem;
+      cursor: pointer;
     }
     .f__chev {
       position: absolute;
-      right: 0;
+      right: 1rem;
       top: 50%;
       transform: translateY(-50%);
       pointer-events: none;
@@ -141,14 +150,16 @@ const DEFAULT_MESSAGES: Record<string, string> = {
     }
     .f__input:focus {
       outline: none;
-      border-bottom-color: var(--gold-500);
-      box-shadow: 0 1px 0 0 var(--gold-500); /* 1 px de bordure + 1 px d'ombre = 2 px, sans décalage */
+      background: var(--paper);
+      border-color: var(--gold-500);
+      box-shadow: var(--ring-gold);
     }
     .f__input:focus-visible {
       outline: none;
     }
     .f--error .f__input {
-      border-bottom-color: var(--cm-red);
+      border-color: var(--cm-red);
+      background: rgba(212, 38, 44, 0.04);
     }
     .f__foot {
       display: flex;

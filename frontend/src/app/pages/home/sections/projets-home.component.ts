@@ -1,105 +1,60 @@
-import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealDirective } from '../../../core/directives/reveal.directive';
-import { ProjetsService } from '../../../core/services/projets.service';
 import { ButtonComponent } from '../../../shared/ui/button.component';
-import { ProjectCardComponent } from '../../../shared/ui/project-card.component';
 import { SectionLabelComponent } from '../../../shared/ui/section-label.component';
 
-/**
- * 07 — Les projets de la 1ʳᵉ édition : la section la plus importante du site (la preuve).
- * Grille asymétrique : la première carte occupe deux colonnes et deux rangées.
- */
+/** 06 — Les trois premiers projets de l'édition passée : la preuve, juste avant le pied de page. */
 @Component({
   selector: 'sji-projets-home',
   standalone: true,
-  imports: [RouterLink, SectionLabelComponent, ButtonComponent, ProjectCardComponent, RevealDirective],
+  imports: [RouterLink, SectionLabelComponent, ButtonComponent, RevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="section tint-3" aria-labelledby="pj-title">
+    <section class="pj section section--dense tint-3" aria-labelledby="pj-title">
       <div class="container">
         <header class="pj__head" sjiReveal>
-          <sji-section-label num="06" text="Les projets" />
-          <h2 id="pj-title" class="h1">Ils l'ont déjà fait.</h2>
-          <p class="lead">Les projets de la première édition, portés par des étudiants de Saint Jean Ingénieur.</p>
+          <div>
+            <sji-section-label num="06" text="Les projets" />
+            <h2 id="pj-title" class="h2 pj__title">Le podium de <em>l'édition passée</em>.</h2>
+            <p class="pj__lead">Trois projets étudiants distingués pour leur créativité, leur faisabilité et leur potentiel d'impact.</p>
+          </div>
+          <a sjiButton variant="ghost" routerLink="/projets" [arrow]="true">Découvrir le podium</a>
         </header>
 
-        @if (items().length) {
-          <div class="pj__grid" sjiReveal="stagger">
-            @for (p of items(); track p.slug; let i = $index) {
-              <sji-project-card [projet]="p" [featured]="i === 0" [class.pj__first]="i === 0" />
-            }
-          </div>
-          <a sjiButton variant="ghost" class="pj__all" routerLink="/projets" [arrow]="true">Tous les projets</a>
-        } @else if (projets.state() === 'error') {
-          <p class="pj__empty">Les projets n'ont pas pu être chargés. <button type="button" sjiButton variant="link" (click)="projets.load(true)">Réessayer</button></p>
-        } @else if (projets.state() === 'ready') {
-          <p class="pj__empty h3">Les projets de l'édition 2027 seront publiés après la présélection, en janvier.</p>
-        } @else {
-          <div class="pj__grid" aria-busy="true" aria-label="Chargement des projets de la première édition…">
-            @for (s of [0, 1, 2]; track s) {
-              <div class="pj__skeleton" [class.pj__first]="s === 0"></div>
-            }
-          </div>
-        }
+        <div class="pj__grid" sjiReveal="stagger">
+          @for (projet of projets; track projet.rang) {
+            <a class="project-card" routerLink="/projets" [attr.aria-label]="'Découvrir ' + projet.titre">
+              <div class="project-card__cover">
+                <img [src]="projet.image" [alt]="'Portrait associé au ' + projet.titre.toLowerCase()" loading="lazy" />
+                <span class="project-card__wash" aria-hidden="true"></span>
+                <span class="project-card__badge label">{{ projet.edition }}</span>
+                <span class="project-card__rank"><b>{{ projet.rang }}</b><small>{{ projet.prix }}</small></span>
+                <span class="project-card__notch" aria-hidden="true"></span>
+                <span class="project-card__fillet project-card__fillet--right" aria-hidden="true"></span>
+                <span class="project-card__fillet project-card__fillet--bottom" aria-hidden="true"></span>
+                <span class="project-card__arrow" aria-hidden="true">↗</span>
+              </div>
+
+              <div class="project-card__body">
+                <h3>{{ projet.titre }}</h3>
+                <p>{{ projet.texte }}</p>
+                <ul aria-label="Caractéristiques du projet">
+                  @for (tag of projet.tags; track tag) { <li>{{ tag }}</li> }
+                </ul>
+              </div>
+            </a>
+          }
+        </div>
       </div>
     </section>
   `,
-  styles: `
-    .pj__head {
-      display: grid;
-      gap: var(--sp-6);
-      margin-bottom: var(--sp-12);
-    }
-    .pj__grid {
-      display: grid;
-      gap: var(--sp-4);
-      grid-template-columns: 1fr;
-    }
-    .pj__grid > * {
-      min-height: 280px;
-    }
-    .pj__skeleton {
-      min-height: 280px;
-      border-radius: var(--r-md);
-      background: var(--paper-2);
-      border: var(--border);
-      animation: pulse 1.4s var(--ease-soft) infinite alternate;
-    }
-    @keyframes pulse {
-      to {
-        opacity: 0.5;
-      }
-    }
-    .pj__empty {
-      max-width: 30ch;
-      color: var(--navy-900);
-    }
-    .pj__all {
-      margin-top: var(--sp-8);
-    }
-    @media (min-width: 640px) {
-      .pj__grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (min-width: 1024px) {
-      .pj__grid {
-        grid-template-columns: repeat(4, 1fr);
-        grid-auto-rows: minmax(260px, auto);
-      }
-      .pj__first {
-        grid-column: span 2;
-        grid-row: span 2;
-      }
-    }
-  `,
+  styleUrl: './projets-home.component.scss',
 })
-export class ProjetsHomeComponent implements OnInit {
-  protected readonly projets = inject(ProjetsService);
-  protected readonly items = computed(() => this.projets.projets().slice(0, 5));
-
-  ngOnInit(): void {
-    this.projets.load();
-  }
+export class ProjetsHomeComponent {
+  protected readonly projets = [
+    { rang: '01', prix: 'Premier prix', edition: 'Édition précédente', titre: 'Projet lauréat', texte: 'Le projet arrivé en tête de la précédente édition, distingué pour la cohérence de sa proposition.', tags: ['LearnMap'], image: '/assets/images/Projet Lauréat.jpg' },
+    { rang: '02', prix: 'Deuxième prix', edition: 'Édition précédente', titre: 'Projet finaliste', texte: 'Une solution remarquée par le jury pour sa faisabilité et la qualité de son exécution.', tags: ['Beyond Silence'], image: '/assets/images/photo_2026-10-12_04-28-32.jpg' },
+    { rang: '03', prix: 'Troisième prix', edition: 'Édition précédente', titre: 'Projet finaliste', texte: 'Une idée audacieuse sélectionnée pour sa créativité et son potentiel de transformation.', tags: ['Clean Collect'], image: '/assets/images/Troisième prix.jpg' },
+  ];
 }

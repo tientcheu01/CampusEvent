@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   overflow: hidden;
-  padding-top: calc(var(--header-total) + var(--sp-12));
+  padding-top: calc(var(--header-total) + var(--sp-2));
   padding-bottom: var(--sp-16);
 }
 .hero__wings {
@@ -20,11 +20,12 @@
 }
 .hero__text {
   display: grid;
-  gap: var(--sp-6);
+  gap: var(--sp-3);
   align-content: start;
 }
 .hero__eyebrow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
   margin: 0;
@@ -80,8 +81,8 @@
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-4);
-  margin-top: var(--sp-2);
+  gap: var(--sp-3);
+  margin-top: var(--sp-1);
 }
 
 // ─── Mosaïque de portraits ───────────────────────────────────────────────────
@@ -137,6 +138,11 @@
 .chip--prize {
   left: -0.75rem;
   top: 8%;
+  color: #fff;
+  background: var(--blue-600);
+  sji-icon {
+    color: #fff;
+  }
 }
 .chip--place {
   right: -0.5rem;
@@ -155,13 +161,22 @@
   width: 84px;
   height: 84px;
 }
-.hero__bottom {
-  margin-top: var(--sp-12);
+.hero__clock {
+  display: block;
+  width: 100%;
+  margin-top: var(--sp-2);
 }
 
 @media (max-width: 639px) {
+  .hero__actions > * {
+    max-width: 100%;
+  }
   .hero__media {
     aspect-ratio: 1 / 0.8;
+  }
+  .chip {
+    max-width: calc(100% - var(--sp-4));
+    padding: 0.5rem 0.75rem;
   }
   .chip--prize {
     left: 0;
@@ -182,15 +197,14 @@
     grid-template-columns: 1fr 1.05fr;
     gap: var(--sp-16);
   }
+  .hero__text {
+    transform: translateY(-1.25rem);
+  }
   .hero__title {
     max-width: 12ch;
   }
-  .hero__bottom {
-    margin-top: calc(var(--sp-12) * -1);
-    position: relative;
-    z-index: 3;
-    max-width: calc(760px + var(--gutter) * 2);
-    margin-inline: 0;
+  .hero__clock {
+    max-width: 100%;
   }
 }
 

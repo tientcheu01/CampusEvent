@@ -57,6 +57,7 @@ import { CONTREPARTIES, NIVEAUX } from '../../core/data/site-data';
       display: none;
       width: 100%;
       border-collapse: collapse;
+      color: var(--navy-900);
       background: var(--paper);
       border: var(--border);
     }
@@ -86,6 +87,7 @@ import { CONTREPARTIES, NIVEAUX } from '../../core/data/site-data';
       gap: var(--sp-4);
     }
     .tc__card {
+      color: var(--navy-900);
       border: var(--border);
       background: var(--paper);
       padding: var(--sp-6);
@@ -121,6 +123,9 @@ import { CONTREPARTIES, NIVEAUX } from '../../core/data/site-data';
     .tt__note {
       margin: var(--sp-4) 0 0;
       color: var(--text-dim);
+    }
+    :host-context(.on-navy) .tt__note {
+      color: rgba(255, 255, 255, 0.68);
     }
     @media (min-width: 900px) {
       .tt {
