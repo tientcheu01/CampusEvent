@@ -58,7 +58,8 @@ import { ButtonComponent } from '../../../shared/ui/button.component';
       overflow: hidden;
       background: var(--paper);
       color: var(--navy-900);
-      padding-block: clamp(3rem, 4vw, 5rem);
+      padding-top: clamp(3rem, 4vw, 5rem);
+      padding-bottom: clamp(1.25rem, 2vw, 2rem);
     }
     .about {
       display: grid;
