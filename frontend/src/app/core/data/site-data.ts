@@ -63,6 +63,35 @@ export const VERBES = [
   { verbe: 'Accompagner', texte: 'Offrir aux jeunes innovateurs un accompagnement à la hauteur de leurs ambitions.' },
 ];
 
+export const A_PROPOS = {
+  titre: 'À propos du concours',
+  texte:
+    'Le Prix SJI INNOVA est une initiative du responsable du Campus d’Etok-Koss de l’Université Saint Jean Ingénieur. Ce concours valorise l’innovation, l’entrepreneuriat et l’esprit créatif des étudiants du cycle Licence Professionnelle. C’est une plateforme unique où les idées se rencontrent, se structurent et deviennent des projets réels et impactants pour la société camerounaise.',
+  responsable: {
+    nom: 'Ekotto Hermann',
+    role: 'Responsable du Campus d’Etok-Koss',
+    linkedin: 'https://www.linkedin.com/in/hermann-ekotto-801a76387/',
+    phone: '+237694882394',
+    photo: '/assets/images/Ekotto Hermann.png',
+  },
+  universite: {
+    nom: 'Saint Jean Ingénieur',
+    site: 'https://saintjeaningenieur.org/',
+    logo: '/assets/images/Logo DE Saint Jean Ingénieur (1).png',
+  },
+  evenement: {
+    nom: 'SJI INNOVA',
+    photo: '/assets/images/Logo Innova pour à propos.jpg',
+  },
+  cta: { label: 'En savoir plus', lien: '/le-concours' },
+};
+
+export const A_PROPOS_STATS = [
+  { valeur: 'LP', label: 'Licence Professionnelle', icone: 'grad' },
+  { valeur: '100K', label: 'FCFA au lauréat', icone: 'trophy' },
+  { valeur: 'Réel', label: 'Impact sur le terrain', icone: 'trend' },
+] as const;
+
 export const PALIERS = [
   { mot: 'Idée', texte: "Vous repérez un problème que personne autour de vous n'a résolu." },
   { mot: 'Projet', texte: 'Vous le structurez, seul ou en équipe, et vous le déposez.' },
@@ -177,13 +206,14 @@ export interface Temoignage {
   color: string;
 }
 
-/** Témoignages des participants. Les valeurs factices seront remplacées par les vrais retours d'expérience. */
+/** Témoignages des participants. Les photos sont des placeholders locales ; remplacez-les par les portraits réels. */
 export const TEMOIGNAGES: Temoignage[] = [
   {
     quote:
       'SJI INNOVA m’a poussé à transformer une simple idée en projet concret. Le regard du jury et les échanges avec les autres équipes ont été une vraie accélération.',
     name: 'Priya Sharma',
     designation: 'Candidate, édition 2026',
+    src: '/assets/images/Jeune homme en réalité virtuelle.png',
     initials: 'PS',
     color: '#17439b',
   },
@@ -192,6 +222,7 @@ export const TEMOIGNAGES: Temoignage[] = [
       'Participer au concours m’a appris à présenter ma solution avec clarté. L’accompagnement post-sélection nous a aidés à améliorer notre prototype en quelques semaines.',
     name: 'Marcus Johnson',
     designation: 'Lauréat, édition 2026',
+    src: '/assets/images/photo_2026-10-12_04-28-32.jpg',
     initials: 'MJ',
     color: '#0e2a6b',
   },
@@ -200,6 +231,7 @@ export const TEMOIGNAGES: Temoignage[] = [
       'L’ambiance de la finale, la rigueur du jury et la visibilité offerte ont changé ma manière de voir l’entrepreneuriat étudiant. Une expérience que je recommande.',
     name: 'Isabella Rossi',
     designation: 'Finaliste, édition 2026',
+    src: '/assets/images/photo_2026-10-12_04-28-39.jpg',
     initials: 'IR',
     color: '#b87708',
   },
@@ -208,6 +240,7 @@ export const TEMOIGNAGES: Temoignage[] = [
       'Travailler en équipe sur un projet à impact m’a fait découvrir des compétences que je ne soupçonnais pas. C’est plus qu’un concours, c’est un tremplin.',
     name: 'Kenji Tanaka',
     designation: 'Candidat, édition 2026',
+    src: '/assets/images/photo_2026-10-12_04-34-57.jpg',
     initials: 'KT',
     color: '#13a04a',
   },
@@ -216,6 +249,7 @@ export const TEMOIGNAGES: Temoignage[] = [
       'Le prix obtenu nous a permis de poursuivre le développement de notre solution. Aujourd’hui, nous avançons vers un premier déploiement sur le terrain.',
     name: 'Fatima Al-Jamil',
     designation: 'Lauréate, édition 2026',
+    src: '/assets/images/photo_2026-10-12_06-33-39.jpg',
     initials: 'FA',
     color: '#d4262c',
   },

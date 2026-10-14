@@ -7,6 +7,7 @@ import { CtaFinalComponent } from './sections/cta-final.component';
 import { FaqHomeComponent } from './sections/faq-home.component';
 import { GainsComponent } from './sections/gains.component';
 import { HeroComponent } from './sections/hero.component';
+import { AProposHomeComponent } from './sections/a-propos-home.component';
 import { ManifesteComponent } from './sections/manifeste.component';
 import { PartenairesHomeComponent } from './sections/partenaires-home.component';
 import { ProjetsHomeComponent } from './sections/projets-home.component';
@@ -20,6 +21,7 @@ import { TrajectoireComponent } from './sections/trajectoire.component';
   imports: [
     HeroComponent,
     MarqueeComponent,
+    AProposHomeComponent,
     ManifesteComponent,
     AproposComponent,
     TrajectoireComponent,
@@ -35,6 +37,7 @@ import { TrajectoireComponent } from './sections/trajectoire.component';
   template: `
     <sji-hero />
     <sji-marquee [items]="mots" />
+    <sji-a-propos-home />
     <sji-manifeste />
     <sji-apropos />
     <sji-projets-home />
