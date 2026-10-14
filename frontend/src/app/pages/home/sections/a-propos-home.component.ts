@@ -1,16 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { A_PROPOS, A_PROPOS_STATS } from '../../../core/data/site-data';
+import { A_PROPOS } from '../../../core/data/site-data';
 import { GlowDirective } from '../../../core/directives/glow.directive';
 import { RevealDirective } from '../../../core/directives/reveal.directive';
 import { ButtonComponent } from '../../../shared/ui/button.component';
-import { IconComponent } from '../../../shared/ui/icon.component';
 
-/** Section À propos : présentation du concours avec collage d’images et liens sociaux. */
+/** Section À propos : disposition du collage inspirée de hero-section-9. */
 @Component({
   selector: 'sji-a-propos-home',
   standalone: true,
-  imports: [RouterLink, ButtonComponent, IconComponent, RevealDirective, GlowDirective],
+  imports: [RouterLink, ButtonComponent, RevealDirective, GlowDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="section about-section" aria-labelledby="about-title" sjiGlow="35 45 .12">
@@ -20,74 +19,30 @@ import { IconComponent } from '../../../shared/ui/icon.component';
           <span class="about__eyebrow">Présentation</span>
           <h2 id="about-title" class="h2 about__title">{{ a.titre }}</h2>
           <p class="about__text">{{ a.texte }}</p>
-
-          <div class="about__stats" sjiReveal="stagger" [delay]="0.1">
-            @for (s of stats; track s.label) {
-              <div class="about__stat">
-                <span class="about__stat-icon"><sji-icon [name]="s.icone" [size]="24" /></span>
-                <div class="about__stat-body">
-                  <strong class="about__stat-value">{{ s.valeur }}</strong>
-                  <span class="about__stat-label">{{ s.label }}</span>
-                </div>
-              </div>
-            }
-          </div>
-
           <a sjiButton class="about__cta" [arrow]="true" [routerLink]="a.cta.lien">{{ a.cta.label }}</a>
         </div>
 
         <!-- Collage -->
-        <div class="about__media" sjiReveal [delay]="0.2">
+        <div class="about__media" sjiReveal [delay]="0.15">
           <div class="about__collage" aria-label="Visuels du concours et de l’organisateur">
             <!-- Formes décoratives flottantes -->
             <span class="about__shape about__shape--1" aria-hidden="true"></span>
             <span class="about__shape about__shape--2" aria-hidden="true"></span>
             <span class="about__shape about__shape--3" aria-hidden="true"></span>
 
-            <!-- Logo événement -->
-            <figure class="about__card about__card--event">
+            <!-- Image 1 : logo événement, en haut au centre -->
+            <figure class="about__frame about__frame--1">
               <img [src]="a.evenement.photo" [alt]="'Logo ' + a.evenement.nom" draggable="false" />
             </figure>
 
-            <!-- Responsable -->
-            <figure class="about__card about__card--resp">
+            <!-- Image 2 : responsable, à droite -->
+            <figure class="about__frame about__frame--2">
               <img [src]="a.responsable.photo" [alt]="'Portrait de ' + a.responsable.nom" draggable="false" />
-              <figcaption class="about__caption">
-                <strong>{{ a.responsable.nom }}</strong>
-                <span>{{ a.responsable.role }}</span>
-              </figcaption>
-              <div class="about__links">
-                <a
-                  class="about__social"
-                  [href]="a.responsable.linkedin"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="LinkedIn du responsable"
-                >
-                  <sji-icon name="linkedin" [size]="20" />
-                </a>
-                <a
-                  class="about__social"
-                  [href]="'tel:' + a.responsable.phone"
-                  aria-label="Appeler le responsable"
-                >
-                  <sji-icon name="phone" [size]="20" />
-                </a>
-              </div>
             </figure>
 
-            <!-- Université -->
-            <figure class="about__card about__card--school">
+            <!-- Image 3 : logo université, en bas à gauche -->
+            <figure class="about__frame about__frame--3">
               <img [src]="a.universite.logo" [alt]="'Logo ' + a.universite.nom" draggable="false" />
-              <a
-                class="about__site-link"
-                [href]="a.universite.site"
-                target="_blank"
-                rel="noopener"
-              >
-                <sji-icon name="external-link" [size]="20" />
-                <span>Visiter le site</span>
-              </a>
             </figure>
           </div>
         </div>
@@ -140,42 +95,9 @@ import { IconComponent } from '../../../shared/ui/icon.component';
       line-height: 1.65;
       color: var(--text-dim);
     }
-    .about__stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
-    .about__stat {
-      display: flex;
-      align-items: center;
-      gap: 0.875rem;
-      padding: 1rem;
-      border-radius: var(--r-md);
-      background: var(--paper-2);
-      border: var(--border);
-    }
-    .about__stat-icon {
-      display: inline-flex;
-      flex: none;
-      color: var(--gold-700);
-    }
-    .about__stat-body {
-      display: grid;
-      gap: 0.125rem;
-    }
-    .about__stat-value {
-      font-family: var(--font-display);
-      font-size: var(--fs-h3);
-      color: var(--navy-900);
-    }
-    .about__stat-label {
-      font-size: var(--fs-small);
-      color: var(--text-dim);
-    }
     .about__cta {
       justify-self: start;
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
     }
 
     /* Collage */
@@ -185,104 +107,91 @@ import { IconComponent } from '../../../shared/ui/icon.component';
     }
     .about__collage {
       position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 1rem;
-      width: min(100%, 480px);
+      width: 100%;
+      max-width: 420px;
+      height: 400px;
     }
-    .about__card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 0.625rem;
+    @media (min-width: 640px) {
+      .about__collage {
+        max-width: 520px;
+        height: 500px;
+      }
+    }
+    .about__frame {
+      position: absolute;
       margin: 0;
-      padding: 0.625rem;
+      padding: 0.5rem;
       border-radius: var(--r-lg);
-      background: var(--paper);
+      background: var(--paper-2);
       border: var(--border);
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-lg);
       overflow: hidden;
       transition:
-        transform 0.35s var(--ease-soft),
-        box-shadow 0.35s var(--ease-soft);
+        transform 0.45s var(--ease-soft),
+        box-shadow 0.45s var(--ease-soft);
     }
-    .about__card:hover {
-      transform: translateY(-4px);
+    .about__frame:hover {
+      transform: translateY(-6px) scale(1.02);
       box-shadow: var(--shadow-lg);
+      z-index: 10;
     }
-    .about__card img {
+    .about__frame img {
       width: 100%;
-      height: auto;
-      aspect-ratio: 1 / 1;
-      object-fit: contain;
+      height: 100%;
       border-radius: calc(var(--r-lg) - 6px);
-      background: var(--paper-2);
-    }
-    .about__card--event {
-      grid-column: 1 / -1;
-    }
-    .about__card--event img {
-      aspect-ratio: 16 / 9;
       object-fit: cover;
+      display: block;
     }
-    .about__card--resp img,
-    .about__card--school img {
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
+
+    /* Image 1 : en haut, centrée horizontalement */
+    .about__frame--1 {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 192px;
+      height: 192px;
     }
-    .about__caption {
-      display: grid;
-      gap: 0.125rem;
-      padding-inline: 0.25rem;
+    @media (min-width: 640px) {
+      .about__frame--1 {
+        width: 256px;
+        height: 256px;
+      }
     }
-    .about__caption strong {
-      font-size: var(--fs-body);
-      color: var(--navy-900);
+    .about__frame--1 img {
+      object-fit: contain;
+      background: var(--paper);
     }
-    .about__caption span {
-      font-size: var(--fs-small);
-      color: var(--text-dim);
+
+    /* Image 2 : à droite, au tiers supérieur */
+    .about__frame--2 {
+      top: 33%;
+      right: 0;
+      width: 160px;
+      height: 160px;
     }
-    .about__links {
-      display: flex;
-      gap: 0.5rem;
-      padding-inline: 0.25rem;
+    @media (min-width: 640px) {
+      .about__frame--2 {
+        width: 224px;
+        height: 224px;
+      }
     }
-    .about__social {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background: var(--paper-2);
-      color: var(--navy-900);
-      border: var(--border);
-      transition: background 0.2s var(--ease-soft);
+
+    /* Image 3 : en bas à gauche */
+    .about__frame--3 {
+      bottom: 0;
+      left: 0;
+      width: 128px;
+      height: 128px;
     }
-    .about__social:hover {
-      background: var(--paper-3);
-      color: var(--blue-600);
+    @media (min-width: 640px) {
+      .about__frame--3 {
+        width: 192px;
+        height: 192px;
+      }
     }
-    .about__site-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: auto;
-      padding: 0.5rem 0.75rem;
-      border-radius: var(--r-full);
-      background: var(--paper-2);
-      color: var(--navy-900);
-      font-size: var(--fs-small);
-      font-weight: 600;
-      border: var(--border);
-      transition: background 0.2s var(--ease-soft);
-    }
-    .about__site-link:hover {
-      background: var(--paper-3);
-      color: var(--blue-600);
+    .about__frame--3 img {
+      object-fit: contain;
+      background: var(--paper);
     }
 
     /* Formes décoratives */
@@ -293,28 +202,28 @@ import { IconComponent } from '../../../shared/ui/icon.component';
       pointer-events: none;
     }
     .about__shape--1 {
-      top: -12px;
-      left: 12%;
+      top: -16px;
+      left: 20%;
       width: 48px;
       height: 48px;
-      background: rgba(46, 107, 230, 0.18);
+      background: rgba(46, 107, 230, 0.2);
       animation: about-float 5s ease-in-out infinite;
     }
     .about__shape--2 {
-      bottom: 18%;
-      right: -8px;
+      bottom: 15%;
+      right: 8%;
       width: 32px;
       height: 32px;
       border-radius: 8px;
-      background: rgba(248, 169, 27, 0.22);
+      background: rgba(248, 169, 27, 0.24);
       animation: about-float 4.5s ease-in-out infinite reverse;
     }
     .about__shape--3 {
-      bottom: -8px;
-      left: 22%;
+      bottom: 5%;
+      left: 25%;
       width: 20px;
       height: 20px;
-      background: rgba(19, 160, 74, 0.18);
+      background: rgba(19, 160, 74, 0.2);
       animation: about-float 6s ease-in-out infinite;
     }
     @keyframes about-float {
@@ -327,12 +236,10 @@ import { IconComponent } from '../../../shared/ui/icon.component';
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .about__card,
-      .about__social,
-      .about__site-link {
+      .about__frame {
         transition: none;
       }
-      .about__card:hover {
+      .about__frame:hover {
         transform: none;
       }
       .about__shape {
@@ -343,5 +250,4 @@ import { IconComponent } from '../../../shared/ui/icon.component';
 })
 export class AProposHomeComponent {
   protected readonly a = A_PROPOS;
-  protected readonly stats = A_PROPOS_STATS;
 }
