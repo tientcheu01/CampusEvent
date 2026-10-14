@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 
 // Icônes au trait de 1,5 px (grille 24), dans le style Lucide. Posées nues : jamais de pastille colorée.
 const PATHS = {
+  'arrow-left': 'M19 12H5M11 6l-6 6 6 6',
   'arrow-right': 'M5 12h14M13 6l6 6-6 6',
   'arrow-up-right': 'M7 17 17 7M8 7h9v9',
   download: 'M12 4v11M7 11l5 5 5-5M5 20h14',

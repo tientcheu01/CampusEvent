@@ -10,6 +10,7 @@ import { HeroComponent } from './sections/hero.component';
 import { ManifesteComponent } from './sections/manifeste.component';
 import { PartenairesHomeComponent } from './sections/partenaires-home.component';
 import { ProjetsHomeComponent } from './sections/projets-home.component';
+import { TemoignagesHomeComponent } from './sections/temoignages-home.component';
 import { TrajectoireComponent } from './sections/trajectoire.component';
 
 /** Accueil : onze blocs, un composant par section. Le fil rouge est la diagonale dorée (couche globale). */
@@ -25,6 +26,7 @@ import { TrajectoireComponent } from './sections/trajectoire.component';
     CalendrierComponent,
     GainsComponent,
     ProjetsHomeComponent,
+    TemoignagesHomeComponent,
     FaqHomeComponent,
     PartenairesHomeComponent,
     CtaFinalComponent,
@@ -36,6 +38,7 @@ import { TrajectoireComponent } from './sections/trajectoire.component';
     <sji-manifeste />
     <sji-apropos />
     <sji-projets-home />
+    <sji-temoignages-home />
     <sji-calendrier />
     <sji-gains />
     <sji-faq-home />

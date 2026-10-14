@@ -166,6 +166,61 @@ export const PRIX = [
   { rang: '3e prix', montant: '25 000', lots: ['Trophée'], phare: false },
 ];
 
+// ─── Témoignages ─────────────────────────────────────────────────────────────
+
+export interface Temoignage {
+  quote: string;
+  name: string;
+  designation: string;
+  src?: string;
+  initials: string;
+  color: string;
+}
+
+/** Témoignages des participants. Les valeurs factices seront remplacées par les vrais retours d'expérience. */
+export const TEMOIGNAGES: Temoignage[] = [
+  {
+    quote:
+      'SJI INNOVA m’a poussé à transformer une simple idée en projet concret. Le regard du jury et les échanges avec les autres équipes ont été une vraie accélération.',
+    name: 'Priya Sharma',
+    designation: 'Candidate, édition 2026',
+    initials: 'PS',
+    color: '#17439b',
+  },
+  {
+    quote:
+      'Participer au concours m’a appris à présenter ma solution avec clarté. L’accompagnement post-sélection nous a aidés à améliorer notre prototype en quelques semaines.',
+    name: 'Marcus Johnson',
+    designation: 'Lauréat, édition 2026',
+    initials: 'MJ',
+    color: '#0e2a6b',
+  },
+  {
+    quote:
+      'L’ambiance de la finale, la rigueur du jury et la visibilité offerte ont changé ma manière de voir l’entrepreneuriat étudiant. Une expérience que je recommande.',
+    name: 'Isabella Rossi',
+    designation: 'Finaliste, édition 2026',
+    initials: 'IR',
+    color: '#b87708',
+  },
+  {
+    quote:
+      'Travailler en équipe sur un projet à impact m’a fait découvrir des compétences que je ne soupçonnais pas. C’est plus qu’un concours, c’est un tremplin.',
+    name: 'Kenji Tanaka',
+    designation: 'Candidat, édition 2026',
+    initials: 'KT',
+    color: '#13a04a',
+  },
+  {
+    quote:
+      'Le prix obtenu nous a permis de poursuivre le développement de notre solution. Aujourd’hui, nous avançons vers un premier déploiement sur le terrain.',
+    name: 'Fatima Al-Jamil',
+    designation: 'Lauréate, édition 2026',
+    initials: 'FA',
+    color: '#d4262c',
+  },
+];
+
 // ─── Partenariat ──────────────────────────────────────────────────────────────
 
 export const RAISONS_PARTENAIRE = [
