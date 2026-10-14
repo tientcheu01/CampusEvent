@@ -30,9 +30,9 @@ import { ButtonComponent } from '../../../shared/ui/button.component';
             <span class="about__shape about__shape--2" aria-hidden="true"></span>
             <span class="about__shape about__shape--3" aria-hidden="true"></span>
 
-            <!-- Image 1 : logo événement, en haut au centre -->
+            <!-- Image 1 : logo université, en haut au centre -->
             <figure class="about__frame about__frame--1">
-              <img [src]="a.evenement.photo" [alt]="'Logo ' + a.evenement.nom" draggable="false" />
+              <img [src]="a.universite.logo" [alt]="'Logo ' + a.universite.nom" draggable="false" />
             </figure>
 
             <!-- Image 2 : responsable, à droite -->
@@ -40,9 +40,9 @@ import { ButtonComponent } from '../../../shared/ui/button.component';
               <img [src]="a.responsable.photo" [alt]="'Portrait de ' + a.responsable.nom" draggable="false" />
             </figure>
 
-            <!-- Image 3 : logo université, en bas à gauche -->
+            <!-- Image 3 : logo événement, en bas à gauche -->
             <figure class="about__frame about__frame--3">
-              <img [src]="a.universite.logo" [alt]="'Logo ' + a.universite.nom" draggable="false" />
+              <img [src]="a.evenement.photo" [alt]="'Logo ' + a.evenement.nom" draggable="false" />
             </figure>
           </div>
         </div>
@@ -58,12 +58,12 @@ import { ButtonComponent } from '../../../shared/ui/button.component';
       overflow: hidden;
       background: var(--paper);
       color: var(--navy-900);
-      padding-block: var(--section-y);
+      padding-block: clamp(3rem, 4vw, 5rem);
     }
     .about {
       display: grid;
       grid-template-columns: 1fr;
-      gap: clamp(2.5rem, 5vw, 4rem);
+      gap: clamp(2rem, 4vw, 3.5rem);
       align-items: center;
     }
     @media (min-width: 900px) {
@@ -108,13 +108,14 @@ import { ButtonComponent } from '../../../shared/ui/button.component';
     .about__collage {
       position: relative;
       width: 100%;
-      max-width: 420px;
-      height: 400px;
+      max-width: 380px;
+      height: 340px;
+      margin-inline: auto;
     }
     @media (min-width: 640px) {
       .about__collage {
-        max-width: 520px;
-        height: 500px;
+        max-width: 460px;
+        height: 420px;
       }
     }
     .about__frame {
@@ -162,31 +163,34 @@ import { ButtonComponent } from '../../../shared/ui/button.component';
       background: var(--paper);
     }
 
-    /* Image 2 : à droite, au tiers supérieur */
+    /* Image 2 : à droite, légèrement au-dessus du milieu */
     .about__frame--2 {
-      top: 33%;
+      top: 38%;
       right: 0;
-      width: 160px;
-      height: 160px;
+      width: 150px;
+      height: 150px;
     }
     @media (min-width: 640px) {
       .about__frame--2 {
-        width: 224px;
-        height: 224px;
+        top: 40%;
+        width: 200px;
+        height: 200px;
       }
     }
 
-    /* Image 3 : en bas à gauche */
+    /* Image 3 : en bas à gauche, rapprochée du groupe */
     .about__frame--3 {
-      bottom: 0;
-      left: 0;
-      width: 128px;
-      height: 128px;
+      bottom: 20px;
+      left: 20px;
+      width: 120px;
+      height: 120px;
     }
     @media (min-width: 640px) {
       .about__frame--3 {
-        width: 192px;
-        height: 192px;
+        bottom: 30px;
+        left: 30px;
+        width: 170px;
+        height: 170px;
       }
     }
     .about__frame--3 img {
