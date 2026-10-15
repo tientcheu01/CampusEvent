@@ -191,8 +191,8 @@ export const RECOMPENSES = {
 /** Article 10 du règlement. Les récompenses peuvent être complétées selon les partenaires. */
 export const PRIX = [
   { rang: '1er prix', montant: '100 000', lots: ['Trophée', 'Accompagnement personnalisé'], phare: true },
-  { rang: '2e prix', montant: '50 000', lots: ['Trophée', 'Accompagnement personnalisé'], phare: false },
-  { rang: '3e prix', montant: '25 000', lots: ['Trophée'], phare: false },
+  { rang: '2e prix', montant: '75 000', lots: ['Trophée', 'Accompagnement personnalisé'], phare: false },
+  { rang: '3e prix', montant: '50 000', lots: ['Trophée'], phare: false },
 ];
 
 // ─── Témoignages ─────────────────────────────────────────────────────────────
