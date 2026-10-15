@@ -18,6 +18,18 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="cta tint-navy dots-light on-navy" aria-labelledby="cta-title" sjiGlow="50 52 .2">
+      <div class="cta__media" aria-hidden="true">
+        <video
+          class="cta__video"
+          src="/assets/vidéos/video_2026-10-15_12-59-10.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        ></video>
+        <div class="cta__video-overlay"></div>
+      </div>
       <sji-wings class="cta__wings" [opacity]="0.1" />
       <div class="container cta__inner">
         <h2 id="cta-title" class="display cta__title" sjiReveal="mask">
@@ -40,9 +52,28 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
       padding-block: clamp(3rem, 6vw, 5rem);
       color: #fff;
     }
+    .cta__media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .cta__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.22;
+    }
+    .cta__video-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(10, 31, 77, 0.25) 0%, rgba(10, 31, 77, 0.72) 100%);
+    }
     .cta__wings {
       position: absolute;
-      z-index: 0;
+      z-index: 1;
       top: -10%;
       left: -8%;
       width: min(70vw, 760px);
@@ -50,6 +81,8 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
       pointer-events: none;
     }
     .cta__inner {
+      position: relative;
+      z-index: 2;
       display: grid;
       justify-items: center;
       gap: clamp(1rem, 2.5vw, 2rem);
@@ -64,6 +97,11 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
     .cta__lead {
       color: var(--blue-200);
       max-width: 44ch;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cta__media {
+        display: none;
+      }
     }
   `,
 })
