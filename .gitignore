@@ -4,3 +4,9 @@ node_modules/
 dist/
 frontend/dist/
 frontend/node_modules/
+
+# Photos sources pleine résolution : la galerie sert des versions optimisées.
+frontend/assets-sources/
+
+# Vidéos de témoignages, non utilisées par le site pour l'instant (~64 Mo).
+frontend/public/assets/vidéos/Témoignage*.mp4

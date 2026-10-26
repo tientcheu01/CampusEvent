@@ -66,10 +66,10 @@ export const VERBES = [
 export const A_PROPOS = {
   titre: 'À propos du concours',
   texte:
-    'Le Prix SJI INNOVA est une initiative du responsable du Campus d’Etok-Koss de l’Université Saint Jean Ingénieur. Ce concours valorise l’innovation, l’entrepreneuriat et l’esprit créatif des étudiants du cycle Licence Professionnelle. C’est une plateforme unique où les idées se rencontrent, se structurent et deviennent des projets réels et impactants pour la société camerounaise.',
+    'Le Prix SJI INNOVA est une initiative du Directeur du campus d’Etok-Koss de l’Université Saint Jean Ingénieur. Ce concours valorise l’innovation, l’entrepreneuriat et l’esprit créatif des étudiants du cycle Licence Professionnelle. C’est une plateforme unique où les idées se rencontrent, se structurent et deviennent des projets réels et impactants pour la société camerounaise.',
   responsable: {
-    nom: 'Ekotto Hermann',
-    role: 'Responsable du Campus d’Etok-Koss',
+    nom: 'M. Hermann Ekotto',
+    role: 'Directeur du campus d’Etok-Koss',
     linkedin: 'https://www.linkedin.com/in/hermann-ekotto-801a76387/',
     phone: '+237694882394',
     photo: '/assets/images/Ekotto Hermann.png',
@@ -201,57 +201,33 @@ export interface Temoignage {
   quote: string;
   name: string;
   designation: string;
-  src?: string;
-  initials: string;
-  color: string;
 }
 
-/** Témoignages des participants. Les photos sont des placeholders locales ; remplacez-les par les portraits réels. */
+/** Témoignages recueillis auprès des participants de la première édition. */
 export const TEMOIGNAGES: Temoignage[] = [
   {
     quote:
-      'SJI INNOVA m’a poussé à transformer une simple idée en projet concret. Le regard du jury et les échanges avec les autres équipes ont été une vraie accélération.',
-    name: 'Priya Sharma',
-    designation: 'Candidate, édition 2026',
-    src: '/assets/images/Jeune homme en réalité virtuelle.png',
-    initials: 'PS',
-    color: '#17439b',
+      'Cette première édition a été l’occasion pour nous, étudiants de SJI, de proposer une solution innovante dans un cadre compétitif. Je ressors de cette expérience plus conscient des défis de l’entrepreneuriat et de l’innovation.',
+    name: 'Kenvo Fomazou Samuel',
+    designation: 'Lauréat de l’édition 2026',
   },
   {
     quote:
-      'Participer au concours m’a appris à présenter ma solution avec clarté. L’accompagnement post-sélection nous a aidés à améliorer notre prototype en quelques semaines.',
-    name: 'Marcus Johnson',
-    designation: 'Lauréat, édition 2026',
-    src: '/assets/images/photo_2026-10-12_04-28-32.jpg',
-    initials: 'MJ',
-    color: '#0e2a6b',
+      'SJI INNOVA a été une expérience très enrichissante qui m’a permis de développer mes compétences et de concrétiser mes idées avec mon équipe à travers LearnMap. Remporter la première place a été une grande fierté et une motivation supplémentaire pour continuer à innover. Merci aux organisateurs pour cette belle opportunité !',
+    name: 'Loïs Merveille',
+    designation: 'Lauréat de l’édition 2026',
   },
   {
     quote:
-      'L’ambiance de la finale, la rigueur du jury et la visibilité offerte ont changé ma manière de voir l’entrepreneuriat étudiant. Une expérience que je recommande.',
-    name: 'Isabella Rossi',
-    designation: 'Finaliste, édition 2026',
-    src: '/assets/images/photo_2026-10-12_04-28-39.jpg',
-    initials: 'IR',
-    color: '#b87708',
+      'De l’idée à l’action. La 1ʳᵉ édition de SJI INNOVA a été une réussite tant sur le plan technique que comportemental. Une belle opportunité à ne surtout pas manquer pour réveiller, révéler le génie qui sommeille en nous.',
+    name: 'Giovanni Charles Ebodé',
+    designation: 'CTO de LearnMap',
   },
   {
     quote:
-      'Travailler en équipe sur un projet à impact m’a fait découvrir des compétences que je ne soupçonnais pas. C’est plus qu’un concours, c’est un tremplin.',
-    name: 'Kenji Tanaka',
-    designation: 'Candidat, édition 2026',
-    src: '/assets/images/photo_2026-10-12_04-34-57.jpg',
-    initials: 'KT',
-    color: '#13a04a',
-  },
-  {
-    quote:
-      'Le prix obtenu nous a permis de poursuivre le développement de notre solution. Aujourd’hui, nous avançons vers un premier déploiement sur le terrain.',
-    name: 'Fatima Al-Jamil',
-    designation: 'Lauréate, édition 2026',
-    src: '/assets/images/photo_2026-10-12_06-33-39.jpg',
-    initials: 'FA',
-    color: '#d4262c',
+      'Remporter SJI INNOVA 2026 avec LearnMap a été une expérience inspirante et une véritable reconnaissance de notre vision. Je remercie Saint Jean Ingénieur de nous offrir cette opportunité de transformer nos idées en solutions innovantes. Cette victoire marque le début d’une ambition plus grande : faire de LearnMap un acteur de l’orientation et de la réussite des apprenants.',
+    name: 'Tientcheu Siani Joel Marvin',
+    designation: 'CEO de LearnMap',
   },
 ];
 

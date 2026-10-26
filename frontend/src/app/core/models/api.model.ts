@@ -55,18 +55,31 @@ export interface UploadProgress {
   url?: string;
 }
 
+/**
+ * Un bloc de la fiche projet. L'ordre du tableau fait foi : le numéro affiché (01, 02…)
+ * vient de la position, jamais des données.
+ */
+export interface ProjetBloc {
+  titre: string;
+  intro?: string;
+  paragraphes?: string[];
+  items?: { titre: string; texte: string }[];
+}
+
 /** Fiche projet de l'édition précédente : public/assets/data/projets.json */
 export interface Projet {
   slug: string;
   titre: string;
+  /** Ligne de positionnement affichée sous le titre. */
+  accroche: string;
+  citation: string;
   edition: number;
   domaine: string;
-  filiere: string;
-  porteurs: string[];
+  prix: string;
   resume: string;
-  probleme: string;
-  solution: string;
-  prototype: string;
-  images: { src: string; alt: string }[];
-  prix?: string;
+  blocs: ProjetBloc[];
+  ambition: string;
+  filiere?: string;
+  porteurs?: string[];
+  images?: { src: string; alt: string }[];
 }

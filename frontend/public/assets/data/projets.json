@@ -1,1 +1,240 @@
-[]
+[
+  {
+    "slug": "learnmap",
+    "titre": "LearnMap",
+    "accroche": "La technologie au service de l’orientation et de la réussite éducative",
+    "citation": "Mieux se connaître aujourd’hui pour mieux choisir son avenir demain.",
+    "edition": 2026,
+    "domaine": "Éducation",
+    "prix": "Premier prix",
+    "resume": "Une plateforme numérique d’orientation académique qui aide chaque apprenant à mieux se connaître, à explorer les filières qui correspondent à son profil et à décider de son avenir en connaissance de cause.",
+    "ambition": "Faire de LearnMap une référence de l’orientation académique et professionnelle, en donnant à chaque jeune les moyens de mieux se connaître, de découvrir ses possibilités et de choisir son avenir avec davantage de confiance.",
+    "blocs": [
+      {
+        "titre": "Présentation du projet",
+        "paragraphes": [
+          "LearnMap est un projet de plateforme numérique consacré à l’orientation académique, à la découverte de soi et à l’accompagnement des apprenants dans la construction de leur avenir éducatif et professionnel.",
+          "Le projet part d’un constat essentiel : choisir une filière d’études ne devrait pas se résumer à suivre les tendances, à imiter les choix de son entourage ou à se limiter aux formations les plus connues. Une orientation pertinente nécessite de mieux comprendre ses aptitudes, ses centres d’intérêt, ses aspirations et les possibilités offertes par le système éducatif.",
+          "LearnMap ambitionne ainsi d’aider chaque apprenant à mieux se connaître, à explorer les formations qui correspondent à son profil et à accéder aux informations nécessaires pour prendre des décisions éclairées. La plateforme s’adresse notamment aux nouveaux bacheliers du Cameroun, tout en ayant vocation à accompagner les élèves et les étudiants à différentes étapes de leur parcours."
+        ]
+      },
+      {
+        "titre": "Le problème que nous résolvons",
+        "intro": "L’orientation académique et professionnelle représente un défi majeur pour de nombreux jeunes.",
+        "items": [
+          { "titre": "Le manque d’information", "texte": "Les élèves et les nouveaux bacheliers ne connaissent pas toujours l’ensemble des filières et des possibilités de formation qui s’offrent à eux." },
+          { "titre": "Les difficultés à identifier son profil", "texte": "Certains jeunes ont du mal à reconnaître leurs aptitudes, leurs intérêts et les domaines dans lesquels ils pourraient s’épanouir." },
+          { "titre": "Les choix d’orientation inadaptés", "texte": "Des décisions prises sous pression familiale, sociale ou financière peuvent conduire à des parcours qui ne correspondent pas aux aspirations des apprenants." },
+          { "titre": "La dispersion des informations", "texte": "Les renseignements sur les établissements, les conditions d’admission, les programmes et les débouchés sont souvent répartis entre différentes sources." },
+          { "titre": "Le manque d’accompagnement personnalisé", "texte": "Tous les apprenants ne bénéficient pas d’un accompagnement suffisant pour comparer leurs possibilités et construire un projet cohérent." },
+          { "titre": "L’incertitude face à l’avenir", "texte": "Les jeunes ont besoin de mieux comprendre les liens entre les formations, les compétences acquises et les perspectives professionnelles." }
+        ]
+      },
+      {
+        "titre": "Comment fonctionne LearnMap ?",
+        "intro": "La plateforme propose un environnement numérique d’accompagnement destiné à rendre l’orientation plus claire, plus accessible et mieux adaptée aux besoins de chaque utilisateur.",
+        "items": [
+          { "titre": "La découverte du profil personnel", "texte": "Proposer des outils d’exploration permettant aux apprenants de mieux comprendre leurs intérêts, leurs aptitudes et leurs préférences." },
+          { "titre": "L’exploration des filières", "texte": "Présenter les différentes possibilités de formation et aider les utilisateurs à identifier celles qui méritent leur attention." },
+          { "titre": "Les recommandations d’orientation", "texte": "Accompagner les apprenants dans l’identification de parcours compatibles avec leur profil, leurs résultats scolaires, leurs contraintes et leurs objectifs." },
+          { "titre": "La découverte des établissements", "texte": "Centraliser des informations utiles sur les établissements, les formations proposées, les conditions d’admission et les modalités d’accès." },
+          { "titre": "L’exploration des métiers", "texte": "Aider les utilisateurs à comprendre les débouchés associés aux différentes formations et les perspectives d’évolution professionnelle." },
+          { "titre": "L’accès aux opportunités", "texte": "Faciliter la découverte de bourses, de programmes de formation, de concours et d’autres possibilités susceptibles de soutenir les parcours éducatifs." },
+          { "titre": "L’accompagnement pédagogique", "texte": "Mettre à disposition des ressources et des outils favorisant l’organisation du travail, le développement des méthodes d’apprentissage et le suivi de la progression." },
+          { "titre": "Un parcours évolutif", "texte": "Permettre aux utilisateurs d’approfondir progressivement leurs choix à mesure qu’ils acquièrent de nouvelles connaissances sur eux-mêmes et sur les possibilités de formation." }
+        ]
+      },
+      {
+        "titre": "À qui s’adresse LearnMap ?",
+        "intro": "LearnMap s’adresse aux personnes qui souhaitent mieux comprendre leurs possibilités de formation et préparer leur avenir.",
+        "items": [
+          { "titre": "Les élèves en fin de cycle secondaire", "texte": "Pour commencer à réfléchir à leur orientation avant les examens de fin d’études." },
+          { "titre": "Les nouveaux bacheliers", "texte": "Pour explorer les filières, comparer les établissements et préparer leurs candidatures." },
+          { "titre": "Les étudiants", "texte": "Pour approfondir leur projet académique ou envisager une réorientation." },
+          { "titre": "Les parents", "texte": "Pour mieux accompagner leurs enfants dans leurs décisions d’orientation." },
+          { "titre": "Les conseillers d’orientation et les professionnels de l’éducation", "texte": "Pour enrichir leurs démarches d’accompagnement." },
+          { "titre": "Les établissements de formation", "texte": "Pour mieux présenter leurs programmes et aider les candidats à comprendre leurs offres." },
+          { "titre": "Les organismes d’accompagnement", "texte": "Pour faciliter l’accès des jeunes aux informations et aux opportunités éducatives." }
+        ]
+      },
+      {
+        "titre": "Notre impact",
+        "intro": "LearnMap ambitionne de contribuer à une orientation plus éclairée et à une meilleure préparation de l’avenir.",
+        "items": [
+          { "titre": "Un impact éducatif", "texte": "Aider les apprenants à mieux comprendre les possibilités offertes par le système éducatif." },
+          { "titre": "Un impact personnel", "texte": "Favoriser la connaissance de soi et la prise de décision réfléchie." },
+          { "titre": "Un impact social", "texte": "Rendre les informations d’orientation plus accessibles aux jeunes issus de différents milieux." },
+          { "titre": "Un impact professionnel", "texte": "Aider les apprenants à mieux comprendre les relations entre les formations et les métiers." },
+          { "titre": "Un impact sur la réussite", "texte": "Contribuer à réduire les choix d’orientation insuffisamment informés et à favoriser des parcours plus cohérents avec les objectifs individuels." }
+        ]
+      },
+      {
+        "titre": "Pourquoi soutenir LearnMap ?",
+        "intro": "La vision de LearnMap repose sur trois piliers fondamentaux.",
+        "items": [
+          { "titre": "La connaissance de soi", "texte": "Aider chaque apprenant à mieux comprendre ses intérêts, ses aptitudes et ses aspirations." },
+          { "titre": "L’accessibilité de l’information", "texte": "Réunir les informations essentielles à l’orientation dans un environnement facile à utiliser." },
+          { "titre": "L’accompagnement personnalisé", "texte": "Donner aux jeunes les moyens de prendre des décisions réfléchies et de construire progressivement leur avenir." }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "beyond-silence",
+    "titre": "Beyond Silence",
+    "accroche": "La technologie au service de l’inclusion",
+    "citation": "Apprendre les signes aujourd’hui pour rapprocher les personnes demain.",
+    "edition": 2026,
+    "domaine": "Numérique",
+    "prix": "Deuxième prix",
+    "resume": "Une application mobile d’apprentissage de la langue des signes, pensée pour réduire l’isolement des personnes sourdes ou malentendantes et rapprocher leur entourage, à la maison, à l’école et au travail.",
+    "ambition": "Faire de Beyond Silence un outil de référence pour l’apprentissage de la langue des signes et la promotion de l’inclusion, afin de contribuer à un monde où les différences de communication ne constituent plus une barrière aux relations humaines.",
+    "blocs": [
+      {
+        "titre": "Présentation du projet",
+        "paragraphes": [
+          "Beyond Silence est un projet d’application mobile innovant conçu pour faciliter l’apprentissage de la langue des signes et favoriser l’inclusion des personnes sourdes ou malentendantes, notamment au Cameroun.",
+          "Le projet repose sur une conviction fondamentale : les difficultés de communication ne résultent pas uniquement de la surdité, mais aussi du manque de connaissances et de moyens de communication adaptés dans l’entourage des personnes concernées. En facilitant l’apprentissage de la langue des signes, Beyond Silence souhaite contribuer à réduire l’isolement, à renforcer les relations humaines et à favoriser une société dans laquelle chacun peut participer plus pleinement à la vie familiale, éducative, professionnelle et sociale.",
+          "À travers une expérience d’apprentissage accessible et progressive, la plateforme ambitionne de rapprocher les personnes sourdes, malentendantes et entendantes, tout en encourageant une meilleure compréhension des enjeux liés à l’accessibilité et à l’inclusion."
+        ]
+      },
+      {
+        "titre": "Le problème que nous résolvons",
+        "intro": "Les barrières de communication rencontrées par les personnes sourdes ou malentendantes peuvent compliquer de nombreuses situations du quotidien.",
+        "items": [
+          { "titre": "Dans les familles", "texte": "Le manque de connaissances en langue des signes peut rendre les échanges entre les parents, les enfants et les autres membres de la famille difficiles." },
+          { "titre": "Dans les établissements scolaires", "texte": "Les difficultés de communication peuvent freiner la participation aux activités éducatives et l’intégration des élèves sourds." },
+          { "titre": "Dans les structures de santé", "texte": "Les échanges entre les patients sourds et les professionnels de santé peuvent être compliqués lorsque des moyens de communication adaptés ne sont pas disponibles." },
+          { "titre": "Dans le monde professionnel", "texte": "Les barrières linguistiques peuvent limiter les interactions, l’intégration et les possibilités de collaboration." },
+          { "titre": "Dans la vie quotidienne", "texte": "Les personnes sourdes peuvent rencontrer des difficultés pour communiquer avec des interlocuteurs qui ne maîtrisent pas la langue des signes." },
+          { "titre": "Dans l’accès à la formation", "texte": "Les contraintes géographiques, financières et matérielles peuvent limiter les possibilités d’apprentissage." }
+        ]
+      },
+      {
+        "titre": "Comment fonctionne Beyond Silence ?",
+        "intro": "La plateforme propose une expérience d’apprentissage interactive conçue pour rendre la découverte de la langue des signes plus accessible et plus pratique.",
+        "items": [
+          { "titre": "Un apprentissage progressif", "texte": "Proposer des leçons structurées permettant aux utilisateurs d’acquérir progressivement les bases de la langue des signes." },
+          { "titre": "Des supports visuels", "texte": "Utiliser des ressources adaptées pour faciliter la compréhension et la mémorisation des signes." },
+          { "titre": "Des exercices interactifs", "texte": "Permettre aux apprenants de mettre en pratique leurs connaissances et d’évaluer leur progression." },
+          { "titre": "Un suivi des apprentissages", "texte": "Aider les utilisateurs à visualiser leurs progrès et à poursuivre leur formation à leur rythme." },
+          { "titre": "Des parcours adaptés aux besoins", "texte": "Proposer des contenus destinés notamment aux familles, aux enseignants, aux professionnels de santé et aux entreprises." },
+          { "titre": "Un accès flexible", "texte": "Favoriser l’apprentissage dans différents contextes, avec une attention particulière aux utilisateurs disposant d’une connexion Internet limitée." },
+          { "titre": "Des outils d’aide à la compréhension", "texte": "Explorer des moyens numériques facilitant la découverte des signes et l’entraînement à la communication." },
+          { "titre": "Une sensibilisation à l’inclusion", "texte": "Accompagner l’apprentissage linguistique par une meilleure compréhension des réalités vécues par les personnes sourdes ou malentendantes." }
+        ]
+      },
+      {
+        "titre": "À qui s’adresse Beyond Silence ?",
+        "intro": "Beyond Silence s’adresse à toutes les personnes qui souhaitent apprendre la langue des signes, améliorer leurs capacités de communication ou contribuer à une société plus inclusive.",
+        "items": [
+          { "titre": "Les parents et les familles", "texte": "Pour faciliter les échanges avec un proche sourd ou malentendant." },
+          { "titre": "Les élèves et les étudiants", "texte": "Pour découvrir la langue des signes et développer des compétences de communication inclusives." },
+          { "titre": "Les enseignants et les établissements scolaires", "texte": "Pour renforcer leurs pratiques d’accueil et de sensibilisation." },
+          { "titre": "Les professionnels de santé", "texte": "Pour acquérir des connaissances utiles à la communication avec les patients sourds." },
+          { "titre": "Les entreprises et les employeurs", "texte": "Pour encourager l’accessibilité et améliorer l’inclusion dans le milieu professionnel." },
+          { "titre": "Les agents des services publics", "texte": "Pour mieux accueillir les personnes sourdes ou malentendantes." },
+          { "titre": "Les citoyens et les associations", "texte": "Pour participer à la sensibilisation et au développement d’environnements plus inclusifs." },
+          { "titre": "Les personnes sourdes ou malentendantes", "texte": "Pour contribuer à la diffusion de la langue des signes et encourager une meilleure communication avec leur entourage." }
+        ]
+      },
+      {
+        "titre": "Notre impact",
+        "intro": "Beyond Silence ambitionne de contribuer à une société dans laquelle les différences de communication constituent moins un obstacle à la participation sociale.",
+        "items": [
+          { "titre": "Un impact social", "texte": "Favoriser les échanges, réduire l’isolement et renforcer les liens entre les personnes." },
+          { "titre": "Un impact éducatif", "texte": "Encourager la découverte de la langue des signes et soutenir les initiatives d’inclusion dans les établissements scolaires." },
+          { "titre": "Un impact sanitaire", "texte": "Sensibiliser les professionnels de santé à l’importance d’une communication adaptée avec les patients sourds." },
+          { "titre": "Un impact professionnel", "texte": "Promouvoir des environnements de travail plus accessibles et inclusifs." },
+          { "titre": "Un impact citoyen", "texte": "Encourager la compréhension mutuelle, la solidarité et le respect des différences." }
+        ]
+      },
+      {
+        "titre": "Pourquoi soutenir Beyond Silence ?",
+        "intro": "La vision de Beyond Silence repose sur trois piliers fondamentaux.",
+        "items": [
+          { "titre": "L’accessibilité", "texte": "Faciliter l’apprentissage de la langue des signes au moyen de ressources adaptées à différents profils d’utilisateurs." },
+          { "titre": "L’adaptation au contexte local", "texte": "Développer une approche attentive aux besoins des communautés et aux réalités linguistiques et culturelles du Cameroun." },
+          { "titre": "L’inclusion", "texte": "Favoriser une communication plus accessible et encourager la participation des personnes sourdes ou malentendantes à tous les aspects de la vie sociale." }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "clean-collect",
+    "titre": "CleanCollect",
+    "accroche": "La technologie au service d’un environnement plus propre",
+    "citation": "Ensemble, transformons les déchets en opportunités pour un avenir durable.",
+    "edition": 2026,
+    "domaine": "Environnement",
+    "prix": "Troisième prix",
+    "resume": "Une plateforme numérique de gestion des déchets qui relie citoyens, collecteurs, recycleurs et collectivités pour rendre la collecte plus efficace et transformer les déchets en ressources.",
+    "ambition": "Faire de CleanCollect un acteur de référence de la gestion intelligente et responsable des déchets, en contribuant à bâtir des villes plus propres et des communautés plus engagées.",
+    "blocs": [
+      {
+        "titre": "Présentation du projet",
+        "paragraphes": [
+          "CleanCollect est un projet de plateforme numérique conçu pour améliorer la gestion des déchets, encourager les comportements écoresponsables et favoriser la valorisation des matières recyclables. Le projet repose sur une conviction simple : les déchets ne doivent pas être considérés uniquement comme des résidus à éliminer, mais également comme des ressources pouvant contribuer au développement économique et à la préservation de l’environnement.",
+          "À travers une approche accessible et collaborative, CleanCollect ambitionne de rapprocher les citoyens, les collecteurs, les entreprises, les acteurs du recyclage et les collectivités afin de rendre les opérations de collecte plus efficaces et de contribuer à l’amélioration du cadre de vie, notamment au Cameroun."
+        ]
+      },
+      {
+        "titre": "Le problème que nous résolvons",
+        "intro": "La gestion des déchets représente un défi environnemental, sanitaire et économique dans de nombreuses villes camerounaises.",
+        "items": [
+          { "titre": "L’accumulation des déchets", "texte": "Certains quartiers sont confrontés à des dépôts sauvages et à une insuffisance des solutions de collecte." },
+          { "titre": "Le manque de coordination", "texte": "Les citoyens, les collecteurs et les structures de valorisation ne disposent pas toujours de moyens efficaces pour coordonner leurs activités." },
+          { "titre": "Le faible développement du tri sélectif", "texte": "De nombreuses matières recyclables sont mélangées aux déchets ordinaires, ce qui limite leur récupération." },
+          { "titre": "Le manque de traçabilité", "texte": "Il peut être difficile de connaître les quantités collectées, leur destination et les résultats des actions menées." },
+          { "titre": "Les opportunités économiques inexploitées", "texte": "La collecte et la valorisation des déchets pourraient générer davantage d’activités et de revenus pour les acteurs de la filière." }
+        ]
+      },
+      {
+        "titre": "Comment fonctionne CleanCollect ?",
+        "intro": "La plateforme propose un ensemble de services numériques destinés à faciliter la gestion des déchets et à encourager une participation collective.",
+        "items": [
+          { "titre": "Des services de collecte accessibles", "texte": "Permettre aux ménages et aux organisations de signaler leurs besoins et de solliciter des opérations de collecte." },
+          { "titre": "La mise en relation des acteurs", "texte": "Faciliter les échanges entre les producteurs de déchets, les collecteurs et les structures de recyclage." },
+          { "titre": "Le suivi des opérations", "texte": "Permettre aux utilisateurs de suivre l’évolution des demandes et de disposer d’informations sur les collectes réalisées." },
+          { "titre": "La promotion du tri sélectif", "texte": "Sensibiliser les utilisateurs à la séparation des déchets et à l’adoption de pratiques plus responsables." },
+          { "titre": "La valorisation des matières recyclables", "texte": "Favoriser les opportunités de récupération et de commercialisation des matières pouvant être réutilisées." },
+          { "titre": "Le suivi des performances environnementales", "texte": "Fournir des indicateurs permettant de mieux comprendre les résultats des activités de collecte et de valorisation." },
+          { "titre": "La sensibilisation écologique", "texte": "Encourager les bonnes pratiques à travers des campagnes, des initiatives communautaires et des mécanismes incitatifs." }
+        ]
+      },
+      {
+        "titre": "À qui s’adresse CleanCollect ?",
+        "intro": "CleanCollect s’adresse aux acteurs qui souhaitent contribuer à une gestion plus efficace et durable des déchets.",
+        "items": [
+          { "titre": "Les ménages et les citoyens", "texte": "Pour accéder plus facilement aux services de collecte et adopter des habitudes responsables." },
+          { "titre": "Les entreprises et les commerces", "texte": "Pour mieux organiser la gestion de leurs déchets." },
+          { "titre": "Les collecteurs indépendants et les sociétés de collecte", "texte": "Pour améliorer l’organisation de leurs activités et accéder à de nouvelles opportunités." },
+          { "titre": "Les centres de tri et de recyclage", "texte": "Pour faciliter l’accès aux matières valorisables." },
+          { "titre": "Les collectivités territoriales", "texte": "Pour soutenir les initiatives locales d’assainissement et de préservation de l’environnement." },
+          { "titre": "Les établissements scolaires et universitaires", "texte": "Pour développer des projets de sensibilisation et d’engagement écologique." },
+          { "titre": "Les organisations environnementales", "texte": "Pour renforcer leurs actions en faveur de l’économie circulaire." }
+        ]
+      },
+      {
+        "titre": "Notre impact",
+        "intro": "CleanCollect ambitionne de produire des effets positifs sur plusieurs plans.",
+        "items": [
+          { "titre": "Un impact environnemental", "texte": "Contribuer à la réduction des dépôts sauvages et à une meilleure valorisation des déchets." },
+          { "titre": "Un impact sanitaire", "texte": "Participer à l’amélioration de la salubrité des espaces de vie." },
+          { "titre": "Un impact économique", "texte": "Favoriser le développement des activités liées à la collecte, au tri et au recyclage." },
+          { "titre": "Un impact social", "texte": "Encourager la participation citoyenne et la responsabilisation des communautés." },
+          { "titre": "Un impact territorial", "texte": "Fournir des outils susceptibles d’aider les acteurs locaux à mieux organiser leurs initiatives environnementales." }
+        ]
+      },
+      {
+        "titre": "Pourquoi soutenir CleanCollect ?",
+        "intro": "La vision de CleanCollect repose sur trois piliers fondamentaux.",
+        "items": [
+          { "titre": "L’innovation utile", "texte": "Mettre le numérique au service d’un problème concret qui touche les populations." },
+          { "titre": "L’économie circulaire", "texte": "Favoriser la transformation des déchets en ressources et encourager leur valorisation." },
+          { "titre": "La responsabilité collective", "texte": "Mobiliser les citoyens, les entreprises et les institutions autour d’un objectif commun de propreté et de durabilité." }
+        ]
+      }
+    ]
+  }
+]

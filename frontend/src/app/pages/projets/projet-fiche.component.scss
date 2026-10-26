@@ -37,14 +37,86 @@
 .pf__hero--img .pf__prix {
   color: var(--gold-500);
 }
+.pf__accroche {
+  margin: 0;
+  max-width: 34ch;
+  color: var(--blue-600);
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+  line-height: 1.3;
+}
+.pf__hero--img .pf__accroche {
+  color: var(--blue-200);
+}
+.pf__citation {
+  margin: 0 0 var(--sp-16);
+  max-width: 28ch;
+  color: var(--navy-900);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4.5vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  &::before {
+    content: '« ';
+  }
+  &::after {
+    content: ' »';
+  }
+}
 .pf__blocks {
   display: grid;
   gap: var(--sp-16);
-  > div {
+}
+.pf__bloc {
+  display: grid;
+  gap: var(--sp-6);
+  align-content: start;
+}
+.pf__bloc-body {
+  display: grid;
+  gap: var(--sp-6);
+  max-width: 62ch;
+}
+.pf__para {
+  margin: 0;
+  color: var(--blue-700, var(--blue-600));
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.7;
+}
+.pf__items {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
     display: grid;
-    gap: var(--sp-6);
-    max-width: 40ch;
-    align-content: start;
+    gap: var(--sp-1);
+    padding: var(--sp-4) 0;
+    border-top: var(--border);
+  }
+}
+.pf__item-titre {
+  font-weight: 650;
+  color: var(--navy-900);
+}
+.pf__item-texte {
+  color: var(--blue-600);
+  line-height: 1.6;
+}
+.pf__ambition {
+  display: grid;
+  gap: var(--sp-4);
+  max-width: 48ch;
+  margin: 0;
+  padding-left: var(--sp-6);
+  border-left: 3px solid var(--gold-500);
+  color: var(--navy-900);
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  .label {
+    color: var(--blue-600);
   }
 }
 .pf__img {
@@ -72,11 +144,14 @@
   padding-top: calc(var(--header-total) + var(--sp-16));
 }
 @media (min-width: 1024px) {
-  .pf__blocks {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--sp-24) var(--sp-16);
-    > div {
-      max-width: none;
+  // Étiquette en rail à gauche, texte à droite : les blocs sont trop longs pour tenir sur deux colonnes.
+  .pf__bloc {
+    grid-template-columns: 16rem 1fr;
+    gap: var(--sp-12);
+    sji-section-label {
+      position: sticky;
+      top: calc(var(--header-total) + var(--sp-6));
+      align-self: start;
     }
   }
 }

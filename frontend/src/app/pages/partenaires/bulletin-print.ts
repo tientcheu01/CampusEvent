@@ -17,10 +17,14 @@ export function openBulletin(data: PartenariatPayload): void {
     ['Nature de la contribution', data.contribution],
   ];
   const date = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  // Le bulletin s'ouvre dans un onglet vierge : les sources d'images doivent être absolues.
+  const asset = (path: string) => `${location.origin}${encodeURI(path)}`;
   const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Bulletin d'engagement · SJI INNOVA 2027</title>
 <style>
   @page { margin: 22mm 18mm; }
   body { font: 14px/1.6 system-ui, 'Segoe UI', Arial, sans-serif; color: #0a1f4d; }
+  .logos { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
+  .logos img { display: block; width: auto; height: 52px; }
   .bar { height: 4px; background: linear-gradient(90deg,#13a04a 0 33.3%,#d4262c 33.3% 66.6%,#f8a91b 66.6%); margin-bottom: 28px; }
   h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -.02em; }
   .sub { color: #4a5e8a; margin: 0 0 28px; }
@@ -30,7 +34,12 @@ export function openBulletin(data: PartenariatPayload): void {
   .sign { display: flex; gap: 48px; margin-top: 56px; }
   .sign div { flex: 1; border-top: 1px solid #0a1f4d; padding-top: 8px; color: #4a5e8a; }
   .note { margin-top: 36px; font-size: 12px; color: #4a5e8a; }
+  @media print { .logos img { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 </style></head><body>
+<div class="logos">
+  <img src="${asset('/logosjiinnova-removebg-preview.png')}" alt="SJI INNOVA" width="576" height="433">
+  <img src="${asset('/assets/images/Logo DE Saint Jean Ingénieur (1).png')}" alt="Saint Jean Ingénieur" width="1741" height="1040">
+</div>
 <div class="bar"></div>
 <h1>Bulletin d'engagement partenaire</h1>
 <p class="sub">SJI INNOVA 2027 · 2ᵉ édition · Saint Jean Ingénieur, campus d'Etok-Koss, Yaoundé</p>

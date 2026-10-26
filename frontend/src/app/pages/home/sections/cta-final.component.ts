@@ -24,6 +24,7 @@ import { WingsComponent } from '../../../shared/ui/wings.component';
           src="/assets/vidéos/video_2026-10-15_12-59-10.mp4"
           autoplay
           muted
+          [muted]="true"
           loop
           playsinline
           preload="metadata"

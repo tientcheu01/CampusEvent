@@ -4,28 +4,56 @@
 
   <div class="container gallery__container">
     <header class="gallery__header">
-      <p class="label gallery__eyebrow"><span></span>SJI INNOVA · Galerie 2027</p>
+      <p class="label gallery__eyebrow"><span></span>SJI INNOVA · Galerie 2026</p>
       <h1 id="gallery-title" class="h1">Les visages derrière<br /><em>les idées.</em></h1>
       <div class="gallery__intro">
-        <p>Explorez les moments, les rencontres et l’énergie qui font vivre l’innovation sur le campus.</p>
+        <p>Les moments, les rencontres et l’énergie de la première édition, au campus d’Etok-Koss.</p>
         <span class="gallery__hint label">Sélectionnez une image pour l’agrandir</span>
       </div>
     </header>
 
-    <div class="gallery__bento" aria-label="Collection de photos SJI INNOVA">
-      @for (photo of photos; track photo.id; let i = $index) {
-        <button type="button" class="gallery__card" [class]="'gallery__card ' + photo.span" (click)="open(i)" [attr.aria-label]="'Ouvrir la photo : ' + photo.title">
-          <img [src]="photo.src" [alt]="photo.alt" [attr.fetchpriority]="i === 0 ? 'high' : null" [loading]="i === 0 ? 'eager' : 'lazy'" decoding="async" />
-          <span class="gallery__shade" aria-hidden="true"></span>
-          <span class="gallery__number label">0{{ i + 1 }}</span>
-          <span class="gallery__meta">
-            <strong>{{ photo.title }}</strong>
-            <span>{{ photo.description }}</span>
-          </span>
-          <span class="gallery__open" aria-hidden="true">↗</span>
+    <div class="gallery__filters" role="group" aria-label="Filtrer les photos par série">
+      <button type="button" class="gallery__filter" [class.is-on]="filter() === null" [attr.aria-pressed]="filter() === null" (click)="setFilter(null)">
+        Tout <span class="gallery__count">{{ pad(allCount) }}</span>
+      </button>
+      @for (c of categories; track c.id) {
+        <button type="button" class="gallery__filter" [class.is-on]="filter() === c.id" [attr.aria-pressed]="filter() === c.id" (click)="setFilter(c.id)">
+          {{ c.label }} <span class="gallery__count">{{ pad(c.count) }}</span>
         </button>
       }
     </div>
+
+    @for (group of groups(); track group.cat.id) {
+      <section class="gallery__series" [attr.aria-labelledby]="'serie-' + group.cat.id">
+        <header class="gallery__series-head">
+          <h2 [id]="'serie-' + group.cat.id" class="h3">{{ group.cat.label }}</h2>
+          <p>{{ group.cat.description }}</p>
+          <span class="label gallery__series-count">{{ pad(group.items.length) }} photos</span>
+        </header>
+
+        <div class="gallery__bento">
+          @for (item of group.items; track item.photo.id) {
+            <button
+              type="button"
+              [class]="'gallery__card ' + item.photo.span"
+              (click)="open(item.index)"
+              [attr.aria-label]="'Agrandir la photo ' + num(item.index) + ' — ' + group.cat.label"
+            >
+              <img
+                [src]="item.photo.thumb"
+                [alt]="item.photo.alt"
+                [attr.fetchpriority]="item.index === 0 ? 'high' : null"
+                [loading]="item.index < 4 ? 'eager' : 'lazy'"
+                decoding="async"
+              />
+              <span class="gallery__shade" aria-hidden="true"></span>
+              <span class="gallery__number label">{{ num(item.index) }}</span>
+              <span class="gallery__open" aria-hidden="true">↗</span>
+            </button>
+          }
+        </div>
+      </section>
+    }
 
     <footer class="gallery__footer">
       <p class="label">Campus d’Etok-Koss · Yaoundé</p>
@@ -35,7 +63,7 @@
 </section>
 
 @if (selected(); as photo) {
-  <div class="lightbox" role="dialog" aria-modal="true" [attr.aria-label]="photo.title" (click)="close()">
+  <div class="lightbox" role="dialog" aria-modal="true" [attr.aria-label]="photo.cat.label" (click)="close()">
     <div class="lightbox__glow" aria-hidden="true"></div>
     <button type="button" class="lightbox__close" (click)="close(); $event.stopPropagation()" aria-label="Fermer la galerie">
       <span></span><span></span>
@@ -45,16 +73,16 @@
     <figure class="lightbox__figure" (click)="$event.stopPropagation()">
       <img [src]="photo.src" [alt]="photo.alt" />
       <figcaption>
-        <span class="label">0{{ (selectedIndex() ?? 0) + 1 }} / 0{{ photos.length }}</span>
-        <div><h2>{{ photo.title }}</h2><p>{{ photo.description }}</p></div>
+        <span class="label">{{ num(selectedIndex() ?? 0) }} / {{ pad(photos().length) }}</span>
+        <div><h2>{{ photo.cat.label }}</h2><p>{{ photo.cat.description }}</p></div>
       </figcaption>
     </figure>
     <button type="button" class="lightbox__arrow lightbox__arrow--next" (click)="next(); $event.stopPropagation()" aria-label="Photo suivante">→</button>
 
     <nav class="lightbox__dock" aria-label="Choisir une photo" (click)="$event.stopPropagation()">
-      @for (item of photos; track item.id; let i = $index) {
-        <button type="button" [class.lightbox__thumb--active]="selectedIndex() === i" (click)="open(i)" [attr.aria-label]="item.title">
-          <img [src]="item.src" alt="" />
+      @for (item of photos(); track item.id; let i = $index) {
+        <button type="button" [class.lightbox__thumb--active]="selectedIndex() === i" (click)="open(i)" [attr.aria-label]="item.cat.label + ' ' + num(i)">
+          <img [src]="item.thumb" alt="" loading="lazy" />
         </button>
       }
     </nav>

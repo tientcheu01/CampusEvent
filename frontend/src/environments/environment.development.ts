@@ -2,6 +2,6 @@ export const environment = {
   production: false,
   apiUrl: '/api',
   uploadUrl: '/api/upload-url',
-  devForceOpen: true,
+  devForceOpen: false,
   plausibleDomain: '',
 };

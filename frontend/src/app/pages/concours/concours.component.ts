@@ -36,7 +36,7 @@ const OBJECTIFS = [
         <div class="cc__intro" sjiReveal>
           <sji-section-label num="01" text="Présentation" />
           <p class="h3 cc__lead">
-            Le Prix SJI INNOVA est une initiative du responsable du Campus d’Etok-Koss de l'Université Saint Jean Ingénieur.
+            Le Prix SJI INNOVA est une initiative du Directeur du campus d’Etok-Koss de l'Université Saint Jean Ingénieur.
           </p>
           <p class="cc__intro-text">
             Ce concours est destiné à valoriser l'innovation, l'entrepreneuriat et l'esprit créatif des étudiants de cycle Licence Professionnelle. C'est une plateforme unique où vos idées peuvent se transformer en projets réels et impactants.
