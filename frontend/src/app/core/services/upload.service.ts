@@ -11,7 +11,7 @@ export class UploadService {
 
   upload(file: File): Observable<UploadProgress> {
     const name = encodeURIComponent(file.name);
-    if (!environment.production) return of({ progress: 100, url: `https://demo.sji-innova.local/${name}` }).pipe(delay(500));
+    if (environment.mockApi) return of({ progress: 100, url: `https://demo.sji-innova.local/${name}` }).pipe(delay(500));
     return this.http.post<{ url: string }>(`${environment.uploadUrl}?filename=${name}`, null).pipe(
       switchMap(({ url }) =>
         this.http.request(
@@ -26,9 +26,15 @@ export class UploadService {
         if (e.type === HttpEventType.UploadProgress) {
           return { progress: e.total ? Math.round((100 * e.loaded) / e.total) : 0 };
         }
-        const body = (e as { body?: { url?: string } }).body;
-        if (!body?.url) throw new Error('Réponse de téléversement inattendue');
-        return { progress: 100, url: body.url };
+        let body = (e as { body?: any }).body;
+        if (typeof body === 'string') {
+          try {
+            body = JSON.parse(body);
+          } catch {}
+        }
+        const finalUrl = body?.url || (body?.id ? `https://drive.google.com/file/d/${body.id}/view` : undefined);
+        if (!finalUrl) throw new Error('Réponse de téléversement inattendue');
+        return { progress: 100, url: finalUrl };
       }),
     );
   }

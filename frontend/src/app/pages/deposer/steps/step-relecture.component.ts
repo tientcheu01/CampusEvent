@@ -16,7 +16,7 @@ import { DepotFormService } from '../depot-form.service';
         <dl>
           <div><dt>Projet</dt><dd>{{ e.projet }}</dd></div>
           <div><dt>Porteur</dt><dd>{{ e.porteur }}</dd></div>
-          <div><dt>Filière et niveau</dt><dd>{{ e.filiere }} · {{ e.niveau }}</dd></div>
+          <div><dt>Niveau d'études</dt><dd>{{ e.niveau }}</dd></div>
           <div><dt>Contact</dt><dd>{{ e.telephone }} · {{ e.email }}</dd></div>
           @if (membres.length) {
             <div><dt>Membres</dt><dd>{{ membres.join(', ') }}</dd></div>

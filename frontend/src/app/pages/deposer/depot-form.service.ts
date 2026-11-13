@@ -1,7 +1,7 @@
 import { Injectable, PLATFORM_ID, computed, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { LIMITS } from '../../core/data/site-data';
 import { Avancement, DepotPayload } from '../../core/models/api.model';
@@ -22,10 +22,16 @@ export interface UploadItem {
   progress: number;
 }
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z0-9-]{2,}$/;
+const trimmedEmail = (control: AbstractControl): ValidationErrors | null => {
+  const v = String(control.value ?? '').trim();
+  if (!v) return null;
+  return EMAIL_RE.test(v) ? null : { email: true };
+};
+
 const LABELS: Record<string, string> = {
   projet: 'le nom du projet',
   porteur: 'le nom du porteur',
-  filiere: 'votre filière',
   niveau: 'votre niveau',
   telephone: 'votre téléphone',
   email: 'votre e-mail',
@@ -60,10 +66,9 @@ export class DepotFormService {
   readonly equipe = new FormGroup({
     projet: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     porteur: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    filiere: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     niveau: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     telephone: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.pattern(/^[+\d][\d\s().-]{7,}$/)] }),
-    email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
+    email: new FormControl('', { nonNullable: true, validators: [Validators.required, trimmedEmail] }),
     membres: new FormArray<FormControl<string>>([]),
   });
   readonly projet = new FormGroup({
@@ -77,7 +82,7 @@ export class DepotFormService {
     videoMode: new FormControl<'fichier' | 'lien'>('fichier', { nonNullable: true }),
     videoFile: new FormControl<File | null>(null),
     videoLien: new FormControl('', { nonNullable: true }),
-    images: new FormControl<File[]>([], { nonNullable: true, validators: [fileExtensions(['jpg', 'jpeg', 'png', 'webp']), maxFileSize(LIMITS.imageMo)] }),
+    images: new FormControl<File[]>([], { nonNullable: true, validators: [fileExtensions(['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif', 'heic', 'jfif']), maxFileSize(LIMITS.imageMo)] }),
   });
   readonly accord = new FormControl(false, { nonNullable: true, validators: [Validators.requiredTrue] });
   readonly form = new FormGroup({ equipe: this.equipe, projet: this.projet, pieces: this.pieces, accord: this.accord });
@@ -92,6 +97,18 @@ export class DepotFormService {
   constructor() {
     this.applyVideoMode('fichier');
     this.pieces.controls.videoMode.valueChanges.pipe(takeUntilDestroyed()).subscribe((m) => this.applyVideoMode(m));
+    this.equipe.controls.email.valueChanges.pipe(takeUntilDestroyed()).subscribe((v) => {
+      if (typeof v === 'string' && (v.startsWith(' ') || v.endsWith(' '))) {
+        this.equipe.controls.email.setValue(v.trim(), { emitEvent: false });
+        this.equipe.controls.email.updateValueAndValidity({ emitEvent: false });
+      }
+    });
+    this.equipe.controls.telephone.valueChanges.pipe(takeUntilDestroyed()).subscribe((v) => {
+      if (typeof v === 'string' && (v.startsWith(' ') || v.endsWith(' '))) {
+        this.equipe.controls.telephone.setValue(v.trim(), { emitEvent: false });
+        this.equipe.controls.telephone.updateValueAndValidity({ emitEvent: false });
+      }
+    });
     if (this.browser) {
       this.restore();
       this.form.valueChanges.pipe(debounceTime(300), takeUntilDestroyed()).subscribe(() => this.save());
@@ -111,7 +128,15 @@ export class DepotFormService {
     const walk = (c: AbstractControl, name: string) => {
       if (c instanceof FormGroup) Object.entries(c.controls).forEach(([k, v]) => walk(v, k));
       else if (c instanceof FormArray) c.controls.forEach((v) => walk(v, 'membre'));
-      else if (c.invalid) out.push(LABELS[name] ?? 'ce champ');
+      else if (c.invalid) {
+        if (name === 'email' && c.hasError('email')) {
+          out.push('une adresse e-mail valide (ex : nom@domaine.com)');
+        } else if (name === 'telephone' && c.hasError('pattern')) {
+          out.push('un numéro de téléphone valide');
+        } else {
+          out.push(LABELS[name] ?? 'ce champ');
+        }
+      }
     };
     walk(this.groups[step], step === 3 ? 'accord' : '');
     return [...new Set(out)];
@@ -121,7 +146,10 @@ export class DepotFormService {
   }
   reason(step: number): string {
     const m = this.missing(step);
-    return m.length ? `Complétez ${joinFr(m)} pour continuer` : '';
+    if (!m.length) return '';
+    const hasFormat = m.some((msg) => msg.includes('valide'));
+    const prefix = hasFormat ? 'Vérifiez' : 'Complétez';
+    return `${prefix} ${joinFr(m)} pour continuer`;
   }
 
   go(step: number): void {
@@ -165,7 +193,6 @@ export class DepotFormService {
       const payload: DepotPayload = {
         projet: e.projet,
         porteur: e.porteur,
-        filiere: e.filiere,
         niveau: e.niveau,
         telephone: e.telephone,
         email: e.email,

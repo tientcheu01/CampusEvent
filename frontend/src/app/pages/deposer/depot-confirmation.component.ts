@@ -16,7 +16,7 @@ import { WingsComponent } from '../../shared/ui/wings.component';
         <p class="label">Dossier reçu</p>
         <p class="lead">Votre numéro est</p>
         <p class="display ok__num tnum">{{ numero() }}</p>
-        <p class="ok__note">Notez-le, il vous sera demandé. Un e-mail de confirmation part à <strong>{{ email() }}</strong>.</p>
+        <p class="ok__note">Un e-mail de confirmation part à <strong>{{ email() }}</strong>.</p>
         <p class="dim">Le jury évalue les dossiers du 21 décembre au 22 janvier. Les résultats de la présélection sont annoncés le 22 janvier 2027.</p>
         <div class="ok__actions">
           <button type="button" sjiButton [arrow]="true" (click)="share()">Partager sur les réseaux</button>

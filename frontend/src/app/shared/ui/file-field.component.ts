@@ -9,7 +9,7 @@ let uid = 0;
 
 /**
  * Zone de dépôt en pointillés : accessible au clavier (l'input natif reste focusable), annonce les formats
- * et la limite AVANT la sélection, affiche nom, poids et aperçu dès le choix.
+ * et la limite AVANT la sélection, affiche nom, poids et aperçu dès le choix, avec bouton pour retirer / changer.
  */
 @Component({
   selector: 'sji-file-field',
@@ -38,7 +38,13 @@ let uid = 0;
           (blur)="control().markAsTouched()"
         />
         <sji-icon [name]="icon()" [size]="24" />
-        <span class="ff__cta"><strong>Parcourir</strong> ou déposer {{ multiple() ? 'les fichiers' : 'le fichier' }} ici</span>
+        <span class="ff__cta">
+          @if (!multiple() && files().length) {
+            <strong>Changer</strong> ou déposer un nouveau fichier pour remplacer
+          } @else {
+            <strong>Parcourir</strong> ou déposer {{ multiple() ? 'les fichiers' : 'le fichier' }} ici
+          }
+        </span>
       </label>
       @if (files().length) {
         <ul class="ff__list" role="list">
@@ -49,8 +55,17 @@ let uid = 0;
               } @else {
                 <sji-icon name="file" [size]="24" />
               }
-              <span class="ff__name">{{ f.name }}</span>
+              <span class="ff__name" [title]="f.name">{{ f.name }}</span>
               <span class="ff__size mono tnum">{{ size(f.size) }}</span>
+              <button
+                type="button"
+                class="ff__remove"
+                (click)="remove($event, i)"
+                [attr.title]="'Retirer ' + f.name"
+                [attr.aria-label]="'Retirer ' + f.name"
+              >
+                <sji-icon name="x" [size]="20" />
+              </button>
             </li>
           }
         </ul>
@@ -124,6 +139,7 @@ let uid = 0;
       padding: var(--sp-3) var(--sp-4);
       border: var(--border);
       border-radius: var(--r-md);
+      background: var(--paper-1, #fff);
     }
     .ff__thumb {
       object-fit: cover;
@@ -139,6 +155,23 @@ let uid = 0;
     .ff__size {
       color: var(--text-dim);
       font-size: var(--fs-small);
+    }
+    .ff__remove {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      padding: var(--sp-1) var(--sp-2);
+      border-radius: var(--r-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--d-fast), background-color var(--d-fast);
+      margin-left: auto;
+    }
+    .ff__remove:hover {
+      color: var(--cm-red, #dc2626);
+      background: rgba(220, 38, 38, 0.1);
     }
     .ff__error {
       margin: var(--sp-3) 0 0;
@@ -188,18 +221,41 @@ export class FileFieldComponent implements OnInit, OnDestroy {
     if (custom) return custom;
     if (key === 'required') return 'Ce fichier est obligatoire.';
     if (key === 'fileSize') return `Ce fichier est trop lourd : ${err.mb} Mo maximum.`;
-    if (key === 'fileType') return `Format non accepté. Formats acceptés : ${(err.extensions as string[]).join(', ').toUpperCase()}.`;
+    if (key === 'fileType') {
+      const exts = ((err.extensions as string[]) ?? []).map((e) => e.toUpperCase()).join(', ');
+      return `Format non accepté. Formats acceptés : ${exts}.`;
+    }
     return 'Fichier invalide.';
   }
 
   protected onChange(e: Event): void {
-    const list = Array.from((e.target as HTMLInputElement).files ?? []);
+    const input = e.target as HTMLInputElement;
+    const list = Array.from(input.files ?? []);
     this.commit(list);
+    // Réinitialise l'input natif pour permettre de re-sélectionner le même fichier après suppression
+    input.value = '';
   }
+
+  protected remove(e: Event, index: number): void {
+    e.stopPropagation();
+    e.preventDefault();
+    const c = this.control();
+    const current = toFiles(c.value);
+    const updated = current.filter((_, idx) => idx !== index);
+    if (this.multiple()) {
+      c.setValue(updated);
+    } else {
+      c.setValue(null);
+    }
+    c.markAsTouched();
+    c.markAsDirty();
+  }
+
   protected onDrag(e: DragEvent, on: boolean): void {
     e.preventDefault();
     this.drag.set(on);
   }
+
   protected onDrop(e: DragEvent): void {
     e.preventDefault();
     this.drag.set(false);

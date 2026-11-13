@@ -50,9 +50,9 @@ export const DOCS = {
 
 export const LIMITS = {
   dossierMo: 10,
-  videoMo: 200,
+  videoMo: 100,
   imageMo: 5,
-  hardLimitText: { dossier: 'PDF de 10 Mo maximum.', video: 'Fichier MP4 de 200 Mo maximum, ou un lien YouTube ou Google Drive accessible' },
+  hardLimitText: { dossier: 'PDF de 10 Mo maximum.', video: 'Fichier MP4 de 100 Mo maximum, ou un lien YouTube ou Google Drive accessible' },
 };
 
 export const BANDE_MOTS = ['Créativité', 'Ingéniosité', 'Innovation', 'Au service de la société'];

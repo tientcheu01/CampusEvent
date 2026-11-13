@@ -4,7 +4,7 @@ export type Avancement = 'idee' | 'prototype' | 'teste';
 export interface DepotPayload {
   projet: string;
   porteur: string;
-  filiere: string;
+  filiere?: string;
   niveau: string;
   telephone: string;
   email: string;

@@ -29,7 +29,7 @@ import { DepotFormService } from '../depot-form.service';
         }
       </div>
 
-      <sji-file-field label="Images du projet" icon="image" [multiple]="true" [optional]="true" [control]="f.pieces.controls.images" accept=".jpg,.jpeg,.png,.webp,image/*" hint="Photos du prototype ou schémas. JPG, PNG ou WebP, 5 Mo maximum par image." />
+      <sji-file-field label="Images du projet" icon="image" [multiple]="true" [optional]="true" [control]="f.pieces.controls.images" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.jfif" hint="Photos du prototype ou schémas. JPG, PNG ou WebP, 5 Mo maximum par image." />
     </div>
   `,
   styleUrl: './steps.scss',

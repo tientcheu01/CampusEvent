@@ -25,10 +25,11 @@ function cors(req, res) {
 const list = (v) => (v || '').split(',').map((e) => e.trim()).filter(Boolean);
 
 function transporter() {
+  const port = parseInt(process.env.SMTP_PORT || '587', 10);
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT, 10),
-    secure: false,
+    port,
+    secure: port === 465,
     auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
   });
 }
