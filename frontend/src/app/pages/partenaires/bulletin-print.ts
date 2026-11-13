@@ -46,7 +46,7 @@ export function openBulletin(data: PartenariatPayload): void {
 <table>${rows.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>
 <p>Fait le ${date}.</p>
 <div class="sign"><div>Signature du partenaire</div><div>Pour Saint Jean Ingénieur</div></div>
-<p class="note">Contreparties indicatives, ajustables avec le comité d'organisation. Merci de retourner ce bulletin signé à info@saintjeaningenieur.org ou par WhatsApp au 694 88 23 94.</p>
+<p class="note">Contreparties indicatives, ajustables avec le comité d'organisation. Merci de retourner ce bulletin signé à info@saintjeaningenieur.org ou par WhatsApp au 656 03 32 52.</p>
 <script>window.addEventListener('load', function () { setTimeout(function () { window.print(); }, 250); });</script>
 </body></html>`;
   const win = window.open('', '_blank');

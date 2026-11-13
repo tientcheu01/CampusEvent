@@ -105,7 +105,7 @@ const opt = (list: readonly string[]): FieldOption[] => list.map((v) => ({ value
               <sji-field label="Structure" [control]="form.controls.structure" autocomplete="organization" />
               <sji-field label="Représentant" [control]="form.controls.representant" autocomplete="name" />
               <sji-field label="Fonction" [control]="form.controls.fonction" autocomplete="organization-title" />
-              <sji-field label="Téléphone" type="tel" [control]="form.controls.telephone" autocomplete="tel" [messages]="{ pattern: 'Saisissez un numéro valide, par exemple 694 88 23 94.' }" />
+              <sji-field label="Téléphone" type="tel" [control]="form.controls.telephone" autocomplete="tel" [messages]="{ pattern: 'Saisissez un numéro valide, par exemple 656 03 32 52.' }" />
               <sji-field label="E-mail" type="email" [control]="form.controls.email" autocomplete="email" />
               <sji-field label="Formule souhaitée" type="select" [control]="form.controls.formule" [options]="formules" />
               <sji-field label="Nature de la contribution" type="select" [control]="form.controls.contribution" [options]="natures" />

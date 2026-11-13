@@ -22,11 +22,10 @@ export const NAV: NavItem[] = [
 
 export const CONTACT = {
   phones: [
-    { display: '694 88 23 94', tel: '+237694882394' },
     { display: '656 03 32 52', tel: '+237656033252' },
     { display: '655 66 03 95', tel: '+237655660395' },
   ],
-  whatsapp: 'https://wa.me/237694882394',
+  whatsapp: 'https://wa.me/237656033252',
   email: 'info@saintjeaningenieur.org',
   address: "Campus d'Etok-Koss, Simbock, Yaoundé",
   itineraire: 'https://www.google.com/maps/search/?api=1&query=Saint+Jean+Ing%C3%A9nieur+Etok-Koss+Simbock+Yaound%C3%A9',
@@ -71,7 +70,7 @@ export const A_PROPOS = {
     nom: 'M. Hermann Ekotto',
     role: 'Directeur du campus d’Etok-Koss',
     linkedin: 'https://www.linkedin.com/in/hermann-ekotto-801a76387/',
-    phone: '+237694882394',
+    phone: '+237656033252',
     photo: '/assets/images/Ekotto Hermann.png',
   },
   universite: {

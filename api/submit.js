@@ -151,7 +151,7 @@ module.exports = async function handler(req, res) {
 <p>Votre dossier « ${esc(d.projet)} » a bien été reçu. Votre numéro est&nbsp;:</p>
 <p style="font-size:30px;font-weight:bold;letter-spacing:-.02em;margin:8px 0 20px">${esc(numero)}</p>
 <p>Le jury évalue les dossiers du 21 décembre 2026 au 22 janvier 2027 ; les résultats de la présélection seront annoncés le 22 janvier.</p>
-<p>Une question&nbsp;? Appelez le 694 88 23 94.</p>`,
+<p>Une question&nbsp;? Appelez le 656 03 32 52 ou le 655 66 03 95.</p>`,
         ),
       });
     } catch (e) {

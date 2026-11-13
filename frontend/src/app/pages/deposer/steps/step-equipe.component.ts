@@ -14,7 +14,7 @@ import { DepotFormService } from '../depot-form.service';
       <sji-field label="Nom du porteur" [control]="f.equipe.controls.porteur" autocomplete="name" />
       <sji-field label="Niveau d'études" [control]="f.equipe.controls.niveau" hint="Par exemple : Licence 2, Master 1, 3e année..." />
       <div class="st__row">
-        <sji-field label="Téléphone" type="tel" [control]="f.equipe.controls.telephone" autocomplete="tel" [messages]="{ pattern: 'Saisissez un numéro valide, par exemple 694 88 23 94.' }" />
+        <sji-field label="Téléphone" type="tel" [control]="f.equipe.controls.telephone" autocomplete="tel" [messages]="{ pattern: 'Saisissez un numéro valide, par exemple 656 03 32 52.' }" />
         <sji-field label="E-mail" type="email" [control]="f.equipe.controls.email" autocomplete="email" hint="Le numéro de dossier vous sera envoyé à cette adresse." [messages]="{ email: 'Saisissez une adresse e-mail valide (ex : nom@domaine.com)' }" />
       </div>
 
