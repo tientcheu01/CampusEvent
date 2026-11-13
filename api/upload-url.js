@@ -60,8 +60,16 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // 2. Sinon, utiliser Vercel Blob Storage
-  const pathname = `candidatures/${Date.now()}_${decodeURIComponent(filename)}`;
+  // 2. Sinon, utiliser Vercel Blob Storage (nettoyage des accents/espaces pour éviter l'erreur de scope JWT)
+  let decodedName = filename;
+  try {
+    decodedName = decodeURIComponent(filename);
+  } catch {}
+  const safeName = decodedName
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9._-]/g, '_');
+  const pathname = `candidatures/${Date.now()}_${safeName}`;
 
   try {
     const token = process.env.BLOB_READ_WRITE_TOKEN || process.env.InnovaData_READ_WRITE_TOKEN;
